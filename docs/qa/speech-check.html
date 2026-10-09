@@ -9,6 +9,10 @@
   button:focus-visible, select:focus-visible, input:focus-visible { outline: 3px solid #005fcc; outline-offset: 3px; }
   pre { white-space: pre-wrap; overflow-wrap: anywhere; padding: 16px; background: #eef2f6; }
   label { display: block; margin: 16px 0; }
+  textarea { font: inherit; width: 100%; min-height: 90px; }
+  #asset-audit { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+  .asset { border: 1px solid #607586; border-radius: 8px; padding: 12px; }
+  .asset img { width: 96px; height: 96px; display: block; }
 </style>
 <main>
   <h1>Tanaw standalone speech check</h1>
@@ -19,7 +23,8 @@
   <select id="voice" aria-describedby="voice-status"></select>
   <button id="refresh">Refresh local voices</button>
   <p id="voice-status" role="status"></p>
-  <p>Sample: “I want to eat an apple.”</p>
+  <label for="sample">Text to test (use a longer message for Stop/replacement)</label>
+  <textarea id="sample" maxlength="2000">I want to eat an apple.</textarea>
   <button id="test">Test candidate sentence</button>
   <button id="stop">Stop audio</button>
   <button id="replay">Replay candidate sentence</button>
@@ -28,11 +33,23 @@
   <button id="verify" disabled>Use verified voice for this browser session</button>
   <button id="helper-test" disabled>Test exported speakText</button>
   <p id="capability" role="status">Production helper: not initialized; no verified voice.</p>
+  <h2>Card speech and error checks</h2>
+  <p>These are explicit QA actions. Card order is selection order. Stop audio interrupts all modes. Replay cards starts the sequence again. Unavailable mode intentionally removes both verified voice and audited clips; it does not simulate a real engine failure.</p>
+  <button id="helper-cards" disabled>Speak cards: Want → Eat → Apple</button>
+  <button id="helper-repeat" disabled>Speak repeated cards: Apple → Want → Apple</button>
+  <button id="helper-replay" disabled>Replay last card sequence</button>
+  <button id="fallback" disabled>Use audited clips only (no text voice)</button>
+  <button id="unavailable">Test all-speech-unavailable errors</button>
+  <button id="invalid">Test invalid inputs (no audio)</button>
+  <h2>32-card recording and picture audit</h2>
+  <p>Play each candidate WAV while disconnected. Check its audio box only if you hear its exact label clearly. Check the picture box only if its meaning is recognizable. Generated files are not automatically audited. Once all 32 audio boxes are checked, clips-only testing is available. Audit checks are held only in this page session.</p>
+  <p id="asset-status" role="status">Asset audit loading; nothing verified.</p>
+  <div id="asset-audit"></div>
   <h2>Evidence for this laptop</h2>
   <p>Copy this record into the readiness matrix; record member, laptop/OS, witness, check time, and real outcomes. Never mark another laptop verified from this result.</p>
   <pre id="evidence"></pre>
   <h2>Remaining gates</h2>
-  <p>Complete, licensed 32-card WAVs and symbols are still required. Card fallback, integrated board, model-stop, fresh setup, and final video checks are separate tests. Candidate audition does not enable a production voice.</p>
+  <p>Generated WAVs/symbols require human intelligibility/recognition review. Integrated board, model-stop, fresh setup, other laptops and final video checks remain separate gates. Candidate audition does not enable a production voice.</p>
 </main>
 <script type="module" src="/speech-probe.mjs"></script>
 </html>

@@ -81,6 +81,31 @@ checkbox can attest disconnected audible behavior for that browser session.
 
 Tests use small injected fixture vocabularies and fake browser events to verify
 control flow. They do not validate an installed voice, real WAV files or offline
-operation. The first checkpoint contains no recordings or symbols and makes no
-licensed-asset readiness claim. UI integration waits for design approval and the
-shared vocabulary/manifests from TANAW-01.
+operation. The first checkpoint contained no recordings or symbols. Issue #1's
+canonical vocabulary/manifests are now merged. The continuation supplies 32 WAVs
+and 32 original SVG candidates; their audible-label/recognition/offline audits
+remain pending. UI integration still waits for design approval.
+
+## Asset continuation handoff
+
+The files in `frontend/public/` match the unchanged canonical `audio_path` and
+`symbol_path`: `/audio/en/<id>.wav`, `/symbols/<id>.svg`. Vite bundles these files
+into the final static build. No inference, voice engine or network request is
+needed to play these already bundled recordings. Runtime consumers can use the
+canonical paths directly; `speech-assets.json` records source/license/checksums,
+not permission to silently enable an unaudited library.
+
+Before setting `availableClipIds`, a person must audition every actual label and
+confirm intelligibility and asset rights; supply only audited IDs. The controller
+advertises `cardsReady` only for the complete canonical library. Never derive
+`verifiedVoiceURI` from the recording-generation engine: full-text speech requires
+the laptop/browser's separately witnessed local English voice.
+
+The candidate WAVs use eSpeak NG 1.52.0's default en-us formant voice and are
+distributed under GPL-3.0-or-later with their source/recipe/license notices. SVGs
+are original vectors, also supplied under GPL-3.0-or-later. Keep
+`frontend/public/asset-licenses/` and the per-asset manifest when redistributing.
+Read [source and rights](../../public/asset-licenses/SOURCE.md) and the
+[current-laptop checklist](../../../docs/qa/current-laptop-speech-checklist.md).
+Independent asset review and real-device checks are still required before a
+demo-readiness claim. This handoff does not implement Robin's UI or approve design.
