@@ -79,12 +79,16 @@ Open `http://127.0.0.1:8765` in the actual laptop browser. Follow the per-laptop
 audition deliberately does not configure a production voice; only the human witness
 checkbox can attest disconnected audible behavior for that browser session.
 
-Tests use small injected fixture vocabularies and fake browser events to verify
-control flow. They do not validate an installed voice, real WAV files or offline
-operation. The first checkpoint contained no recordings or symbols. Issue #1's
+Current product verification runs 46 frontend tests: 31 speech-controller,
+six asset/provenance/human-record checks, six speech-QA state regressions and
+three foundation tests. Structural WAV/SVG/hash checks use actual bundled files;
+browser control tests use fixtures. Neither establishes installed-voice audibility,
+human recognition or disconnected operation. The first checkpoint contained no
+recordings or symbols. Issue #1's
 canonical vocabulary/manifests are now merged. The continuation supplies 32 WAVs
-and 32 original SVG candidates; their audible-label/recognition/offline audits
-remain pending. UI integration still waits for design approval.
+and 32 original SVGs. Gab's individual human record reports all 32 recordings and
+32 pictures PASS with Robin as witness. Real bundled-fallback, other-device and
+integrated checks remain pending. UI integration still waits for design approval.
 
 ## Asset continuation handoff
 

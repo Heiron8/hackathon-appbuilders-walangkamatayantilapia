@@ -44,6 +44,9 @@ SVGs and access to the label/generation and complete engine sources when sharing
 the pack. This pack uses the same GPL terms conservatively for generated WAVs;
 it does not rely on a claim that all synthesis outputs are automatically exempt.
 
-All human intelligibility, recognition and real offline playback audits remain
-PENDING until the tester provides actual results. Synthesis is mechanical and
-may need pronunciation or symbol corrections after audition/review.
+Current human intelligibility/recognition results and file-bound evidence are
+recorded in ../speech-assets.json and docs/qa/asset-acceptance.md in the repository.
+Gab reported all 32 WAVs and all 32 pictures PASS with Robin as witness; bundled
+offline sequence/device/integrated acceptance remains separate. Changing asset
+bytes invalidates their prior audit and requires a new human check. Generation
+alone never proves pronunciation, recognition or actual offline playback.

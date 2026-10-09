@@ -1,6 +1,10 @@
 # TANAW-04 / Issue #5 checkpoint and read-only review
 
 Owner: GabDeGuz. Branch: `task/issue-5`, based on reviewed main `d26c959`.
+Historical sections below retain their original verification counts. Current
+PR #15 acceptance checkpoint: 46 frontend tests (31 controller, six assets/human
+records, six QA state regressions, three foundation); seven backend tests. The
+current branch is `task/issue-5-assets`. See the latest acceptance update below.
 Live Issue #5 was read in full and exclusive ownership/status reread through
 `python scripts/claim_task.py 5`: OPEN, only GabDeGuz, `status:in-progress`.
 Architecture is approved/released. Live task readiness permits standalone speech now.
@@ -53,7 +57,7 @@ checks on each member's actual laptop/browser; record date/time and witness.
 | Heiron8 | Laptop unavailable this session | Pending | Pending | Pending | Pending | Pending | PENDING - not tested |
 | RobinKielll | Laptop unavailable this session | Pending | Pending | Pending | Pending | Pending | PENDING - not tested |
 | LadlopezGit | Laptop unavailable this session | Pending | Pending | Pending | Pending | Pending | PENDING - not tested |
-| GabDeGuz | Windows build 26200; Chrome 154.0.8037.58 observed | Microsoft Zira reported tested; Mark historical; exact URI/language/localService pending | PASS self-reported for Zira speech, Stop and Replay; raw evidence pending | PASS self-reported for Zira disconnected restart; detailed reload evidence pending | 32 generated candidates; audible audit pending | GabDeGuz self-report, October 10; exact test time/JSON not supplied | PARTIAL - reported Zira checks PASS; metadata/asset/integrated checks pending |
+| GabDeGuz | LOQ / Windows 11 supplied; Chrome 154 UA; build 26200 and Chrome 154.0.8037.58 separately observed | Microsoft Zira - English (United States); URI identical, en-US, localService true in supplied JSON | Prior human-reported PASS; physical-disconnection attestation true, initial browser hint true | Prior self-reported Zira restart PASS; bundled restart PENDING | 32 WAV labels + 32 pictures human-recorded PASS; bundled sequence PENDING | Gab / Robin as supplied; October 10 UTC+08; normalized individual JSON archived | PARTIAL - assets PASS; actual clips-only/device/integrated gates pending |
 
 On each laptop:
 
@@ -268,8 +272,59 @@ the seven scoped source/evidence files, no Git metadata or identity/credentials.
 The package was prepared before this review-status update. No automated sending
 was performed; it remains a snapshot of the submitted code and original evidence.
 
+## PR #15 human asset acceptance follow-up — October 10, 2026
+
+The user requested Earl's personal audit and then clarified that Earl and Gab
+are the same person; use **Gab**. The supplied QA JSON names listener Gab,
+witness Robin, laptop LOQ, Windows 11 and Chrome 154 user agent. No GitHub
+reviewer identity is inferred from the witness name. Each of the 32 WAV labels
+and 32 pictures is explicitly marked PASS with an individual check time, context
+and asset hash; no unclear asset or FAIL was reported. Exact asset-check interval:
+03:14:11.894–03:17:07.532 UTC+08. Source UTC timestamps are preserved.
+
+[The normalized evidence excerpt](evidence/2026-10-10-loq-assets.json) retains all
+individual asset results; it is clearly identified as an excerpt, not the full
+raw helper-event stream. [The acceptance matrix](asset-acceptance.md) records
+every canonical ID independently. The provenance manifest now supports actual
+PENDING/PASS/FAIL plus required tester/witness/device/time/source/hash evidence.
+The 64 asset byte hashes, canonical vocabulary, helper and GPL license are
+unchanged. Changed bytes require new human audits; old PASS cannot carry over.
+
+Zira's exact reported name/URI is `Microsoft Zira - English (United States)`,
+language en-US, localService true. The reported base Git revision is `7c9e886`
+with uncommitted QA form changes; the raw asset bytes match that reviewed base.
+The browser's connectedHint was true at page load and the human physical-
+disconnection attestation was true. A browser hint neither certifies nor refutes
+physical disconnection; explicit Wi-Fi/Ethernet details are requested for fallback.
+
+All **seven supplied human fallback rows are PENDING**. The completed repeated-card
+helper event used verified Zira with zero audited clips at that time; it does not
+establish bundled fallback. Stop/replacement events and expected unavailable/
+invalid-input errors are retained as observations, not converted to human PASS.
+Current QA now captures effective request mode so unavailable-mode events do not
+mislabel a stale voice preference as the voice used for that operation.
+
+QA offers separate per-card PASS/FAIL notes, human/device context, downloadable
+evidence, explicit missing-media 404 and same-tester/device audit restoration
+after reload. Restore retains original witness/check times, never imports voice
+verification and cannot approve another laptop. Promoted QA regression tests cover
+late/local-only Zira, missing identity/FAIL notes, image failures and stale callbacks,
+clip readiness, missing media, physical-disconnection gates, audit restore and
+effective mode logging. Current frontend count: **46** (31 speech, six assets/human
+records, six QA regressions, three foundation). Historical 18/34/37 counts above
+describe prior commits, not the current test suite. Final canonical verification
+passed, including seven backend tests, build, dependency compatibility, loopback
+smoke, harness checks (one skip) and secret scan. Independent read-only re-review
+by `/root/asset_rereview`: **PASS**, October 10, 2026, 03:31 UTC+08, no findings.
+The reviewer independently repeated canonical verification and checked all 64
+asset bytes against the reviewed base, HTTP delivery and human evidence. This
+approves the changed QA/code/evidence checkpoint; bundled fallback remains PENDING.
+
+Other three laptops and final integrated React AAC/Ollama-stopped checks remain
+PENDING. Issue #5 stays OPEN; PR #15 remains the existing draft. Codex must not merge.
+
 Current remaining dependencies: human audible-label and picture-recognition audits
-of the prepared canonical assets; complete voice metadata and disconnected checks
+of any changed assets; complete bundled-fallback and disconnected checks
 on all laptops; RobinKielll's integration after design approval; and final fresh
 setup/demo evidence on the integrated build. Canonical vocabulary and asset paths
 are available from the merged Issue #1 foundation. Suggestions remain disabled

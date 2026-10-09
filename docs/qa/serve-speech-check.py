@@ -12,6 +12,7 @@ PUBLIC = ROOT / 'frontend/public'
 RESOURCES = {
     '/': (ROOT / 'docs/qa/speech-check.html', 'text/html; charset=utf-8'),
     '/speech-probe.mjs': (ROOT / 'docs/qa/speech-probe.mjs', 'text/javascript; charset=utf-8'),
+    '/speech-audit.mjs': (ROOT / 'docs/qa/speech-audit.mjs', 'text/javascript; charset=utf-8'),
     '/speech/index.mjs': (ROOT / 'frontend/src/speech/index.mjs', 'text/javascript; charset=utf-8'),
     '/vocabulary.json': (ROOT / 'shared/vocabulary.json', 'application/json'),
     '/speech-assets.json': (PUBLIC / 'speech-assets.json', 'application/json'),

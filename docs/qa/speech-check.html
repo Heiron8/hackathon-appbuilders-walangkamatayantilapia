@@ -19,6 +19,14 @@
   <p>This is a QA page, separate from the product UI. Check every team laptop independently.</p>
   <p>Disconnect Wi-Fi and Ethernet before testing. Keep this loopback server running, reload this page, then test, stop, and replay. Browser events and <code>navigator.onLine</code> cannot prove audible, disconnected speech.</p>
   <p id="environment"></p>
+  <h2>Human tester and device</h2>
+  <p>Gab is the current tester. The named tester must personally listen and inspect. Enter the actual tester/witness and device; an event or generated file is not a human PASS.</p>
+  <label>Tester name <input id="tester" type="text"></label>
+  <label>Witness (enter self-witnessed if alone) <input id="audit-witness" type="text"></label>
+  <label>Laptop description <input id="device" type="text"></label>
+  <label>Windows version/build <input id="os" type="text"></label>
+  <label>Exact Git commit tested <input id="tested-commit" type="text"></label>
+  <label><input id="physically-offline" type="checkbox"> I personally disconnected Wi-Fi, Ethernet and other internet connections for this test session.</label>
   <label for="voice">Installed local English candidate voice</label>
   <select id="voice" aria-describedby="voice-status"></select>
   <button id="refresh">Refresh local voices</button>
@@ -42,14 +50,22 @@
   <button id="fallback" disabled>Use audited clips only (no text voice)</button>
   <button id="unavailable">Test all-speech-unavailable errors</button>
   <button id="invalid">Test invalid inputs (no audio)</button>
+  <button id="missing-media" disabled>Test missing bundled Apple recording (QA fault)</button>
+  <p>The missing-media button makes only this explicit QA request receive a real HTTP 404 for Apple. It leaves the asset files intact and must return playback_failed without speaking Apple or reporting success.</p>
   <h2>32-card recording and picture audit</h2>
-  <p>Play each candidate WAV while disconnected. Check its audio box only if you hear its exact label clearly. Check the picture box only if its meaning is recognizable. Generated files are not automatically audited. Once all 32 audio boxes are checked, clips-only testing is available. Audit checks are held only in this page session.</p>
+  <p>Play each candidate WAV while disconnected. The named tester must select PASS only after hearing its exact label clearly or recognizing its picture's correct meaning. Use FAIL with notes for unclear audio or ambiguous pictures. Leave untested items PENDING. Once all 32 audio results PASS, clips-only testing is available. Results are held only in this page session: download before reload/restart.</p>
   <p id="asset-status" role="status">Asset audit loading; nothing verified.</p>
   <p>If a picture is missing, use its Retry picture button or direct picture link. A failed picture cannot be marked recognized.</p>
+  <button id="resume-audits">Restore recorded asset audits for this tester/device</button>
+  <p>After reload, enter the same tester, witness and device/browser details, then explicitly restore the file-bound recorded asset results. Original check times remain unchanged; this does not verify a voice, speak, or approve a different laptop.</p>
   <div id="asset-audit"></div>
+  <h2>Human offline fallback results</h2>
+  <p>Choose Use audited clips only first, then test each action while physically disconnected. Record what the named tester actually heard or saw, separately from browser/helper events. Download before reload, then record the post-restart session separately.</p>
+  <div id="offline-results"></div>
   <h2>Evidence for this laptop</h2>
   <p>Copy this record into the readiness matrix; record member, laptop/OS, witness, check time, and real outcomes. Never mark another laptop verified from this result.</p>
   <pre id="evidence"></pre>
+  <button id="download-evidence">Download Evidence JSON</button>
   <h2>Remaining gates</h2>
   <p>Generated WAVs/symbols require human intelligibility/recognition review. Integrated board, model-stop, fresh setup, other laptops and final video checks remain separate gates. Candidate audition does not enable a production voice.</p>
 </main>

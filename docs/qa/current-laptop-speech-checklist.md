@@ -81,6 +81,14 @@ app must eventually use explicit user-click actions.
 
 ## Bundled recordings and pictures
 
+Current per-card acceptance and the remaining exact fallback steps are in
+[asset acceptance](asset-acceptance.md). Gab's submitted record reports all 32 WAV
+labels and 32 pictures PASS with Robin as witness. Do not infer fallback PASS
+from those asset results: all seven supplied fallback rows were still PENDING.
+After reload on the same device, enter the same tester/witness/device/browser
+details and click Restore recorded asset audits for this tester/device. Original
+check times are retained; voice verification and offline sequence results reset.
+
 In the 32-card recording and picture audit section, click Play candidate for each
 actual WAV. Check each audio/picture box only from what you actually heard/saw.
 If a picture is missing, click its Retry picture button or direct picture link;
@@ -95,7 +103,10 @@ Only enable the audited clip library after all recordings pass. Click
 Use audited clips only (no text voice), then Speak cards: Want -> Eat -> Apple;
 Speak repeated cards: Apple -> Want -> Apple; Stop midway; Replay last card
 sequence; and disconnected server/browser
-restart. Full-text speech in clips-only mode must return full_text_unavailable;
+restart. Download Evidence JSON before reload and again after disconnected
+restart. Use Test missing bundled Apple recording for an explicit real 404 fault;
+expect playback_failed, no sound and no false success. No assets are deleted.
+Full-text speech in clips-only mode must return full_text_unavailable;
 it must not automatically speak different card audio. Click Test exported
 speakText while in clips-only mode to check that error. Click
 Test all-speech-unavailable errors and Test invalid inputs for the explicitly
