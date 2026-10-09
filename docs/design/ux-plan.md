@@ -1,6 +1,6 @@
 # Tanaw: Figma AI Handoff Brief
 
-Status: UX BRIEF / VISUAL DIRECTION APPROVED in the Tanaw MVP v0.1 kickoff; EDITABLE DESIGN REVIEW PENDING. Ready to paste into Figma AI; no Figma file has been created. Editable design requires human review before frontend implementation. Architecture/brief approval does not imply final design approval. Developer 2 owns Figma preparation; Developer 4 supports QA and the Lead/human reviews it. Human reviewer/name/date: pending.
+Status: EDITABLE CORE DESIGN APPROVED by Heiron8 on October 10, 2026 at 03:21:10 Philippine time, conditional on independent Design QA. [Actual approval](https://github.com/Heiron8/hackathon-appbuilders-walangkamatayantilapia/issues/2#issuecomment-6087693386) and [fresh independent Codex Design QA PASS](https://github.com/Heiron8/hackathon-appbuilders-walangkamatayantilapia/issues/2#issuecomment-6087806342) satisfy that gate. The [existing editable Figma foundation](https://www.figma.com/design/SBBf5c8ejKjxcW70Fyw29N?node-id=26-10) is the visual reference; it was refined through MCP, not recreated. RobinKielll owns the small Issue #3 frontend checkpoint. This approval does not certify runtime accessibility, symbol recognition/licensing, AI or offline speech.
 
 ## Purpose and users
 
@@ -10,7 +10,7 @@ Platform: local browser on a laptop, with responsive tablet/mobile layouts. Appl
 
 ## Exactly three primary screens
 
-Design these as three views of one shared communication shell, not separate products. Preserve the vocabulary grid's position and order within each viewport. Use a reserved companion panel (side panel on laptop/tablet landscape; fixed region above the grid on narrow layouts), so switching between views does not insert content into/reorder the board. Message strip and essential responses remain available. Longer panel content scrolls inside the reserved region; do not push the grid downward after an AI result arrives.
+Design these as three views of one shared communication shell. Preserve the vocabulary grid's position and order within each viewport. The approved final refinement supersedes the initial narrow-layout proposal: tablet/desktop use a reserved side panel; phone places the board before optional assistance in the scrolling workspace. Message composer, Speak and essential responses remain available outside that workspace. Review deliberately scrolls to the optional panel; Pictures returns to the board. AI results never insert or rearrange board cards.
 
 | Screen | Required content | Required states |
 | --- | --- | --- |
@@ -32,7 +32,7 @@ Review Message is an explicit companion-panel mode of the board: avoid a blockin
 
 Use the complete 32-card vocabulary/order from [contracts.md](../architecture/contracts.md). The first six IDs are No, Stop, Help, Repeat, Something else, Yes. Make the first five essential responses always accessible in a consistent strip; their full-board instances keep canonical positions. All instances reference the same IDs, not duplicate vocabulary records. Complete vocabulary is never restricted by suggestions.
 
-Each card has a recognizable locally bundled symbol plus a persistent plain-language label. Category color is optional and secondary. Selected styling uses a border/check/state, not color alone. Tapping appends one card; repeated taps intentionally append repeats. Do not toggle/delete a card by tapping its grid instance. Undo removes the last selection; message-strip Remove controls allow explicit correction without drag gestures. Clear asks for confirmation. Maximum 12 selected cards; explain the limit without losing the message.
+Each card has a locally bundled replaceable symbol plus a persistent plain-language label; clinical recognition and redistribution rights are separate checks. Category color is secondary. Selected styling uses a border/check, not color alone. Tapping appends one card; repeated taps intentionally append repeats. Do not toggle/delete by tapping the board. The default composer shows ordered picture previews, Undo, Clear and prominent Speak. Edit words opens all selected tokens with explicit Remove and labeled Move earlier / Move later; Done returns to pictures. Longer previews and token lists scroll in order. Clear asks for confirmation. Maximum 12 selected cards; explain the limit without losing the message.
 
 Use keyboard-operable native-button behavior and predictable row order. No drag-only actions, timed choices, hover-only information, automatic movement, or auto-speech. Distinguish the Stop communication card from Stop audio; distinguish the Repeat communication card from Replay audio. Navigation retains selections; reloading starts a new empty session. Show original wording throughout AI review. Only explicitly approved/user-confirmed text can be spoken as the revised sentence.
 
@@ -55,4 +55,4 @@ Create reusable editable Figma components: Communication Card (default/focus/sel
 
 ## Human review / implementation handoff
 
-Reviewer checks the three journeys, user control, original/candidate distinction, essential access, stable layout, label recognition, target sizes, keyboard focus, contrast, responsive states, and truthful AI/speech failure. Record reviewer, date, Figma link/node references, and requested corrections here after review. Until then: DESIGN REVIEW PENDING; frontend implementation is not released. Detailed approved component specs/wireframes can be added to existing `design-system.md` and `wireframes.md` after Figma review; do not create competing design documentation.
+Heiron8's actual approval and the separate read-only Codex QA are linked above. QA freshly checked desktop/tablet/phone Communicate and Review, all 53 boards, 32 canonical IDs/order, essential access, intentional corrections, approval/invalidation, loading/error/stale/playback states, sampled contrast and disabled Conversation. No blocking design findings remain. See [design-system.md](design-system.md) and [wireframes.md](wireframes.md) for the approved handoff. Implement first the direct AAC checkpoint using the existing vocabulary and speech helper; sentence improvement follows the approved API when available. Do not infer audible/offline speech or runtime accessibility from Figma or unit tests.

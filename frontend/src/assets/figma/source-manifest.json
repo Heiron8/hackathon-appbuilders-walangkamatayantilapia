@@ -1,0 +1,503 @@
+{
+  "source_file": "SBBf5c8ejKjxcW70Fyw29N",
+  "source_frame": "31:10",
+  "recognition_review": "pending",
+  "redistribution_review": "pending",
+  "assets": {
+    "imgGroup": {
+      "path": "imgGroup.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/d98c3.svg",
+      "width": "16.9375",
+      "height": "13.8125",
+      "sha256": "b2102fa5c1bd971ec1edf7d04fdb4bd422aef4e6c3d6d2d0b2dc85074e69ded0"
+    },
+    "imgGroup1": {
+      "path": "imgGroup1.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/990f1.svg",
+      "width": "50.5",
+      "height": "50.5",
+      "sha256": "e1e047ea1a60b0ac537be38811291bab5d8a6a1ccaea3432779a6767b0eeb86d"
+    },
+    "imgGroup2": {
+      "path": "imgGroup2.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/6c711.svg",
+      "width": "22.9688",
+      "height": "15.9688",
+      "sha256": "62c45f06e6b2d73f9064a7eaabc463a4dd45622fbfe08b1d90405f2913ca777f"
+    },
+    "imgGroup3": {
+      "path": "imgGroup3.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/144a1.svg",
+      "width": "25.25",
+      "height": "25.25",
+      "sha256": "c00a6e846406fe90af687b2af5bcfef970ed13ad03c7e16046c038c69bd23e77"
+    },
+    "imgGroup4": {
+      "path": "imgGroup4.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/3ec7f.svg",
+      "width": "26.25",
+      "height": "26.25",
+      "sha256": "4e18c98a76e425e4efdac68c157e9725aff2c26f7528cfaa24c652e23b688884"
+    },
+    "imgGroup5": {
+      "path": "imgGroup5.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/1ed7a.svg",
+      "width": "25.25",
+      "height": "25.25",
+      "sha256": "f4716ee8cbf80245bbf224fda109936b12328c2d4c238a9eeabb6ae13f6b5441"
+    },
+    "imgGroup6": {
+      "path": "imgGroup6.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/61833.svg",
+      "width": "24.5",
+      "height": "25.6969",
+      "sha256": "cca0d1c2bf002b42110d1efde6d9c58974de78429b5ccbf0664a9c315ece4f97"
+    },
+    "imgGroup7": {
+      "path": "imgGroup7.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/5f96e.svg",
+      "width": "26.25",
+      "height": "18.25",
+      "sha256": "d748da6b8da0acc0886a88dd1dc66f6dd8110f8b7dc62aafde27b4ea27a9c58d"
+    },
+    "imgNativeIllustrationWantReaching": {
+      "path": "imgNativeIllustrationWantReaching.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/0cba6.svg",
+      "width": "48",
+      "height": "48",
+      "sha256": "a0d4026443a857cba59751e8f2b029acaa42f10dda5597454569566c698c4dde"
+    },
+    "imgGroup8": {
+      "path": "imgGroup8.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/390d8.svg",
+      "width": "36.75",
+      "height": "40.875",
+      "sha256": "f58c0761c0c91d6fd45c575956fd8e467c282a92ebe637d0c05dadf79f7398e3"
+    },
+    "imgGroup9": {
+      "path": "imgGroup9.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/44422.svg",
+      "width": "36.8827",
+      "height": "41.7174",
+      "sha256": "9e7f6207a819b5cba5d060cef1b9f3c3a21e97bb36c6d6943c8fadfaa36d86e0"
+    },
+    "imgGroup10": {
+      "path": "imgGroup10.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/f1042.svg",
+      "width": "21.1875",
+      "height": "16.125",
+      "sha256": "aee67aadd9133aabbd4bcd0afaeabcff61310a667c442b5a9cb07df6fd839a62"
+    },
+    "imgGroup11": {
+      "path": "imgGroup11.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/cf694.svg",
+      "width": "52.5",
+      "height": "52.5",
+      "sha256": "489da353497f5bcf83370242b7a1490c2de947e0b3d3394503dc172ea051fed3"
+    },
+    "imgGroup12": {
+      "path": "imgGroup12.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/00004.svg",
+      "width": "50.5",
+      "height": "50.5",
+      "sha256": "46ce63c56fed8702330172bc17ae2ccb1df7cd010f1eca0cc1272769f8e93f29"
+    },
+    "imgGroup13": {
+      "path": "imgGroup13.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/85153.svg",
+      "width": "49",
+      "height": "51.3938",
+      "sha256": "cae284d762497f2522f6f847064148b6d04bed75c90a19d9b0c15225f8a33aba"
+    },
+    "imgGroup14": {
+      "path": "imgGroup14.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/7f4a0.svg",
+      "width": "52.5",
+      "height": "36.5",
+      "sha256": "092fb14efba9c7c981b880ab2336618c02a208addb0ce201299e1528d0715286"
+    },
+    "imgGroup15": {
+      "path": "imgGroup15.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/e3221.svg",
+      "width": "50.5",
+      "height": "50.5",
+      "sha256": "90ed45c42dd46ca32389291754ac4a992c83944b0ddf04945924a33a9acd5fe6"
+    },
+    "imgGroup16": {
+      "path": "imgGroup16.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/70d60.svg",
+      "width": "33.7504",
+      "height": "50.5",
+      "sha256": "855b0725af4c58ed49d4433e754f289b86b7c6b91b39b15cb989e123c00d795b"
+    },
+    "imgNativeIllustrationWantReaching1": {
+      "path": "imgNativeIllustrationWantReaching1.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/25746.svg",
+      "width": "64",
+      "height": "64",
+      "sha256": "7623f7bfb1404d962648616b35b132be2bd20a9ed2f84ab9dc7436e81dcb3835"
+    },
+    "imgGroup17": {
+      "path": "imgGroup17.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/d5687.svg",
+      "width": "50.5",
+      "height": "50.5",
+      "sha256": "b4b5f2180af82a22d6e1152417dcc9a0d39bb7c7e72938b7e20eb0f1e022737f"
+    },
+    "imgGroup18": {
+      "path": "imgGroup18.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/c52a0.svg",
+      "width": "50.5",
+      "height": "50.5",
+      "sha256": "aff945e5bece278540df500780ca9a8001789957afbe898dfee420636f58c9e9"
+    },
+    "imgGroup19": {
+      "path": "imgGroup19.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/6fc2b.svg",
+      "width": "50.5",
+      "height": "48.5",
+      "sha256": "926162546949136cbb02caf6e438dc172ae79a7f9dbc7292c22ce982e13bffcc"
+    },
+    "imgGroup20": {
+      "path": "imgGroup20.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/06c7c.svg",
+      "width": "49",
+      "height": "54.5",
+      "sha256": "6623148637adcc77b1c7c8a858997c81d2fc0997afa85b49f462f0f0b6d997ca"
+    },
+    "imgGroup21": {
+      "path": "imgGroup21.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/225d8.svg",
+      "width": "46.5",
+      "height": "54.5",
+      "sha256": "c5b0227d1511172771995b1fc67b97d67c4d028befb6ab7484777bbd56ea68e4"
+    },
+    "imgGroup22": {
+      "path": "imgGroup22.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/85934.svg",
+      "width": "50.1364",
+      "height": "34.5",
+      "sha256": "c45d8b1f656f7eba9e757dd09107945e4aaea8fe153d47713f29b910cf340304"
+    },
+    "imgGroup23": {
+      "path": "imgGroup23.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/49a4e.svg",
+      "width": "53.5",
+      "height": "42.5",
+      "sha256": "6e746a9062a08792cdd758aa67169904bbf8c1b53bd71411f68ebdecec99fb33"
+    },
+    "imgGroup24": {
+      "path": "imgGroup24.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/14091.svg",
+      "width": "54.5",
+      "height": "41",
+      "sha256": "39e90b1dd0ba75972c57c5f650b847f73e65dad88df94a42c9ae97c214c62403"
+    },
+    "imgGroup25": {
+      "path": "imgGroup25.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/3eb8d.svg",
+      "width": "42.5",
+      "height": "55.5",
+      "sha256": "1b3f8ff9e3179faf759908a5b31205a32a1f01dd5deb5fba28a7b3b982e83f3e"
+    },
+    "imgGroup26": {
+      "path": "imgGroup26.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/3002f.svg",
+      "width": "33.5",
+      "height": "52.5",
+      "sha256": "f4bdfc3de768a6cac149e5663778637d2886959efde93ff7ef5d95c6cdb39173"
+    },
+    "imgGroup27": {
+      "path": "imgGroup27.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/553c5.svg",
+      "width": "38.75",
+      "height": "51.75",
+      "sha256": "8d64b2fe540d975de29caf9d39934780b824ba800707112007b71377cd2ea4de"
+    },
+    "imgGroup28": {
+      "path": "imgGroup28.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/39316.svg",
+      "width": "49.177",
+      "height": "55.6232",
+      "sha256": "060247a3cead72cb832caad19339ab14aaf2c62cf987e71c2b026c48202f3fed"
+    },
+    "imgGroup29": {
+      "path": "imgGroup29.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/16c25.svg",
+      "width": "45.9707",
+      "height": "43.6026",
+      "sha256": "5bddea359f0f6c9dcb1c705e8442497b8282976eaff654c90096c4d5e9e03e35"
+    },
+    "imgGroup30": {
+      "path": "imgGroup30.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/c1bc9.svg",
+      "width": "52.5",
+      "height": "46.5",
+      "sha256": "b94997487ff29aa38904c396abb25e829fe4e32ad7ab1d848aec05314f4a8291"
+    },
+    "imgGroup31": {
+      "path": "imgGroup31.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/085aa.svg",
+      "width": "46.555",
+      "height": "52.5",
+      "sha256": "631e04c321fedee7a9a52cf1009bf75c86003c90f7444e48dc42870ac047d64d"
+    },
+    "imgGroup32": {
+      "path": "imgGroup32.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/0acaa.svg",
+      "width": "48.5",
+      "height": "54.5",
+      "sha256": "b4cd6281b254cf4664ce4e2ae50f2287617265b03907b4ed75cc757f937625f3"
+    },
+    "imgGroup33": {
+      "path": "imgGroup33.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/4cf81.svg",
+      "width": "52.5",
+      "height": "52.5912",
+      "sha256": "1586a220658bda30dfee010920f919ebc0a4dbcdf9edb46e580a9a4c29710329"
+    },
+    "imgGroup34": {
+      "path": "imgGroup34.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/ff811.svg",
+      "width": "48.75",
+      "height": "48.75",
+      "sha256": "5329356bf92c6561ac77f65dad7661b76c3aa81157134eb6dcf7395c693d7888"
+    },
+    "imgGroup35": {
+      "path": "imgGroup35.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/30877.svg",
+      "width": "54.5001",
+      "height": "51.5",
+      "sha256": "6e027230ab5967a426c254f8060d4502db3af691a72f8f18616c7c00f88af141"
+    },
+    "imgGroup36": {
+      "path": "imgGroup36.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/10fdd.svg",
+      "width": "56.5002",
+      "height": "53.5",
+      "sha256": "0a9b14ad56771b2a4751075d8ee43c71b2b702c569058c007d0fc501e9759121"
+    },
+    "imgGroup37": {
+      "path": "imgGroup37.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/101cd.svg",
+      "width": "53.5",
+      "height": "51.5",
+      "sha256": "cd957ca93c6cc660e5ae4c55e22a1eaa38b42e5d9a7d635b3d0ab1a2acb9a77d"
+    },
+    "imgGroup38": {
+      "path": "imgGroup38.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/89df9.svg",
+      "width": "47.25",
+      "height": "51.5",
+      "sha256": "ce378a524284d99a606311be8392f314648db5e2f7be4a1a9f520bc53ec05d25"
+    },
+    "imgGroup39": {
+      "path": "imgGroup39.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/27cb3.svg",
+      "width": "50.5335",
+      "height": "61.5",
+      "sha256": "d25d3f1e611624888fe1221a80abc213c503b903e9bd1c4c29f741807eeaa9cc"
+    },
+    "imgGroup40": {
+      "path": "imgGroup40.svg",
+      "source_url": "https://www.figma.com/api/mcp/asset/d9969a38-b682-4d6d-a2be-d4ae27bd5a51/db583.svg",
+      "width": "57.5",
+      "height": "53.5",
+      "sha256": "9cb5bd74c13fa26a7add8f43c60959638b108bcd86a56a4a6cca35422cf7f4b4"
+    }
+  },
+  "vocabulary_slots": {
+    "no": {
+      "asset": "imgGroup1",
+      "left": 6.752,
+      "top": 6.752,
+      "boardNodeId": "31:238"
+    },
+    "stop": {
+      "asset": "imgGroup11",
+      "left": 5.7517,
+      "top": 5.7517,
+      "boardNodeId": "31:253"
+    },
+    "help": {
+      "asset": "imgGroup12",
+      "left": 6.752,
+      "top": 6.752,
+      "boardNodeId": "31:264"
+    },
+    "repeat": {
+      "asset": "imgGroup13",
+      "left": 7.5044,
+      "top": 6.299,
+      "boardNodeId": "31:276"
+    },
+    "something_else": {
+      "asset": "imgGroup14",
+      "left": 5.7517,
+      "top": 13.7505,
+      "boardNodeId": "31:287"
+    },
+    "yes": {
+      "asset": "imgGroup15",
+      "left": 6.752,
+      "top": 6.752,
+      "boardNodeId": "31:300"
+    },
+    "i": {
+      "asset": "imgGroup16",
+      "left": 12.503,
+      "top": 6.752,
+      "boardNodeId": "31:311"
+    },
+    "want": {
+      "asset": "imgNativeIllustrationWantReaching1",
+      "left": 0,
+      "top": 0,
+      "boardNodeId": "31:326"
+    },
+    "not": {
+      "asset": "imgGroup17",
+      "left": 6.752,
+      "top": 6.752,
+      "boardNodeId": "31:350"
+    },
+    "more": {
+      "asset": "imgGroup18",
+      "left": 6.752,
+      "top": 6.752,
+      "boardNodeId": "31:361"
+    },
+    "finished": {
+      "asset": "imgGroup19",
+      "left": 6.752,
+      "top": 7.7471,
+      "boardNodeId": "31:372"
+    },
+    "eat": {
+      "asset": "imgGroup20",
+      "left": 4.2553,
+      "top": 6.752,
+      "boardNodeId": "31:383"
+    },
+    "drink": {
+      "asset": "imgGroup21",
+      "left": 8.7538,
+      "top": 5.7536,
+      "boardNodeId": "31:405"
+    },
+    "play": {
+      "asset": "imgGroup22",
+      "left": 6.931,
+      "top": 22.7488,
+      "boardNodeId": "31:421"
+    },
+    "go": {
+      "asset": "imgGroup23",
+      "left": 5.7522,
+      "top": 10.748,
+      "boardNodeId": "31:434"
+    },
+    "rest": {
+      "asset": "imgGroup24",
+      "left": 4.7554,
+      "top": 17.0,
+      "boardNodeId": "31:444"
+    },
+    "water": {
+      "asset": "imgGroup25",
+      "left": 10.748,
+      "top": 5.7508,
+      "boardNodeId": "31:458"
+    },
+    "milk": {
+      "asset": "imgGroup26",
+      "left": 15.749,
+      "top": 5.7517,
+      "boardNodeId": "31:469"
+    },
+    "juice": {
+      "asset": "imgGroup27",
+      "left": 13.7524,
+      "top": 6.5006,
+      "boardNodeId": "31:481"
+    },
+    "apple": {
+      "asset": "imgGroup28",
+      "left": 7.4081,
+      "top": 3.1549,
+      "boardNodeId": "31:494"
+    },
+    "banana": {
+      "asset": "imgGroup29",
+      "left": 10.2743,
+      "top": 4.7537,
+      "boardNodeId": "31:513"
+    },
+    "rice": {
+      "asset": "imgGroup30",
+      "left": 5.7517,
+      "top": 9.752,
+      "boardNodeId": "31:525"
+    },
+    "bread": {
+      "asset": "imgGroup31",
+      "left": 8.72,
+      "top": 4.7533,
+      "boardNodeId": "31:538"
+    },
+    "toy": {
+      "asset": "imgGroup32",
+      "left": 7.7471,
+      "top": 5.7536,
+      "boardNodeId": "31:549"
+    },
+    "ball": {
+      "asset": "imgGroup33",
+      "left": 5.7517,
+      "top": 5.6598,
+      "boardNodeId": "31:568"
+    },
+    "music": {
+      "asset": "imgGroup34",
+      "left": 5.7505,
+      "top": 6.4965,
+      "boardNodeId": "31:580"
+    },
+    "home": {
+      "asset": "imgGroup35",
+      "left": 4.7554,
+      "top": 5.7521,
+      "boardNodeId": "31:592"
+    },
+    "school": {
+      "asset": "imgGroup36",
+      "left": 3.7509,
+      "top": 4.7538,
+      "boardNodeId": "31:605"
+    },
+    "outside": {
+      "asset": "imgGroup37",
+      "left": 5.7522,
+      "top": 4.7537,
+      "boardNodeId": "31:622"
+    },
+    "toilet": {
+      "asset": "imgGroup38",
+      "left": 10.7504,
+      "top": 6.7505,
+      "boardNodeId": "31:635"
+    },
+    "parent": {
+      "asset": "imgGroup39",
+      "left": 8.7218,
+      "top": 4.7525,
+      "boardNodeId": "31:649"
+    },
+    "teacher": {
+      "asset": "imgGroup40",
+      "left": 2.7515,
+      "top": 7.7489,
+      "boardNodeId": "31:669"
+    }
+  }
+}
