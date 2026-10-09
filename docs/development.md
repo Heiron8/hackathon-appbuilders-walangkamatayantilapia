@@ -26,6 +26,20 @@ No Ollama installation or model download is required for this checkpoint.
 
 ## Development
 
+After locked setup, run from the repository root:
+
+```powershell
+python scripts/dev.py
+```
+
+Open `http://127.0.0.1:5173`. The launcher checks dependencies and ports, starts
+both services on `127.0.0.1`, and stops its processes when you press Ctrl+C or a
+service fails. It never installs dependencies, starts Ollama, or stops existing
+servers. It uses `backend/.venv` when present, otherwise the launching Python
+environment (which must have the locked backend dependencies installed).
+
+For separate terminals/manual troubleshooting:
+
 Run backend from the repository root, so both Python packages and shared data
 resolve without machine-specific paths:
 
