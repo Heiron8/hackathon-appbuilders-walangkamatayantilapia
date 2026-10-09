@@ -87,8 +87,13 @@ human recognition or disconnected operation. The first checkpoint contained no
 recordings or symbols. Issue #1's
 canonical vocabulary/manifests are now merged. The continuation supplies 32 WAVs
 and 32 original SVGs. Gab's individual human record reports all 32 recordings and
-32 pictures PASS with Robin as witness. Real bundled-fallback, other-device and
-integrated checks remain pending. UI integration still waits for design approval.
+32 pictures PASS with Robin as witness. All seven standalone fallback rows were
+later manually reported PASS; valid exported fallback detail, other-device and
+integrated checks remain pending. Human design approval is now recorded; Robin's
+separate PR #17 integrates the helper with a LOQ-only Zira opt-in and empty clip
+configuration. See the [final integration handoff](../../../docs/qa/issue5-final-acceptance.md)
+for exact build/device/clip/asset gates. PR #15's symbol recognition and license
+do not certify PR #17's different Figma-export pictures.
 
 ## Asset continuation handoff
 
