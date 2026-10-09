@@ -204,6 +204,14 @@ OPEN/In Progress. The other three laptops remain PENDING; final integrated
 Want -> Eat -> Apple -> Review -> Speak with Ollama stopped waits for Robin's
 design-approved UI/build. No PR merge is authorized by this checkpoint.
 
+Before PR publication, a portability check found that Windows-generated CRLF
+SVG hashes differed from Git's committed LF bytes. Generation now writes LF and
+`.gitattributes` pins SVG/manifest line endings; all 32 symbol hashes were corrected
+to the actual committed bytes. Drawings and WAVs are unchanged. Independent
+read-only re-review by `/root/asset_rereview`: **PASS**, October 10, 2026,
+02:25 UTC+08, with full canonical verification and all 64 final-build asset hashes
+checked. A regression rejects CR in SVGs. No outstanding review findings remain.
+
 A local review ZIP and patch are prepared at `reports/tanaw-04-review.zip` and
 `reports/tanaw-04-review.patch` (ignored generated artifacts). The ZIP contains exactly
 the seven scoped source/evidence files, no Git metadata or identity/credentials.

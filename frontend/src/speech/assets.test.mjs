@@ -39,6 +39,7 @@ test('all 32 symbols are bounded original vectors without scripts, remote resour
     vocabulary.cards.map(card => `${card.id}.svg`).sort());
   for (const card of vocabulary.cards) {
     const svg = read(card.symbol_path).toString('utf8');
+    assert.ok(!svg.includes('\r'), `${card.id}: stable LF bytes required for cross-platform hashes`);
     assert.match(svg, /viewBox="0 0 96 96"/);
     assert.ok(svg.includes(`<title id="title">${card.label}</title>`));
     assert.doesNotMatch(svg, /<script|<image|<foreignObject|\bon\w+\s*=|\b(?:href|src)\s*=|@import|url\s*\(|<text\b/i);

@@ -131,7 +131,7 @@ def main():
                '<rect width="96" height="96" rx="12" fill="#fff"/>'
                '<g stroke="#263746" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">'
                + ART[card['id']] + '</g></svg>\n')
-        path.write_text(svg, encoding='utf8')
+        path.write_text(svg, encoding='utf8', newline='\n')
         records.append({'id': card['id'], 'label': card['label'], 'order': card['order'],
                         'audio_path': card['audio_path'], 'audio_sha256': sha(PUBLIC / card['audio_path']),
                         'audio_source': 'Locally synthesized canonical English label; eSpeak NG default en-us formant',
@@ -143,7 +143,7 @@ def main():
                 'asset_license': 'GPL-3.0-or-later', 'license_file': 'asset-licenses/GPL-3.0.txt',
                 'human_audit': 'PENDING; file generation is not human intelligibility/recognition or offline proof',
                 'assets': records}
-    (PUBLIC / 'speech-assets.json').write_text(json.dumps(manifest, indent=2) + '\n', encoding='utf8')
+    (PUBLIC / 'speech-assets.json').write_text(json.dumps(manifest, indent=2) + '\n', encoding='utf8', newline='\n')
     print('Prepared 32 WAVs and 32 original SVGs. Human/audio/offline audits PENDING.')
 
 
