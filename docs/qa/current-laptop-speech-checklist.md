@@ -7,8 +7,14 @@ continuation branch `task/issue-5-assets` in the same repository.
 
 Current recorded result (October 10, 2026): GabDeGuz answered "it all pass" to
 Zira speech, Stop, Replay and disconnected restart. Those four checks are recorded
-as self-reported PASS on this laptop. Exact voice URI and Evidence JSON remain
-unsupplied; other helper/asset/device/integrated checks are not inferred passed.
+as self-reported PASS on this laptop. The subsequent asset JSON supplies the exact
+Zira URI, `Microsoft Zira - English (United States)`, and individual human PASS
+for all 32 WAVs and 32 pictures. A later "it is all pass" report covers the six
+fallback checks in the [acceptance matrix](asset-acceptance.md) as general human
+self-report, followed by seven manually entered PASS rows. Validated exported
+detail and combined browser/server restart details remain pending. Other devices
+and integrated testing are not inferred passed. Any blocked fallback result now
+shows its missing prerequisite beside that control; follow it before exporting.
 The steps below remain the reproducible checklist, not a request to repeat the
 four already reported checks. See the [checkpoint](offline-speech-checkpoint.md)
 for the evidence limits and remaining gates.

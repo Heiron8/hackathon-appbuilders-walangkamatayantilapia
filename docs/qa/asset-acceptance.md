@@ -1,7 +1,7 @@
 # PR #15 - human asset and offline fallback acceptance
 
 Auditor reported as Gab; witness reported as Robin. User clarified Earl and Gab are the same person and requested the name Gab.
-The supplied individual human records report 32/32 audio PASS and 32/32 picture PASS. Offline fallback rows remain PENDING; prior Zira sentence/Stop/Replay/restart PASS is separate from bundled-fallback acceptance.
+The supplied individual human records report 32/32 audio PASS and 32/32 picture PASS. Subsequent human reports supply fallback PASS for all seven checks; the user confirmed entering the JSON statuses manually after successful testing because the page would not accept PASS. Detailed validated fallback evidence and combined restart details remain pending. Prior Zira sentence/Stop/Replay/restart PASS is separate from bundled-fallback acceptance.
 
 Use http://127.0.0.1:8770. Gab must personally listen and inspect; no generated file, unit test or browser event establishes recognition or audibility.
 
@@ -55,14 +55,27 @@ Use http://127.0.0.1:8770. Gab must personally listen and inspect; no generated 
 
 | Check | Result | Exact outcome / witness evidence |
 | --- | --- | --- |
-| Want -> Eat -> Apple order | PENDING | Not supplied |
-| Apple -> Want -> Apple repetition | PENDING | Not supplied |
-| Stop (record delay) | PENDING | Not supplied |
-| Replay from beginning | PENDING | Not supplied |
-| Disconnected reload + clips-only speech | PENDING | Not supplied |
-| Disconnected browser/server restart + clips-only speech | PENDING | Not supplied |
-| Missing-media HTTP 404 -> playback_failed, no sound/false success | PENDING | Not supplied |
+| Want -> Eat -> Apple order | PASS (self-report) | Gab: "it is all pass" after fallback instructions; exported detail requested |
+| Apple -> Want -> Apple repetition | PASS (self-report) | Same general report; exported detail requested |
+| Stop (record delay) | PASS (self-report) | Same general report; delay not supplied |
+| Replay from beginning | PASS (self-report) | Same general report; exported detail requested |
+| Disconnected reload + clips-only speech | PASS (self-report) | Same general report; post-reload session requested |
+| Disconnected browser/server restart + clips-only speech | PASS (self-report) | Later supplied per-row PASS, manually entered; specific combined restart details requested |
+| Missing-media HTTP 404 -> playback_failed, no sound/false success | PASS (self-report) | Same general report; exact error/request-mode evidence requested |
 | Clips-only full text -> full_text_unavailable, no card substitution | PENDING | Not supplied |
+
+[The follow-up chat record](evidence/2026-10-10-loq-fallback-self-report.json)
+preserves the exact statements and the later seven manually entered PASS rows.
+Each supplied fallback row has null check time and context. The user confirmed
+editing the statuses after testing because the page would not accept PASS;
+these are self-reported results, not individually timestamped validated exports.
+The original asset JSON's seven
+PENDING fallback rows remain unchanged as historical evidence. Current fallback
+witness, Wi-Fi/Ethernet details, effective bundled request mode and tested revision
+await a fresh valid export; the follow-up global session repeats Robin and revision
+7c9e886 from the earlier asset audit. The helper events remain from that earlier
+Zira/candidate-WAV session. The QA page now shows the exact prerequisite blocking
+PASS beside the affected fallback control, while preserving all evidence gates.
 
 ## Device and witness
 

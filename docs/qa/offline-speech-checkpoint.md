@@ -2,8 +2,8 @@
 
 Owner: GabDeGuz. Branch: `task/issue-5`, based on reviewed main `d26c959`.
 Historical sections below retain their original verification counts. Current
-PR #15 acceptance checkpoint: 46 frontend tests (31 controller, six assets/human
-records, six QA state regressions, three foundation); seven backend tests. The
+PR #15 acceptance checkpoint: 47 frontend tests (31 controller, six assets/human
+records, seven QA state regressions, three foundation); seven backend tests. The
 current branch is `task/issue-5-assets`. See the latest acceptance update below.
 Live Issue #5 was read in full and exclusive ownership/status reread through
 `python scripts/claim_task.py 5`: OPEN, only GabDeGuz, `status:in-progress`.
@@ -57,7 +57,7 @@ checks on each member's actual laptop/browser; record date/time and witness.
 | Heiron8 | Laptop unavailable this session | Pending | Pending | Pending | Pending | Pending | PENDING - not tested |
 | RobinKielll | Laptop unavailable this session | Pending | Pending | Pending | Pending | Pending | PENDING - not tested |
 | LadlopezGit | Laptop unavailable this session | Pending | Pending | Pending | Pending | Pending | PENDING - not tested |
-| GabDeGuz | LOQ / Windows 11 supplied; Chrome 154 UA; build 26200 and Chrome 154.0.8037.58 separately observed | Microsoft Zira - English (United States); URI identical, en-US, localService true in supplied JSON | Prior human-reported PASS; physical-disconnection attestation true, initial browser hint true | Prior self-reported Zira restart PASS; bundled restart PENDING | 32 WAV labels + 32 pictures human-recorded PASS; bundled sequence PENDING | Gab / Robin as supplied; October 10 UTC+08; normalized individual JSON archived | PARTIAL - assets PASS; actual clips-only/device/integrated gates pending |
+| GabDeGuz | LOQ / Windows 11 supplied; Chrome 154 UA; build 26200 and Chrome 154.0.8037.58 separately observed | Microsoft Zira - English (United States); URI identical, en-US, localService true in supplied JSON | Prior human-reported PASS; physical-disconnection attestation true, initial browser hint true | Prior self-reported Zira restart PASS; bundled reload/restart self-reported PASS; combined restart details pending | 32 WAV labels + 32 pictures human-recorded PASS; bundled sequence self-reported PASS | Earlier asset witness Gab / Robin; follow-up JSON repeats same session; manually entered fallback report Gab | PARTIAL - assets PASS; validated fallback detail/device/integrated gates pending |
 
 On each laptop:
 
@@ -297,7 +297,7 @@ The browser's connectedHint was true at page load and the human physical-
 disconnection attestation was true. A browser hint neither certifies nor refutes
 physical disconnection; explicit Wi-Fi/Ethernet details are requested for fallback.
 
-All **seven supplied human fallback rows are PENDING**. The completed repeated-card
+In the original asset JSON, all **seven supplied human fallback rows are PENDING**. The completed repeated-card
 helper event used verified Zira with zero audited clips at that time; it does not
 establish bundled fallback. Stop/replacement events and expected unavailable/
 invalid-input errors are retained as observations, not converted to human PASS.
@@ -310,15 +310,47 @@ after reload. Restore retains original witness/check times, never imports voice
 verification and cannot approve another laptop. Promoted QA regression tests cover
 late/local-only Zira, missing identity/FAIL notes, image failures and stale callbacks,
 clip readiness, missing media, physical-disconnection gates, audit restore and
-effective mode logging. Current frontend count: **46** (31 speech, six assets/human
+effective mode logging. At commit 3fd47c0, frontend count: **46** (31 speech, six assets/human
 records, six QA regressions, three foundation). Historical 18/34/37 counts above
-describe prior commits, not the current test suite. Final canonical verification
+describe prior commits. Canonical verification for 3fd47c0
 passed, including seven backend tests, build, dependency compatibility, loopback
 smoke, harness checks (one skip) and secret scan. Independent read-only re-review
 by `/root/asset_rereview`: **PASS**, October 10, 2026, 03:31 UTC+08, no findings.
 The reviewer independently repeated canonical verification and checked all 64
 asset bytes against the reviewed base, HTTP delivery and human evidence. This
-approves the changed QA/code/evidence checkpoint; bundled fallback remains PENDING.
+approves the changed QA/code/evidence checkpoint; bundled fallback was PENDING at that review.
+
+**Subsequent fallback report, October 10, 2026, recorded 03:39:57 UTC+08:**
+after instructions for the Human offline fallback controls, Gab replied
+"it is all pass". Record ordered cards, repetition, Stop, Replay, disconnected
+reload and missing-media handling as **PASS (general human self-report)** on this
+laptop. [The follow-up record](evidence/2026-10-10-loq-fallback-self-report.json)
+retains the exact statement without inventing individual check times, Stop delay,
+request modes or current witness presence. The combined browser/server restart
+had explicitly been deferred. A subsequent supplied JSON reports all seven rows
+PASS, including restart, but every row has null check time/context. Gab confirmed
+"i changed it to pass because i tested it and it is pass but i cant change it".
+Record all seven as manually entered human PASS, with validated detail pending.
+The supplied global session repeats 7c9e886/Gab/Robin/LOQ/Windows 11, and its events
+retain the earlier Zira/candidate-WAV times; no new bundled sequence, missing-media
+event or specific browser/server restart detail is present. Explicit Wi-Fi/Ethernet
+details and a fresh valid export are requested. The original asset JSON is
+preserved unchanged. The additional
+clips-only full-text rejection check remains PENDING.
+
+The QA page now explains each rejected fallback result beside its control: missing
+identity fields, absent physical-disconnection attestation, incomplete audio audits
+or text-voice mode. It gives the next action and retains the evidence gates; no
+status is automatically passed and no null time/context is filled retrospectively.
+A regression covers these failures and successful manual marking in clips-only
+mode. Current count is **47** frontend tests (31 controller, six assets, seven QA,
+three foundation). Canonical verification passed for this fix: all 47 frontend
+and seven backend tests, build, dependency compatibility, loopback smoke, harness
+checks (one skip) and secret scan. Independent read-only re-review by
+`/root/asset_rereview`: **PASS**, October 10, 2026, 03:46 UTC+08, no findings.
+The reviewer independently reran all 47 frontend tests and checked parsing,
+diffs, live module delivery and the distinction between manual PASS reports and
+validated fallback evidence. This checkpoint remains subject to human merge review.
 
 Other three laptops and final integrated React AAC/Ollama-stopped checks remain
 PENDING. Issue #5 stays OPEN; PR #15 remains the existing draft. Codex must not merge.

@@ -291,23 +291,38 @@ function renderOfflineResults() {
     const notes = document.createElement('input');
     notes.type = 'text'; notes.placeholder = 'Exact result, delay or failure (required for FAIL)';
     notes.onchange = () => { result.notes = notes.value; renderEvidence(); };
+    const feedback = document.createElement('span');
+    feedback.setAttribute('role', 'status');
+    const reject = message => {
+      select.value = result.status;
+      feedback.textContent = message;
+      el('result').textContent = message;
+    };
     select.onchange = () => {
       const context = humanContext();
-      if (select.value !== 'PENDING' && (!contextComplete(context) || !context.physicallyDisconnected)) {
-        select.value = result.status;
-        el('result').textContent = 'Enter tester/device details and confirm physical disconnection before recording offline results.';
+      const missing = [['tester', 'Tester name'], ['witness', 'Witness'],
+        ['device', 'Laptop description'], ['os', 'Windows version/build'],
+        ['testedCommit', 'Exact Git commit tested']].filter(([key]) => !context[key]);
+      if (select.value !== 'PENDING' && missing.length) {
+        reject(`At the top of this page, fill in: ${missing.map(([, label]) => label).join(', ')}. Then select this result again.`);
+        return;
+      }
+      if (select.value !== 'PENDING' && !context.physicallyDisconnected) {
+        reject('Disconnect Wi-Fi/Ethernet, then tick "I personally disconnected" at the top of this page. Select this result again afterward.');
         return;
       }
       if (select.value === 'PASS' && getSpeechState().capability !== 'cards_only') {
-        select.value = result.status;
-        el('result').textContent = 'Configure the complete audited clips-only library before recording fallback PASS.';
+        reject(auditedAudio.size !== 32
+          ? `Only ${auditedAudio.size}/32 audio audits are available in this page session. Use "Restore recorded asset audits for this tester/device" for your previously audited laptop, then "Use audited clips only (no text voice)".`
+          : 'Click "Use audited clips only (no text voice)" above, then select this result again. Zira sentence playback is a separate test.');
         return;
       }
       result.status = select.value; result.context = context;
       result.checkedAt = result.status === 'PENDING' ? null : new Date().toISOString();
+      feedback.textContent = result.status === 'PENDING' ? '' : `Recorded ${result.status} for ${context.tester}.`;
       renderEvidence();
     };
-    row.append(document.createTextNode(`${label}: `), select, notes);
+    row.append(document.createTextNode(`${label}: `), select, notes, feedback);
     el('offline-results').append(row);
   }
 }

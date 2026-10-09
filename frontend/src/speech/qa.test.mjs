@@ -114,6 +114,29 @@ test('QA enables clips only after all audio PASS; missing-media request reaches 
   assert.equal(f.evidence().offlineFallbackResults[0].status, 'PASS');
   assert.equal(f.spoken.length, 0);
 });
+test('QA explains rejected fallback results beside the affected control and retains human evidence gates', async () => {
+  const f = await fixture();
+  const row = f.elements['offline-results'].children[0];
+  const select = row.children[1], feedback = row.children[3];
+  const markPass = () => { select.value = 'PASS'; select.onchange(); };
+  markPass(); assert.equal(select.value, 'PENDING');
+  assert.match(feedback.textContent, /Tester name.*Witness.*Laptop description.*Windows version\/build.*Exact Git commit tested/);
+  f.metadata(); markPass(); assert.equal(select.value, 'PENDING');
+  assert.match(feedback.textContent, /tick "I personally disconnected"/);
+  f.elements['physically-offline'].checked = true; markPass();
+  assert.match(feedback.textContent, /0\/32.*Restore recorded asset audits/);
+  for (const item of vocabulary.cards) { const c = f.card(item.id); c.audio.value = 'PASS'; c.audio.onchange(); }
+  f.elements.witness.checked = true; f.elements.witness.onchange(); f.elements.verify.onclick();
+  markPass(); assert.equal(select.value, 'PENDING');
+  assert.match(feedback.textContent, /Click "Use audited clips only/);
+  f.elements.fallback.onclick(); markPass(); assert.equal(select.value, 'PASS');
+  assert.match(feedback.textContent, /Recorded PASS for fixture tester/);
+  const result = f.evidence().offlineFallbackResults[0];
+  assert.ok(result.checkedAt); assert.equal(result.context.tester, 'fixture tester');
+  assert.equal(result.context.physicallyDisconnected, true);
+  select.value = 'PENDING'; select.onchange(); assert.equal(feedback.textContent, '');
+  assert.equal(f.evidence().offlineFallbackResults[0].checkedAt, null);
+});
 test('QA resumes file-bound human results only for the same named tester/witness/device; retains original times without voice verification', async () => {
   const recorded = { tester: 'fixture tester', witness: 'fixture audit-witness', device: 'fixture device',
     os: 'fixture os', browser: 'fixture browser', tested_commit: 'fixture tested-commit',

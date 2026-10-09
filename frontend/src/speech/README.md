@@ -79,8 +79,8 @@ Open `http://127.0.0.1:8765` in the actual laptop browser. Follow the per-laptop
 audition deliberately does not configure a production voice; only the human witness
 checkbox can attest disconnected audible behavior for that browser session.
 
-Current product verification runs 46 frontend tests: 31 speech-controller,
-six asset/provenance/human-record checks, six speech-QA state regressions and
+Current product verification runs 47 frontend tests: 31 speech-controller,
+six asset/provenance/human-record checks, seven speech-QA state regressions and
 three foundation tests. Structural WAV/SVG/hash checks use actual bundled files;
 browser control tests use fixtures. Neither establishes installed-voice audibility,
 human recognition or disconnected operation. The first checkpoint contained no
