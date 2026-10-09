@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tanaw standalone speech check</title>
+<style>
+  body { font: 18px system-ui, sans-serif; line-height: 1.5; max-width: 850px; margin: 32px auto; padding: 0 20px; color: #172331; background: #fff; }
+  button, select { font: inherit; padding: 12px; margin: 6px 6px 6px 0; min-height: 48px; }
+  button:focus-visible, select:focus-visible, input:focus-visible { outline: 3px solid #005fcc; outline-offset: 3px; }
+  pre { white-space: pre-wrap; overflow-wrap: anywhere; padding: 16px; background: #eef2f6; }
+  label { display: block; margin: 16px 0; }
+</style>
+<main>
+  <h1>Tanaw standalone speech check</h1>
+  <p>This is a QA page, separate from the product UI. Check every team laptop independently.</p>
+  <p>Disconnect Wi-Fi and Ethernet before testing. Keep this loopback server running, reload this page, then test, stop, and replay. Browser events and <code>navigator.onLine</code> cannot prove audible, disconnected speech.</p>
+  <p id="environment"></p>
+  <label for="voice">Installed local English candidate voice</label>
+  <select id="voice" aria-describedby="voice-status"></select>
+  <button id="refresh">Refresh local voices</button>
+  <p id="voice-status" role="status"></p>
+  <p>Sample: “I want to eat an apple.”</p>
+  <button id="test">Test candidate sentence</button>
+  <button id="stop">Stop audio</button>
+  <button id="replay">Replay candidate sentence</button>
+  <p id="result" role="status">No playback tested.</p>
+  <label><input id="witness" type="checkbox"> I personally confirmed audible full-sentence playback, Stop, Replay, and reload with internet physically disconnected on this laptop/browser.</label>
+  <button id="verify" disabled>Use verified voice for this browser session</button>
+  <button id="helper-test" disabled>Test exported speakText</button>
+  <p id="capability" role="status">Production helper: not initialized; no verified voice.</p>
+  <h2>Evidence for this laptop</h2>
+  <p>Copy this record into the readiness matrix; record member, laptop/OS, witness, check time, and real outcomes. Never mark another laptop verified from this result.</p>
+  <pre id="evidence"></pre>
+  <h2>Remaining gates</h2>
+  <p>Complete, licensed 32-card WAVs and symbols are still required. Card fallback, integrated board, model-stop, fresh setup, and final video checks are separate tests. Candidate audition does not enable a production voice.</p>
+</main>
+<script type="module" src="/speech-probe.mjs"></script>
+</html>

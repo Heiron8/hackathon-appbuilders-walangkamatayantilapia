@@ -35,15 +35,22 @@ export interface HealthResponse {
 
 /** GabDeGuz implements this boundary; RobinKielll owns its UI integration. */
 export type SpeechCapability = 'full_text' | 'cards_only' | 'unavailable';
+export interface SpeechError { code: string; message: string }
+export type SpeechResult = { ok: true } | { ok: false; stopped: true } |
+  { ok: false; error: SpeechError };
 export interface SpeechState {
   capability: SpeechCapability;
-  playback: 'idle' | 'speaking';
-  error: string | null;
+  playback: 'idle' | 'speaking' | 'stopped' | 'error';
+  error: SpeechError | null;
+  voice: { name: string; lang: string; voiceURI: string; localService: true } | null;
+  cardsReady: boolean;
+  missingClipIds: CardId[];
 }
 export interface SpeechService {
-  speakText(text: string): Promise<void>;
-  speakCards(cardIds: CardId[]): Promise<void>;
+  speakText(text: string): Promise<SpeechResult>;
+  speakCards(cardIds: CardId[]): Promise<SpeechResult>;
   stopSpeech(): void;
   getState(): SpeechState;
   subscribe(listener: (state: SpeechState) => void): () => void;
+  dispose(): void;
 }
