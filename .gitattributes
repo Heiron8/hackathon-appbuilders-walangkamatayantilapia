@@ -1,1 +1,3 @@
 .githooks/* text eol=lf
+# Preserve exact Figma export bytes and manifest hashes on every platform.
+frontend/src/assets/figma/*.svg -text

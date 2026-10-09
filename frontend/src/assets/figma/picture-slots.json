@@ -1,0 +1,196 @@
+{
+  "vocabulary_slots": {
+    "no": {
+      "asset": "imgGroup1",
+      "left": 6.752,
+      "top": 6.752,
+      "boardNodeId": "31:238"
+    },
+    "stop": {
+      "asset": "imgGroup11",
+      "left": 5.7517,
+      "top": 5.7517,
+      "boardNodeId": "31:253"
+    },
+    "help": {
+      "asset": "imgGroup12",
+      "left": 6.752,
+      "top": 6.752,
+      "boardNodeId": "31:264"
+    },
+    "repeat": {
+      "asset": "imgGroup13",
+      "left": 7.5044,
+      "top": 6.299,
+      "boardNodeId": "31:276"
+    },
+    "something_else": {
+      "asset": "imgGroup14",
+      "left": 5.7517,
+      "top": 13.7505,
+      "boardNodeId": "31:287"
+    },
+    "yes": {
+      "asset": "imgGroup15",
+      "left": 6.752,
+      "top": 6.752,
+      "boardNodeId": "31:300"
+    },
+    "i": {
+      "asset": "imgGroup16",
+      "left": 12.503,
+      "top": 6.752,
+      "boardNodeId": "31:311"
+    },
+    "want": {
+      "asset": "imgNativeIllustrationWantReaching1",
+      "left": 0,
+      "top": 0,
+      "boardNodeId": "31:326"
+    },
+    "not": {
+      "asset": "imgGroup17",
+      "left": 6.752,
+      "top": 6.752,
+      "boardNodeId": "31:350"
+    },
+    "more": {
+      "asset": "imgGroup18",
+      "left": 6.752,
+      "top": 6.752,
+      "boardNodeId": "31:361"
+    },
+    "finished": {
+      "asset": "imgGroup19",
+      "left": 6.752,
+      "top": 7.7471,
+      "boardNodeId": "31:372"
+    },
+    "eat": {
+      "asset": "imgGroup20",
+      "left": 4.2553,
+      "top": 6.752,
+      "boardNodeId": "31:383"
+    },
+    "drink": {
+      "asset": "imgGroup21",
+      "left": 8.7538,
+      "top": 5.7536,
+      "boardNodeId": "31:405"
+    },
+    "play": {
+      "asset": "imgGroup22",
+      "left": 6.931,
+      "top": 22.7488,
+      "boardNodeId": "31:421"
+    },
+    "go": {
+      "asset": "imgGroup23",
+      "left": 5.7522,
+      "top": 10.748,
+      "boardNodeId": "31:434"
+    },
+    "rest": {
+      "asset": "imgGroup24",
+      "left": 4.7554,
+      "top": 17.0,
+      "boardNodeId": "31:444"
+    },
+    "water": {
+      "asset": "imgGroup25",
+      "left": 10.748,
+      "top": 5.7508,
+      "boardNodeId": "31:458"
+    },
+    "milk": {
+      "asset": "imgGroup26",
+      "left": 15.749,
+      "top": 5.7517,
+      "boardNodeId": "31:469"
+    },
+    "juice": {
+      "asset": "imgGroup27",
+      "left": 13.7524,
+      "top": 6.5006,
+      "boardNodeId": "31:481"
+    },
+    "apple": {
+      "asset": "imgGroup28",
+      "left": 7.4081,
+      "top": 3.1549,
+      "boardNodeId": "31:494"
+    },
+    "banana": {
+      "asset": "imgGroup29",
+      "left": 10.2743,
+      "top": 4.7537,
+      "boardNodeId": "31:513"
+    },
+    "rice": {
+      "asset": "imgGroup30",
+      "left": 5.7517,
+      "top": 9.752,
+      "boardNodeId": "31:525"
+    },
+    "bread": {
+      "asset": "imgGroup31",
+      "left": 8.72,
+      "top": 4.7533,
+      "boardNodeId": "31:538"
+    },
+    "toy": {
+      "asset": "imgGroup32",
+      "left": 7.7471,
+      "top": 5.7536,
+      "boardNodeId": "31:549"
+    },
+    "ball": {
+      "asset": "imgGroup33",
+      "left": 5.7517,
+      "top": 5.6598,
+      "boardNodeId": "31:568"
+    },
+    "music": {
+      "asset": "imgGroup34",
+      "left": 5.7505,
+      "top": 6.4965,
+      "boardNodeId": "31:580"
+    },
+    "home": {
+      "asset": "imgGroup35",
+      "left": 4.7554,
+      "top": 5.7521,
+      "boardNodeId": "31:592"
+    },
+    "school": {
+      "asset": "imgGroup36",
+      "left": 3.7509,
+      "top": 4.7538,
+      "boardNodeId": "31:605"
+    },
+    "outside": {
+      "asset": "imgGroup37",
+      "left": 5.7522,
+      "top": 4.7537,
+      "boardNodeId": "31:622"
+    },
+    "toilet": {
+      "asset": "imgGroup38",
+      "left": 10.7504,
+      "top": 6.7505,
+      "boardNodeId": "31:635"
+    },
+    "parent": {
+      "asset": "imgGroup39",
+      "left": 8.7218,
+      "top": 4.7525,
+      "boardNodeId": "31:649"
+    },
+    "teacher": {
+      "asset": "imgGroup40",
+      "left": 2.7515,
+      "top": 7.7489,
+      "boardNodeId": "31:669"
+    }
+  }
+}
