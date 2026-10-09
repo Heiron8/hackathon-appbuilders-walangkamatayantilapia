@@ -1,4 +1,33 @@
 {
-  "lead_architect_member_id": null,
-  "members": []
+  "lead_architect_member_id": "member-gh-heiron8",
+  "members": [
+    {
+      "id": "member-gh-heiron8",
+      "name": "Heiron8",
+      "github": "Heiron8",
+      "role": "full-stack",
+      "status": "active"
+    },
+    {
+      "id": "member-gh-robinkielll",
+      "name": "Robin Kiel Pineda",
+      "github": "RobinKielll",
+      "role": "full-stack",
+      "status": "active"
+    },
+    {
+      "id": "member-gh-ladlopezgit",
+      "name": "Jerald Lopez",
+      "github": "LadlopezGit",
+      "role": "full-stack",
+      "status": "active"
+    },
+    {
+      "id": "member-gh-gabdeguz",
+      "name": "GabDeGuz",
+      "github": "GabDeGuz",
+      "role": "full-stack",
+      "status": "active"
+    }
+  ]
 }
