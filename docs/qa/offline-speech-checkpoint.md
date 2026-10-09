@@ -53,7 +53,7 @@ checks on each member's actual laptop/browser; record date/time and witness.
 | Heiron8 | Laptop unavailable this session | Pending | Pending | Pending | Pending | Pending | PENDING - not tested |
 | RobinKielll | Laptop unavailable this session | Pending | Pending | Pending | Pending | Pending | PENDING - not tested |
 | LadlopezGit | Laptop unavailable this session | Pending | Pending | Pending | Pending | Pending | PENDING - not tested |
-| GabDeGuz | Windows build 26200; Chrome 154.0.8037.58 observed | Microsoft Mark reported; exact URI/language/localService pending | PASS self-reported in chat; raw evidence pending | PASS self-reported in chat; details pending | 32 generated candidates; audible audit pending | GabDeGuz self-report, October 10; exact test time/JSON not supplied | PARTIAL - metadata/asset/integrated checks pending |
+| GabDeGuz | Windows build 26200; Chrome 154.0.8037.58 observed | Microsoft Zira reported tested; Mark historical; exact URI/language/localService pending | PASS self-reported for Zira speech, Stop and Replay; raw evidence pending | PASS self-reported for Zira disconnected restart; detailed reload evidence pending | 32 generated candidates; audible audit pending | GabDeGuz self-report, October 10; exact test time/JSON not supplied | PARTIAL - reported Zira checks PASS; metadata/asset/integrated checks pending |
 
 On each laptop:
 
@@ -228,8 +228,9 @@ callbacks cannot confirm a replacement picture.
 Microsoft Zira is now the preferred QA candidate when reported as a local English
 voice. Missing Zira is reported without silently choosing Mark. An explicit tester
 choice is retained; selecting Zira does not verify it or start speech. The previous
-Mark report stays historical; Zira URI/audible/offline/Stop/Replay/restart checks
-are PENDING. Existing fallback WAVs remain licensed eSpeak recordings, not Zira
+Mark report stays historical. At this QA-control checkpoint, Zira URI/audible/
+offline/Stop/Replay/restart checks were pending; see the subsequent human result
+below. Existing fallback WAVs remain licensed eSpeak recordings, not Zira
 recordings. Full canonical verification PASS: 37 frontend tests, seven backend
 tests, production build, dependency compatibility, loopback smoke, workspace
 checks and secret scan. QA control fixture checks pass; they do not establish
@@ -239,6 +240,27 @@ findings. The reviewer independently checked the frontend/QA fixtures, parsing,
 diff and exact three-symbol HTTP/XML delivery, including extra remote/non-English/
 disappearing-voice and stale-picture callback cases. This approves QA preparation
 for the existing draft PR #15; Issue #5 stays open and no merge is authorized.
+
+**Zira human result — October 10, 2026:** Asked whether Zira speech, Stop,
+Replay and disconnected restart all passed or whether any failed, GabDeGuz
+replied "it all pass". Record **PASS, self-reported by the current laptop tester**
+for these four named checks. This is actual human testimony, not a result inferred
+from unit tests, browser events or the agent listening. No independent witness
+was supplied. Exact voice URI/language/localService, Evidence JSON, helper result
+details, individual test times and tested commit remain unsupplied. The prepared
+QA code at the time of this report is `63bdd51`; that is not an independently
+confirmed tested revision. Do not copy Mark's URI or invent Zira metadata.
+
+This report does not cover all 32 WAV label auditions, all 32 symbol-recognition
+checks, explicit clips-only order/repetition/error tests, other laptops or the
+integrated Want -> Eat -> Apple -> Review -> Speak journey. Their pending status
+is unchanged. Issue #5 remains OPEN/In Progress and draft PR #15 stays unmerged
+pending the user's approval. Independent read-only review of this documentation-
+only evidence update: **PASS**, `/root/asset_rereview`, October 10, 2026,
+02:42 UTC+08; no findings. The reviewer checked the diff and prospective PR body
+for truthful attribution and scope. Workspace quick verification and diff checks
+PASS. No code/assets changed, so product verification was not repeated for this
+evidence update; previous code verification remains recorded separately above.
 
 A local review ZIP and patch are prepared at `reports/tanaw-04-review.zip` and
 `reports/tanaw-04-review.patch` (ignored generated artifacts). The ZIP contains exactly

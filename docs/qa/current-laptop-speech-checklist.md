@@ -5,6 +5,14 @@ LadlopezGit remain PENDING. Issue #5 stays OPEN; no PR merge is authorized here.
 PR #12 is already merged; further reviewed assets/evidence use the Issue #5
 continuation branch `task/issue-5-assets` in the same repository.
 
+Current recorded result (October 10, 2026): GabDeGuz answered "it all pass" to
+Zira speech, Stop, Replay and disconnected restart. Those four checks are recorded
+as self-reported PASS on this laptop. Exact voice URI and Evidence JSON remain
+unsupplied; other helper/asset/device/integrated checks are not inferred passed.
+The steps below remain the reproducible checklist, not a request to repeat the
+four already reported checks. See the [checkpoint](offline-speech-checkpoint.md)
+for the evidence limits and remaining gates.
+
 ## First test: real full-sentence speech
 
 1. From the repository root, run `python docs/qa/serve-speech-check.py --port 8770`.
