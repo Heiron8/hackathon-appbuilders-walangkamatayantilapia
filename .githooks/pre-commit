@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+set -eu
+python scripts/guardrails.py scope --staged
+python scripts/guardrails.py secrets --staged
+python scripts/verify_workspace.py --quick

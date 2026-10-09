@@ -1,0 +1,29 @@
+# Professional Workspace Template
+.
+??? .gitattributes              # portable hook line endings
+??? .githooks/                  # local commit and push checks
+??? .github/                    # issue, PR, and CI workflows
+??? .orchestrator/              # fresh state and reusable policies
+??? adapters/                   # optional runtime mappings
+??? agents/                     # professional role charters
+??? docs/
+?   ??? architecture/           # blank project architecture starters
+?   ??? decisions/              # ADR instructions, no decisions
+?   ??? design/                 # blank UX and design starters
+?   ??? modules/                # module documentation starter
+?   ??? plans/                  # example task format, no approved plan
+?   ??? product/                # blank product starters
+?   ??? qa/                     # blank QA starter
+?   ??? workspace/              # reusable standards
+??? integrations/              # optional integration guides
+??? response-contracts/        # standard agent outputs
+??? scripts/                   # workflow automation and verification
+??? skills/                    # canonical workflow skills
+??? tests/                     # harness regression tests
+??? AGENTS.md
+??? README.md
+??? WORKFLOW.md
+??? WORKSPACE_REQUIREMENTS.md
+??? WORKSPACE_SPEC.md
+??? workspace.config.json
+??? verify-workspace.ps1

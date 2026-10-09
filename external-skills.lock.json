@@ -1,0 +1,10 @@
+{
+  "policy": "pin-external-skills-before-team-use",
+  "skills": {
+    "impeccable": {
+      "enabled": false,
+      "version": "PIN_BEFORE_ENABLE",
+      "purpose": "core-general-design-skill"
+    }
+  }
+}

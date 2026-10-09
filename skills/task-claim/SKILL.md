@@ -1,0 +1,3 @@
+# Task Claim Skill
+
+Identify the current human and confirm the task is Ready and unclaimed, or is a partial claim by that same human. Reuse an existing task branch/worktree and owner assignment on retry. Recheck exclusive ownership around assignment and before reporting success; if another owner appears, remove only the assignment this claim added and stop. Transition Ready to In Progress only after a fresh status check inside the Project mutation helper; an already In Progress task owned by that human needs no status write. Never replace another owner's assignment or a later Project status. Report using the task-claim response contract; do not claim overlapping work silently.

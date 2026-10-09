@@ -1,0 +1,13 @@
+{
+  "workspace_version": "1.0.0",
+  "project": {
+    "phase": "new",
+    "initialized": false
+  },
+  "architecture": {
+    "status": "not_started"
+  },
+  "release": {
+    "status": "not_started"
+  }
+}

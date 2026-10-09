@@ -1,0 +1,22 @@
+{
+  "task_publication_requires_architecture_approval": true,
+  "verification_required": true,
+  "independent_review_required": true,
+  "reviewer_write_access": "deny-when-practical",
+  "high_impact_requires_human_approval": [
+    "auth",
+    "permissions",
+    "payments",
+    "major-schema",
+    "deployment-architecture",
+    "security-policy",
+    "production-release"
+  ],
+  "anti_thrashing": {
+    "similar_failures_before_escalation": 2
+  },
+  "token_efficiency": {
+    "load_minimum_context": true,
+    "prefer_deterministic_checks_first": true
+  }
+}

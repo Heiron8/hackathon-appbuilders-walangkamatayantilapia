@@ -1,0 +1,7 @@
+.workspace-local/
+.orchestrator/runtime/
+__pycache__/
+.env
+reports/
+demo/node_modules/
+demo/output/

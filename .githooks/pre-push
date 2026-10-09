@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+set -eu
+python scripts/guardrails.py protected-branch
+python scripts/verify_workspace.py --quick

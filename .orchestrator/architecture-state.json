@@ -1,0 +1,23 @@
+{
+  "status": "not_started",
+  "owner_member_id": null,
+  "completed_sections": [],
+  "current_section": null,
+  "pending_sections": [
+    "product-boundary",
+    "primary-user-journey",
+    "architecture-style",
+    "modules-responsibilities",
+    "interfaces-contracts",
+    "data-flow",
+    "persistence-strategy",
+    "external-integrations",
+    "failure-fallback",
+    "security-boundaries",
+    "deployment-route",
+    "constraint-tradeoffs"
+  ],
+  "open_questions": [],
+  "last_updated": null,
+  "approval": null
+}

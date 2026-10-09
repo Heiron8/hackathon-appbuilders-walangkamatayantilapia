@@ -1,0 +1,32 @@
+{
+  "workspace_version": "1.0.0",
+  "operating_mode": "hackathon-24h",
+  "project": {
+    "name": "",
+    "phase": "new"
+  },
+  "github": {
+    "owner": "",
+    "repo": "",
+    "project_number": null,
+    "status_field": "Status",
+    "status_values": {
+      "backlog": "Backlog",
+      "ready": "Ready",
+      "in_progress": "In Progress",
+      "in_review": "In Review",
+      "blocked": "Blocked",
+      "done": "Done"
+    }
+  },
+  "verification": {
+    "commands": []
+  },
+  "adapters": {
+    "preferred": "generic"
+  },
+  "design": {
+    "core_skill": "impeccable",
+    "conditional_skills": []
+  }
+}

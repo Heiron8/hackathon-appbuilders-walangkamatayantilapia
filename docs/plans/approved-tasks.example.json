@@ -1,0 +1,14 @@
+[
+  {
+    "key": "TASK-001",
+    "title": "Example implementation task",
+    "goal": "Demonstrate the approved-task publication format.",
+    "acceptance_criteria": [
+      "Behavior A works",
+      "Verification passes",
+      "No unrelated changes"
+    ],
+    "dependencies": [],
+    "risk": "low"
+  }
+]

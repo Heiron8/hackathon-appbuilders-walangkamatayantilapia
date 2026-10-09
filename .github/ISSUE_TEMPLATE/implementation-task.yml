@@ -1,0 +1,32 @@
+name: Implementation task
+description: Workspace implementation task
+body:
+  - type: input
+    id: workspace_task_key
+    attributes:
+      label: Workspace task key
+    validations:
+      required: true
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies / blockers
+  - type: dropdown
+    id: risk
+    attributes:
+      label: Risk
+      options: [low, medium, high]
+    validations:
+      required: true
