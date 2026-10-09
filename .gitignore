@@ -5,3 +5,7 @@ __pycache__/
 reports/
 demo/node_modules/
 demo/output/
+frontend/node_modules/
+frontend/dist/
+backend/.venv/
+*.pyc

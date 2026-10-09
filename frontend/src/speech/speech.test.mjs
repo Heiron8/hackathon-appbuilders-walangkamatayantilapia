@@ -1,5 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { validateVocabulary } from '../../../shared/vocabulary.mjs';
 import { createSpeechController, getSpeechState, speakText, speakCards } from './index.mjs';
 
 // Small test fixture, not a replacement for shared/vocabulary.json.
@@ -106,6 +108,105 @@ test('full-text failure never switches to card clips', async () => {
   assert.equal((await pending).error.code, 'playback_failed');
   assert.equal(audios.length, 0);
   assert.equal(speech.getState().playback, 'error');
+  speech.dispose();
+});
+
+test('Stop from an error notification preserves the failed request result', async () => {
+  const { speech, utterances, audios } = setup({ verifiedVoiceURI: local.voiceURI,
+    availableClipIds: ['want', 'eat', 'apple'] });
+  speech.subscribe(state => {
+    if (state.playback === 'error') speech.stopSpeech();
+  });
+  const pending = speech.speakText('Hello');
+  utterances[0].onerror();
+  const result = await pending;
+  assert.equal(result.ok, false);
+  assert.equal(result.error.code, 'playback_failed');
+  assert.equal(typeof result.error.message, 'string');
+  assert.equal(speech.getState().playback, 'stopped');
+  assert.equal(audios.length, 0);
+  speech.dispose();
+});
+
+for (const failure of ['error', 'timeout', 'throw']) {
+  test(`explicit card clips remain usable after synthesis ${failure}`, { timeout: 1000 }, async () => {
+    const { speech, env, utterances, audios, timers } = setup({
+      verifiedVoiceURI: local.voiceURI, availableClipIds: ['want', 'eat', 'apple'],
+    });
+    if (failure === 'throw') env.speechSynthesis.speak = () => { throw new Error('Device failed'); };
+    const text = speech.speakText('I want to eat an apple.');
+    if (failure === 'error') utterances[0].onerror();
+    if (failure === 'timeout') [...timers.values()][0]();
+    assert.equal((await text).error.code, failure === 'timeout' ? 'playback_timeout' : 'playback_failed');
+    assert.equal(audios.length, 0, 'failed full text must not automatically play clips');
+    assert.equal(speech.getState().capability, 'cards_only');
+
+    const cards = speech.speakCards(['apple', 'want', 'apple']);
+    assert.equal(utterances.length, failure === 'throw' ? 0 : 1, 'must not retry failed synthesis');
+    for (const [position, id] of ['apple', 'want', 'apple'].entries()) {
+      assert.equal(audios[position].src, `/audio/en/${id}.wav`);
+      audios[position].onended();
+    }
+    assert.deepEqual(await cards, { ok: true });
+    assert.equal(timers.size, 0);
+    speech.dispose();
+  });
+}
+
+for (const mode of ['text', 'clips']) {
+  for (const notification of ['stopped', 'speaking']) {
+    for (const action of ['stopSpeech', 'dispose']) {
+      test(`${action} during ${notification} notification prevents ${mode} from starting`, { timeout: 1000 }, async () => {
+        const { speech, utterances, audios, timers, events } = setup({
+          verifiedVoiceURI: mode === 'text' ? local.voiceURI : null,
+          availableClipIds: ['want', 'eat', 'apple'],
+        });
+        let acted = false;
+        speech.subscribe(state => {
+          if (state.playback === notification && !acted) {
+            acted = true;
+            speech[action]();
+          }
+        });
+        const pending = mode === 'text' ? speech.speakText('Hello') : speech.speakCards(['apple']);
+        assert.deepEqual(await pending, { ok: false, stopped: true });
+        assert.equal(acted, true);
+        assert.equal(utterances.length, 0);
+        assert.equal(audios.length, 0);
+        assert.equal(timers.size, 0);
+        assert.equal(speech.getState().playback, 'stopped');
+        if (action === 'dispose') {
+          const later = mode === 'text' ? speech.speakText('Again') : speech.speakCards(['apple']);
+          assert.deepEqual(await later, { ok: false, stopped: true });
+          assert.equal(events.size, 0);
+          assert.equal(utterances.length + audios.length, 0);
+        }
+        speech.dispose();
+      });
+    }
+  }
+}
+
+test('Issue #1 canonical vocabulary supplies all 32 IDs and exact ordered clip paths', async () => {
+  const canonical = validateVocabulary(JSON.parse(readFileSync(
+    new URL('../../../shared/vocabulary.json', import.meta.url), 'utf8',
+  )));
+  const d = device([]);
+  const speech = createSpeechController({ vocabulary: canonical,
+    availableClipIds: canonical.cards.map(card => card.id) }, d.env);
+  assert.equal(canonical.cards.length, 32);
+  assert.equal(speech.getState().cardsReady, true);
+  assert.deepEqual(speech.getState().missingClipIds, []);
+  for (const card of canonical.cards) {
+    const pending = speech.speakCards([card.id, card.id]);
+    const first = d.audios.at(-1);
+    assert.equal(first.src, `/${card.audio_path}`);
+    first.onended();
+    const repeat = d.audios.at(-1);
+    assert.equal(repeat.src, `/${card.audio_path}`);
+    repeat.onended();
+    assert.deepEqual(await pending, { ok: true });
+  }
   speech.dispose();
 });
 

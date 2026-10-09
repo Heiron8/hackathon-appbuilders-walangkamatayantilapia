@@ -1,0 +1,261 @@
+{
+  "version": "tanaw-v1",
+  "cards": [
+    {
+      "id": "no",
+      "label": "No",
+      "category": "essential",
+      "symbol_path": "symbols/no.svg",
+      "audio_path": "audio/en/no.wav",
+      "order": 0
+    },
+    {
+      "id": "stop",
+      "label": "Stop",
+      "category": "essential",
+      "symbol_path": "symbols/stop.svg",
+      "audio_path": "audio/en/stop.wav",
+      "order": 1
+    },
+    {
+      "id": "help",
+      "label": "Help",
+      "category": "essential",
+      "symbol_path": "symbols/help.svg",
+      "audio_path": "audio/en/help.wav",
+      "order": 2
+    },
+    {
+      "id": "repeat",
+      "label": "Repeat",
+      "category": "essential",
+      "symbol_path": "symbols/repeat.svg",
+      "audio_path": "audio/en/repeat.wav",
+      "order": 3
+    },
+    {
+      "id": "something_else",
+      "label": "Something else",
+      "category": "essential",
+      "symbol_path": "symbols/something_else.svg",
+      "audio_path": "audio/en/something_else.wav",
+      "order": 4
+    },
+    {
+      "id": "yes",
+      "label": "Yes",
+      "category": "essential",
+      "symbol_path": "symbols/yes.svg",
+      "audio_path": "audio/en/yes.wav",
+      "order": 5
+    },
+    {
+      "id": "i",
+      "label": "I",
+      "category": "core",
+      "symbol_path": "symbols/i.svg",
+      "audio_path": "audio/en/i.wav",
+      "order": 6
+    },
+    {
+      "id": "want",
+      "label": "Want",
+      "category": "core",
+      "symbol_path": "symbols/want.svg",
+      "audio_path": "audio/en/want.wav",
+      "order": 7
+    },
+    {
+      "id": "not",
+      "label": "Not",
+      "category": "core",
+      "symbol_path": "symbols/not.svg",
+      "audio_path": "audio/en/not.wav",
+      "order": 8
+    },
+    {
+      "id": "more",
+      "label": "More",
+      "category": "core",
+      "symbol_path": "symbols/more.svg",
+      "audio_path": "audio/en/more.wav",
+      "order": 9
+    },
+    {
+      "id": "finished",
+      "label": "Finished",
+      "category": "core",
+      "symbol_path": "symbols/finished.svg",
+      "audio_path": "audio/en/finished.wav",
+      "order": 10
+    },
+    {
+      "id": "eat",
+      "label": "Eat",
+      "category": "actions",
+      "symbol_path": "symbols/eat.svg",
+      "audio_path": "audio/en/eat.wav",
+      "order": 11
+    },
+    {
+      "id": "drink",
+      "label": "Drink",
+      "category": "actions",
+      "symbol_path": "symbols/drink.svg",
+      "audio_path": "audio/en/drink.wav",
+      "order": 12
+    },
+    {
+      "id": "play",
+      "label": "Play",
+      "category": "actions",
+      "symbol_path": "symbols/play.svg",
+      "audio_path": "audio/en/play.wav",
+      "order": 13
+    },
+    {
+      "id": "go",
+      "label": "Go",
+      "category": "actions",
+      "symbol_path": "symbols/go.svg",
+      "audio_path": "audio/en/go.wav",
+      "order": 14
+    },
+    {
+      "id": "rest",
+      "label": "Rest",
+      "category": "actions",
+      "symbol_path": "symbols/rest.svg",
+      "audio_path": "audio/en/rest.wav",
+      "order": 15
+    },
+    {
+      "id": "water",
+      "label": "Water",
+      "category": "drinks",
+      "symbol_path": "symbols/water.svg",
+      "audio_path": "audio/en/water.wav",
+      "order": 16
+    },
+    {
+      "id": "milk",
+      "label": "Milk",
+      "category": "drinks",
+      "symbol_path": "symbols/milk.svg",
+      "audio_path": "audio/en/milk.wav",
+      "order": 17
+    },
+    {
+      "id": "juice",
+      "label": "Juice",
+      "category": "drinks",
+      "symbol_path": "symbols/juice.svg",
+      "audio_path": "audio/en/juice.wav",
+      "order": 18
+    },
+    {
+      "id": "apple",
+      "label": "Apple",
+      "category": "food",
+      "symbol_path": "symbols/apple.svg",
+      "audio_path": "audio/en/apple.wav",
+      "order": 19
+    },
+    {
+      "id": "banana",
+      "label": "Banana",
+      "category": "food",
+      "symbol_path": "symbols/banana.svg",
+      "audio_path": "audio/en/banana.wav",
+      "order": 20
+    },
+    {
+      "id": "rice",
+      "label": "Rice",
+      "category": "food",
+      "symbol_path": "symbols/rice.svg",
+      "audio_path": "audio/en/rice.wav",
+      "order": 21
+    },
+    {
+      "id": "bread",
+      "label": "Bread",
+      "category": "food",
+      "symbol_path": "symbols/bread.svg",
+      "audio_path": "audio/en/bread.wav",
+      "order": 22
+    },
+    {
+      "id": "toy",
+      "label": "Toy",
+      "category": "activities",
+      "symbol_path": "symbols/toy.svg",
+      "audio_path": "audio/en/toy.wav",
+      "order": 23
+    },
+    {
+      "id": "ball",
+      "label": "Ball",
+      "category": "activities",
+      "symbol_path": "symbols/ball.svg",
+      "audio_path": "audio/en/ball.wav",
+      "order": 24
+    },
+    {
+      "id": "music",
+      "label": "Music",
+      "category": "activities",
+      "symbol_path": "symbols/music.svg",
+      "audio_path": "audio/en/music.wav",
+      "order": 25
+    },
+    {
+      "id": "home",
+      "label": "Home",
+      "category": "places",
+      "symbol_path": "symbols/home.svg",
+      "audio_path": "audio/en/home.wav",
+      "order": 26
+    },
+    {
+      "id": "school",
+      "label": "School",
+      "category": "places",
+      "symbol_path": "symbols/school.svg",
+      "audio_path": "audio/en/school.wav",
+      "order": 27
+    },
+    {
+      "id": "outside",
+      "label": "Outside",
+      "category": "places",
+      "symbol_path": "symbols/outside.svg",
+      "audio_path": "audio/en/outside.wav",
+      "order": 28
+    },
+    {
+      "id": "toilet",
+      "label": "Toilet",
+      "category": "places",
+      "symbol_path": "symbols/toilet.svg",
+      "audio_path": "audio/en/toilet.wav",
+      "order": 29
+    },
+    {
+      "id": "parent",
+      "label": "Parent",
+      "category": "people",
+      "symbol_path": "symbols/parent.svg",
+      "audio_path": "audio/en/parent.wav",
+      "order": 30
+    },
+    {
+      "id": "teacher",
+      "label": "Teacher",
+      "category": "people",
+      "symbol_path": "symbols/teacher.svg",
+      "audio_path": "audio/en/teacher.wav",
+      "order": 31
+    }
+  ]
+}

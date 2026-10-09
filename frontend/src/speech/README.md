@@ -52,7 +52,13 @@ Full text uses the exact verified local English voice, never the browser's defau
 or remote voice. Failed full text never silently switches to card audio. A disappearing
 verified voice cancels active synthesis. Explicit card speech uses local synthesis
 when available, otherwise complete bundled clips at `/audio/en/<canonical-id>.wav`
-in selection order, preserving repeats. New playback, Stop, error and completion
+in selection order, preserving repeats. A synthesis error, timeout or synchronous
+browser failure disables that voice for this controller; a subsequent explicit
+card request uses the complete bundled library. Full text is never substituted
+automatically. Reinitialize only after checking the device voice again.
+Stop/dispose from a state observer cancels a pending start before any audio is
+created. Disposed controllers cannot start another playback.
+New playback, Stop, error and completion
 release media/timers. No backend health or AI availability can disable this helper.
 
 Bounds: 1–12 known cards, 1–2,000 nonblank text characters, a 120-second full-text
@@ -64,6 +70,7 @@ stop audio and require a new explicit user action. There are no automatic retrie
 
 ```powershell
 node --test frontend/src/speech/speech.test.mjs
+python scripts/verify.py
 python docs/qa/serve-speech-check.py
 ```
 

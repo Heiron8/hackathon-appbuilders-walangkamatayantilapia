@@ -1,0 +1,1 @@
+"""Tanaw local application foundation."""

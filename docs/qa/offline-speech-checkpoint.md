@@ -99,13 +99,49 @@ and evidence. Code-checkpoint PASS does not complete the issue's real-device/ass
 integrated-product acceptance criteria. GabDeGuz cannot independently approve this
 implementation. No agent delegation or reviewer impersonation is inferred.
 
-**Current review: PASS reported by GabDeGuz in the October 9, 2026 commit request.**
+**Previous checkpoint review: PASS reported by GabDeGuz in the October 9, 2026 commit request.**
 The user explicitly confirmed that independent PASS is complete and authorized a
 local commit. Reviewer identity, review time and a separate review artifact were not
 supplied in that confirmation; no reviewer attribution is inferred. All seven files
 matched the prepared review ZIP before this review-status update. This records the
 human's confirmation, not agent self-review or runtime/asset readiness. Do not mark
 Issue #5 complete from this checkpoint. No push is included in this commit request.
+
+## PR #12 corrective checkpoint — October 10, 2026
+
+The requesting owner relayed an independent **CHANGES REQUIRED** review, superseding
+the earlier PASS for PR #12. The two blockers were explicit card fallback after
+synthesis failure and playback starting after Stop/dispose from state observers.
+
+- Failed synthesis (error, timeout, synchronous browser failure) is disabled for
+  this controller. Complete audited clips remain available through a subsequent
+  explicit `speakCards` call; failed full text never starts card playback itself.
+  Reinitialize only after checking the local voice again.
+- Pending playback is registered before startup notifications. Stop/dispose from
+  either notification settles it as stopped before creating utterances/media/timers.
+  Disposed controllers cannot restart playback. Error results are captured before
+  notifying observers, so an observer's Stop cannot erase the caller's error.
+- The merged Issue #1 foundation is included in the existing branch. Its canonical
+  32-card vocabulary is exercised by the speech tests, including exact clip paths
+  and repetitions. Shared speech type declarations now match the helper's result,
+  playback/error and capability-detail shapes; API/vocabulary contracts are unchanged.
+- `frontend/package.json` includes speech tests in `npm test`, which the existing
+  canonical product verifier and CI already invoke. No dependency versions changed.
+
+Verification: 31/31 deterministic speech tests and source parsing PASS on this
+checkout. `python scripts/verify.py --ci` PASS: harness tests (one skip), secret
+scan, 34 frontend tests including speech, production build, dependency compatibility,
+seven backend tests and real loopback startup/proxy/static/reload/backend-stop checks.
+Independent read-only Codex re-review: **PASS**, `/root/speech_rereview`, October 10,
+2026 at 00:47 UTC+08. The reviewer independently ran the full canonical verifier
+before the final error-snapshot correction and reran all 34 frontend tests after
+reviewing that correction. No blocking or nonblocking findings remain. The
+implementer reran the full canonical verifier after the final source change: PASS.
+This Codex review is not attributed to RobinKielll/Heiron8 and does not replace
+their human GitHub review. The verified correction is authorized for commit/push
+to the existing PR #12; no merge is authorized by this checkpoint.
+Issue #5 remains open/In Progress for real offline/device/assets/integrated QA.
+No fixture audio or browser events prove audible speech or asset readiness.
 
 A local review ZIP and patch are prepared at `reports/tanaw-04-review.zip` and
 `reports/tanaw-04-review.patch` (ignored generated artifacts). The ZIP contains exactly

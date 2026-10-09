@@ -35,10 +35,13 @@ export function createSpeechController({
   let playback = 'idle';
   let error = null;
   let active = null;
+  let synthesisFailed = false;
+  let disposed = false;
   const listeners = new Set();
 
   function localVoice() {
-    if (!verifiedVoiceURI || !synthesis || typeof env.SpeechSynthesisUtterance !== 'function') return null;
+    if (synthesisFailed || !verifiedVoiceURI || !synthesis
+      || typeof env.SpeechSynthesisUtterance !== 'function') return null;
     try {
       return synthesis.getVoices().find(voice => voice.voiceURI === verifiedVoiceURI
         && voice.localService === true && /^en(?:-|$)/i.test(voice.lang)) ?? null;
@@ -66,35 +69,49 @@ export function createSpeechController({
 
   function fail(code) {
     if (active) stopSpeech();
-    error = { code, message: errors[code] };
+    const failure = { code, message: errors[code] };
+    error = failure;
     playback = 'error';
     publish();
-    return { ok: false, error: { ...error } };
+    return { ok: false, error: { ...failure } };
   }
 
-  function stopSpeech() {
+  function cancelPlayback() {
     const previous = active;
     active = null; // Invalidate events before cancel() can dispatch them.
     previous?.cancel?.();
     previous?.resolve({ ok: false, stopped: true });
-    playback = 'stopped';
-    error = null;
-    publish();
   }
 
-  function start(run) {
-    stopSpeech();
+  function stopSpeech() {
+    const alreadyStopped = !active && playback === 'stopped' && !error;
+    cancelPlayback();
+    playback = 'stopped';
     error = null;
-    playback = 'speaking';
+    if (!alreadyStopped) publish();
+  }
+
+  function start(run, onFailure) {
+    if (disposed) return Promise.resolve({ ok: false, stopped: true });
+    cancelPlayback();
     return new Promise(resolve => {
       const operation = { resolve, cancel: null };
       active = operation;
+      error = null;
+      playback = 'stopped';
       publish();
+      if (active !== operation) return;
+      playback = 'speaking';
+      publish();
+      if (active !== operation) return;
       const finish = code => {
         if (active !== operation) return;
         active = null;
         operation.cancel?.();
-        if (code) resolve(fail(code));
+        if (code) {
+          onFailure?.();
+          resolve(fail(code));
+        }
         else {
           playback = 'idle';
           publish();
@@ -129,7 +146,7 @@ export function createSpeechController({
       utterance.onerror = () => finish('playback_failed');
       synthesis.cancel();
       synthesis.speak(utterance);
-    });
+    }, () => { synthesisFailed = true; });
   }
 
   function speakCards(cardIds) {
@@ -186,6 +203,7 @@ export function createSpeechController({
       return () => listeners.delete(listener);
     },
     dispose() {
+      disposed = true;
       stopSpeech();
       synthesis?.removeEventListener?.('voiceschanged', voicesChanged);
       listeners.clear();
