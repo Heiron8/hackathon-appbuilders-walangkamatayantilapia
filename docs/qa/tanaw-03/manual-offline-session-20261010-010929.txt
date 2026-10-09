@@ -1,0 +1,212 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20261010010929
+Username: LADLAPTOP\Jeral
+RunAs User: LADLAPTOP\Jeral
+Configuration Name: 
+Machine: LADLAPTOP (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 2536
+PSVersion: 5.1.26100.9444
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9444
+BuildVersion: 10.0.26100.9444
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia\docs\qa\tanaw-03\manual-offline-session-20261010-010929.txt
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> function Assert-Offline {
+    $physicalAdapters = @(Get-NetAdapter -Physical)
+    $physicalAdapters | Select-Object Name,Status
+    if (@($physicalAdapters | Where-Object Status -eq 'Up').Count -ne 0) { throw 'A physical network adapter is still connected.' }
+    @'
+import socket
+try:
+    connection = socket.create_connection(('1.1.1.1', 443), timeout=3)
+except OSError as exc:
+    print('Public TCP probe failed:', type(exc).__name__)
+else:
+    connection.close()
+    raise SystemExit('Internet access is still available; do not run or claim an offline test.')
+'@ | & $pythonExe -B -
+    if ($LASTEXITCODE -ne 0) { throw 'Offline network guard failed.' }
+}
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> Get-Date -Format o
+2026-10-10T01:11:13.9567111+08:00
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> Assert-Offline
+
+
+Name     Status
+----     ------
+Ethernet Disconnected
+Wi-Fi    Disconnected
+Wi-Fi 5  Not Present
+Wi-Fi 2  Not Present
+
+
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> notepad "$repoRoot\docs\qa\tanaw-03\manual-offline-verification.md"
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> Assert-Offline
+
+
+Name     Status
+----     ------
+Ethernet Disconnected
+Wi-Fi    Disconnected
+Wi-Fi 5  Not Present
+Wi-Fi 2  Not Present
+
+
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> $version = Invoke-RestMethod 'http://127.0.0.1:11434/api/version'
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> $model = (Invoke-RestMethod 'http://127.0.0.1:11434/api/tags').models |
+    Where-Object name -eq 'qwen3:1.7b'
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> $version
+
+version
+-------
+0.40.2
+
+
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> $model | Select-Object name,digest,details
+
+name       digest                                                           details
+----       ------                                                           -------
+qwen3:1.7b 8f68893c685c3ddff2aa3fffce2aa60a30bb2da65ca488b61fff134a4d1730e7 @{parent_model=; format=gguf; family=qwen3; families=System.Object[]; parameter_size=2.0B; quantiza...
+
+
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> $positive = '{"request_id":"11111111-1111-4111-8111-111111111111","revision":3,"vocabulary_version":"tanaw-v1","locale":"en","selected_card_ids":["want","eat","apple"]}'
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> Invoke-RestMethod -Method Post -Uri 'http://127.0.0.1:8000/api/expand' -ContentType 'application/json' -Body $positive
+
+
+request_id         : 11111111-1111-4111-8111-111111111111
+revision           : 3
+vocabulary_version : tanaw-v1
+source_card_ids    : {want, eat, apple}
+status             : candidate
+text               : I want to eat an apple.
+
+
+
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> $negative = '{"request_id":"11111111-1111-4111-8111-111111111111","revision":4,"vocabulary_version":"tanaw-v1","locale":"en","selected_card_ids":["not","want","eat","apple"]}'
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> Invoke-RestMethod -Method Post -Uri 'http://127.0.0.1:8000/api/expand' -ContentType 'application/json' -Body $negative
+
+
+request_id         : 11111111-1111-4111-8111-111111111111
+revision           : 4
+vocabulary_version : tanaw-v1
+source_card_ids    : {not, want, eat, apple}
+status             : candidate
+text               : I do not want to eat an apple.
+
+
+
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> Assert-Offline
+
+
+Name     Status
+----     ------
+Ethernet Disconnected
+Wi-Fi    Disconnected
+Wi-Fi 5  Not Present
+Wi-Fi 2  Not Present
+
+
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> $stamp = Get-Date -Format 'yyyyMMdd-HHmmss'
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> $benchmarkReport = Join-Path $repoRoot "docs/qa/tanaw-03/manual-offline-benchmark-$stamp.json"
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> Push-Location -LiteralPath 'backend'
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia\backend> try {
+    & $pythonExe -B -m app.ai.evaluate --output $benchmarkReport
+    if ($LASTEXITCODE -ne 0) {
+        throw 'Model quality/latency benchmark failed. Preserve the report.'
+    }
+}
+finally {
+    Pop-Location
+}
+
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> Assert-Offline
+
+
+Name     Status
+----     ------
+Ethernet Disconnected
+Wi-Fi    Disconnected
+Wi-Fi 5  Not Present
+Wi-Fi 2  Not Present
+
+
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> $httpReport = Join-Path $repoRoot "docs/qa/tanaw-03/manual-offline-http-$(Get-Date -Format 'yyyyMMdd-HHmmss').json"
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> Push-Location -LiteralPath 'backend'
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia\backend> try {
+    & $pythonExe -B -m tests.smoke_checkpoint --expect-ai ready --output $httpReport
+    if ($LASTEXITCODE -ne 0) {
+        throw 'HTTP checkpoint failed. Preserve available evidence.'
+    }
+}
+finally {
+    Pop-Location
+}
+
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> Assert-Offline
+
+
+Name     Status
+----     ------
+Ethernet Disconnected
+Wi-Fi    Disconnected
+Wi-Fi 5  Not Present
+Wi-Fi 2  Not Present
+
+
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> Get-Process -Name ollama,llama-server |
+    Select-Object ProcessName,Id,WorkingSet64,PrivateMemorySize64
+
+ProcessName     Id WorkingSet64 PrivateMemorySize64
+-----------     -- ------------ -------------------
+llama-server 43836    833056768          2661142528
+ollama       31832     77516800           102068224
+
+
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> nvidia-smi --query-gpu=name,memory.total,memory.used --format=csv,noheader
+
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> Get-Date -Format o
+2026-10-10T01:33:01.1970482+08:00
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> Assert-Offline
+
+
+Name     Status
+----     ------
+Ethernet Disconnected
+Wi-Fi    Disconnected
+Wi-Fi 5  Not Present
+Wi-Fi 2  Not Present
+
+
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> Get-Date -Format o
+2026-10-10T01:34:11.8314787+08:00
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> Assert-Offline
+
+
+Name     Status
+----     ------
+Ethernet Disconnected
+Wi-Fi    Disconnected
+Wi-Fi 5  Not Present
+Wi-Fi 2  Not Present
+
+
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> Get-Item -LiteralPath $benchmarkReport, $httpReport |
+    Select-Object Name, Length, LastWriteTime
+
+Name                                          Length LastWriteTime
+----                                          ------ -------------
+manual-offline-benchmark-20261010-012931.json   8194 10/10/2026 1:29:39 AM
+manual-offline-http-20261010-013144.json         795 10/10/2026 1:31:45 AM
+
+
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> Stop-Transcript
+**********************
+Windows PowerShell transcript end
+End time: 20261010013640
+**********************

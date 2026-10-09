@@ -1,0 +1,67 @@
+{
+  "original_evidence_preserved": true,
+  "model_runner": [
+    {
+      "Id": 19600,
+      "WorkingSet64": 833003520,
+      "PrivateMemorySize64": 2662981632
+    }
+  ],
+  "physical_adapters": [
+    {
+      "Name": "Ethernet",
+      "Status": "Disconnected"
+    },
+    {
+      "Name": "Wi-Fi",
+      "Status": "Up"
+    },
+    {
+      "Name": "Wi-Fi 5",
+      "Status": "Not Present"
+    },
+    {
+      "Name": "Wi-Fi 2",
+      "Status": "Not Present"
+    }
+  ],
+  "listeners": [
+    {
+      "LocalAddress": "127.0.0.1",
+      "LocalPort": 11434,
+      "OwningProcess": 7948
+    },
+    {
+      "LocalAddress": "127.0.0.1",
+      "LocalPort": 8000,
+      "OwningProcess": 12048
+    }
+  ],
+  "cloud_disabled_current": "UNVERIFIED: original runtime environment/stdout not captured; configured restart was rejected and did not execute",
+  "source_commit": "7244f1638938889717a33bbd1f6f8b767bf55ce6",
+  "computer": "LADLAPTOP",
+  "checked_at": "2026-10-10T04:30:19.9244266+08:00",
+  "scope": "Connected-session backup preparation; existing process timestamps corroborate earlier restart sequence but do not constitute a physical witness",
+  "offline_cold_start": "UNVERIFIED",
+  "processes": [
+    {
+      "working_set_bytes": 90763264,
+      "parent_pid": 29044,
+      "pid": 7948,
+      "command": "\"%LOCALAPPDATA%\\Tanaw\\ollama\\v0.40.2\\ollama.exe\" serve",
+      "created_at": "2026-10-10T02:10:32.7188380+08:00",
+      "private_memory_bytes": 103641088,
+      "executable": "%LOCALAPPDATA%\\Tanaw\\ollama\\v0.40.2\\ollama.exe"
+    },
+    {
+      "working_set_bytes": 30797824,
+      "parent_pid": 28668,
+      "pid": 12048,
+      "command": "\"%TEMP%\\tanaw-issue4-venv\\Scripts\\python.exe\" -B -m uvicorn tests.checkpoint_app:app --host 127.0.0.1 --port 8000 --no-access-log",
+      "created_at": "2026-10-10T02:12:35.8980300+08:00",
+      "private_memory_bytes": 47091712,
+      "executable": "C:\\Python314\\python.exe"
+    }
+  ],
+  "redaction_note": "Personal profile path prefixes in command/executable fields replaced with %TEMP% or %LOCALAPPDATA%; observed arguments, process identity, timestamps, network state and memory measurements are unchanged."
+}

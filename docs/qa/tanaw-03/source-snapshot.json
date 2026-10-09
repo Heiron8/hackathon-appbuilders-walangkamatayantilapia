@@ -1,0 +1,23 @@
+{
+  "checked_at": "2026-10-09T23:48:29.324326+08:00",
+  "branch": "task/issue-4",
+  "base": "d26c95987f8e48bac83abaf88626c84b9059eaf4",
+  "files": {
+    "backend/app/ai/evaluate.py": "05875d7537b7d6b0784233fe0d64e2d4b9b3bfaaf4f7382b66365f9bb822fd42",
+    "backend/app/ai/ollama.py": "105030beb9c3b85c350a658ca5cbe5b11b4fe6cf9a8d0208bc3e4289cbdeca68",
+    "backend/app/api/communication.py": "78955a76dce1004e73823708cb60504f7ffbf5310a9a709df866869c1de698e1",
+    "backend/app/validation/contracts.py": "b1947aea8a48674186d9a230a84cf66927bfac4613b5026962db255faebcbac2",
+    "backend/app/validation/grammar.py": "e5d31296228667815fa297b0ab1fe72ff6844c216e798860fc6f97d1734852f8",
+    "backend/app/validation/vocabulary.py": "6d2d5791d6c212c5420644d566ab1134916e1a20a5d54d6f7c7046c64065c563",
+    "backend/tests/checkpoint_app.py": "cc48a6bf9672256ceb137f7efc392b3b05727a19af4afa2a4c481acf175e738a",
+    "backend/tests/fixtures.py": "484a20eee2dcc406b74b2c650669a832cf04c824146a39f2e15894a9d1c23afa",
+    "backend/tests/smoke_checkpoint.py": "c1f476d6aa756c271e47e67754e42434eb7843c27d19737cd8031eb91d61c953",
+    "backend/tests/test_api.py": "73459ab85389893bd9a8528c34e28099f8820d31646814655258e11612ba6d7b",
+    "backend/tests/test_evaluation.py": "3da7a8126d70a60df6cb2c9b52f07ffc9467b2383fed76d47c47cff7e2796081",
+    "backend/tests/test_validation.py": "9a4e8c62f8f33416cfa1759b3452d015e6114c2dfe2af0aa533ba018a024a916"
+  },
+  "scope_check": "PASS",
+  "untracked_secret_scan": "PASS",
+  "untracked_whitespace_check": "PASS",
+  "independent_review": "NOT PERFORMED"
+}

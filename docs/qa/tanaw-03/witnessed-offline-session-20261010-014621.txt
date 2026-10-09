@@ -1,0 +1,105 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20261010014621
+Username: LADLAPTOP\Jeral
+RunAs User: LADLAPTOP\Jeral
+Configuration Name: 
+Machine: LADLAPTOP (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 2536
+PSVersion: 5.1.26100.9444
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9444
+BuildVersion: 10.0.26100.9444
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia\docs\qa\tanaw-03\witnessed-offline-session-20261010-014621.txt
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> Get-Date -Format o
+2026-10-10T01:46:21.9975583+08:00
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> Assert-Offline
+
+
+Name     Status
+----     ------
+Ethernet Disconnected
+Wi-Fi    Disconnected
+Wi-Fi 5  Not Present
+Wi-Fi 2  Not Present
+
+
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> Get-Date -Format o
+2026-10-10T02:07:35.8816004+08:00
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> Assert-Offline
+
+
+Name     Status
+----     ------
+Ethernet Disconnected
+Wi-Fi    Disconnected
+Wi-Fi 5  Not Present
+Wi-Fi 2  Not Present
+
+
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> Get-NetTCPConnection -State Listen |
+    Where-Object { $_.LocalPort -in @(8000, 11434) } |
+    Select-Object LocalAddress,LocalPort,OwningProcess
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> Get-Date -Format o
+2026-10-10T02:14:34.4890928+08:00
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> Assert-Offline
+
+
+Name     Status
+----     ------
+Ethernet Disconnected
+Wi-Fi    Disconnected
+Wi-Fi 5  Not Present
+Wi-Fi 2  Not Present
+
+
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> $positive = '{"request_id":"11111111-1111-4111-8111-111111111111","revision":5,"vocabulary_version":"tanaw-v1","locale":"en","selected_card_ids":["want","eat","apple"]}'
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> Invoke-RestMethod -Method Post -Uri 'http://127.0.0.1:8000/api/expand' -ContentType 'application/json' -Body $positive
+
+
+request_id         : 11111111-1111-4111-8111-111111111111
+revision           : 5
+vocabulary_version : tanaw-v1
+source_card_ids    : {want, eat, apple}
+status             : candidate
+text               : I want to eat an apple.
+
+
+
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> $negative = '{"request_id":"11111111-1111-4111-8111-111111111111","revision":6,"vocabulary_version":"tanaw-v1","locale":"en","selected_card_ids":["not","want","eat","apple"]}'
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> Invoke-RestMethod -Method Post -Uri 'http://127.0.0.1:8000/api/expand' -ContentType 'application/json' -Body $negative
+
+
+request_id         : 11111111-1111-4111-8111-111111111111
+revision           : 6
+vocabulary_version : tanaw-v1
+source_card_ids    : {not, want, eat, apple}
+status             : candidate
+text               : I do not want to eat an apple.
+
+
+
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> Get-Date -Format o
+2026-10-10T02:17:06.0759874+08:00
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> Assert-Offline
+
+
+Name     Status
+----     ------
+Ethernet Disconnected
+Wi-Fi    Disconnected
+Wi-Fi 5  Not Present
+Wi-Fi 2  Not Present
+
+
+PS C:\Users\Jeral\Workspace Projects\App builders hackathon\hackathon-appbuilders-walangkamatayantilapia> Stop-Transcript
+**********************
+Windows PowerShell transcript end
+End time: 20261010021803
+**********************

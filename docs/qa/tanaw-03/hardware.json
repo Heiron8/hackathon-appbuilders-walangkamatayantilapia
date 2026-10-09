@@ -1,0 +1,44 @@
+﻿{
+    "checked_at":  "2026-10-09T23:41:38.4900967+08:00",
+    "computer":  "LADLAPTOP",
+    "os":  {
+               "Caption":  "Microsoft Windows 11 Home",
+               "Version":  "10.0.26200",
+               "TotalVisibleMemorySize":  16184696,
+               "FreePhysicalMemory":  2885080
+           },
+    "cpu":  {
+                "Name":  "Intel(R) Core(TM) Ultra 7 255HX",
+                "NumberOfCores":  20,
+                "NumberOfLogicalProcessors":  20
+            },
+    "gpu":  "NVIDIA GeForce RTX 5070 Laptop GPU, 617.14, 8151 MiB, 2825 MiB",
+    "network":  [
+                    {
+                        "Name":  "Ethernet",
+                        "Status":  "Disconnected"
+                    },
+                    {
+                        "Name":  "Bluetooth Network Connection",
+                        "Status":  "Disconnected"
+                    },
+                    {
+                        "Name":  "Wi-Fi",
+                        "Status":  "Up"
+                    },
+                    {
+                        "Name":  "Wi-Fi 5",
+                        "Status":  "Not Present"
+                    },
+                    {
+                        "Name":  "Wi-Fi 2",
+                        "Status":  "Not Present"
+                    }
+                ],
+    "processes":  {
+                      "ProcessName":  "ollama",
+                      "Id":  39432,
+                      "WorkingSet64":  129208320,
+                      "PrivateMemorySize64":  103264256
+                  }
+}

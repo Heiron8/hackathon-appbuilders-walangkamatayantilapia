@@ -1,0 +1,84 @@
+{
+  "checked_at": "2026-10-10T02:53:06.084241+08:00",
+  "branch": "task/issue-4",
+  "base": "d26c95987f8e48bac83abaf88626c84b9059eaf4",
+  "scope": "test import setup only; no production/architecture/dependency/teammate changes",
+  "changed_test_files": [
+    "backend/tests/fixtures.py",
+    "backend/tests/test_api.py",
+    "backend/tests/test_evaluation.py",
+    "backend/tests/test_validation.py",
+    "backend/tests/test_vocabulary.py"
+  ],
+  "before_sha256": {
+    "backend/tests/fixtures.py": "e43e57aeaa5998e0738d6e01f0e6e9feec2ecd92028769b353ee678e15ebd76f",
+    "backend/tests/test_api.py": "a9f7a19a4029b5092587b5f775099cc93a25994253f7588ddda8c4332cd1626b",
+    "backend/tests/test_evaluation.py": "3da7a8126d70a60df6cb2c9b52f07ffc9467b2383fed76d47c47cff7e2796081",
+    "backend/tests/test_validation.py": "b617443023df78eb3a941825c60f9bf82d4019cd9430ba0e5b86889fa5a87911",
+    "backend/tests/test_vocabulary.py": "d2e0a10836ab9553178168506bdf1495b46dc77d824a9c27baef420eced5cff4"
+  },
+  "source_sha256": {
+    "backend/app/ai/evaluate.py": "ec2b2418a9cc2c76ddf3935175185f67c097a355f6a7e5014c36b72a9eceae7a",
+    "backend/app/ai/ollama.py": "1a9be6741381952f8f2804080b231b1a64f2d82760e79b09f68fbfe7e56fcc02",
+    "backend/app/api/communication.py": "4eb91cf615688819c14b9fa98f5570baa336df73c09ec675ec14467210f64fd2",
+    "backend/app/api/errors.py": "176aaa2fd498df86c042d720245e7d2010a67e11ccb52030da14e13893bd897d",
+    "backend/app/validation/contracts.py": "b1947aea8a48674186d9a230a84cf66927bfac4613b5026962db255faebcbac2",
+    "backend/app/validation/grammar.py": "03db62ecd949a1fa440e5c23c142ba4825070f3259f0b8a7d3dbd7414d74be78",
+    "backend/app/validation/vocabulary.py": "0144e318cd9b75c1c0dd89cd32f55e4de5c5b3685e3fc673a642eae917f3db6a",
+    "backend/tests/checkpoint_app.py": "a32d4e2efe1347fa6c5982483a98d816b3d7fb6b69c14c3e52a7cbb8c7283397",
+    "backend/tests/fixtures.py": "11df49061601729f09549ec5779be4accef385451fcc9eb897e4d6f62691e3fc",
+    "backend/tests/smoke_checkpoint.py": "9180fae2c1c741e739a33245ec45786c42a6d2090e3621bd5dbfca7a5a1fd8a7",
+    "backend/tests/test_api.py": "b141d41cb10c0524d8a1443e87b098128b7ce80b1377e206e495443dd8fddbd7",
+    "backend/tests/test_evaluation.py": "20bad0d23195d8dae28b7d2b6308b48238f61ddb11e816fab995b05e14c93af7",
+    "backend/tests/test_validation.py": "f1622d8f5395b57e008df21cf33cb5fda95de4431743b7aef8766f7f10ac3ced",
+    "backend/tests/test_vocabulary.py": "85cefe5b75ded380ca6ed9428bbb9fe5bb374e5af21a9a2976c511990c439c67"
+  },
+  "production_files_unchanged": true,
+  "offline_evidence_sha256": {
+    "manual-offline-benchmark-20261010-012931.json": "b782c94df7608177f298a89fc9545b446e648f65c9f20641d0ad6b6fc3354ae2",
+    "manual-offline-http-20261010-013144.json": "5b1a7b807087443121f2d1d914703ec83800378dc2434fdafcf309c8afc763f0",
+    "manual-offline-session-20261010-010929.txt": "4df4a6f888824045971f4a0ef83744418f2ca918a8386598cc0febfc31abd82c",
+    "witnessed-offline-session-20261010-014621.txt": "630ed2d07b91f01a239813b095800e759d6b4e8ad5d099418213ad2d197dc53b"
+  },
+  "verification": {
+    "before_root": {
+      "command": "python -B -m unittest discover -s backend/tests -v",
+      "errors": 4,
+      "reason": "ModuleNotFoundError: app"
+    },
+    "after_root": {
+      "command": "python -B -m unittest discover -s backend/tests -v",
+      "run": 35,
+      "passed": 35,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 5.24
+    },
+    "after_backend": {
+      "command": "python -B -m unittest discover -s tests -v",
+      "cwd": "backend",
+      "run": 35,
+      "passed": 35,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 5.256
+    },
+    "workspace": {
+      "command": "python -B -m unittest discover -s tests -p 'test_*.py'",
+      "run": 139,
+      "passed": 138,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 1,
+      "seconds": 20.974
+    },
+    "pip_check": "PASS",
+    "quick_workspace": "PASS",
+    "configured_verifier": "structural PASS in current checkout",
+    "merged_base_product_CI": "NOT TESTED"
+  },
+  "approval": "prior corrected-code PASS reported by owner; import-only independent review PENDING; no commit/push/PR approval",
+  "offline": "existing witnessed records preserved; not rerun; final independent offline decision not inferred"
+}
