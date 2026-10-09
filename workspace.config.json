@@ -2,12 +2,12 @@
   "workspace_version": "1.0.0",
   "operating_mode": "hackathon-24h",
   "project": {
-    "name": "",
-    "phase": "new"
+    "name": "Tanaw",
+    "phase": "implementation"
   },
   "github": {
-    "owner": "",
-    "repo": "",
+    "owner": "Heiron8",
+    "repo": "hackathon-appbuilders-walangkamatayantilapia",
     "project_number": null,
     "status_field": "Status",
     "status_values": {

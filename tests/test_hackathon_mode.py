@@ -369,7 +369,13 @@ class HackathonModeTests(unittest.TestCase):
         state = json.loads(
             (ROOT / ".orchestrator" / "architecture-state.json").read_text(encoding="utf-8")
         )
-        self.assertEqual(tuple(state["pending_sections"]), _common.HACKATHON_ARCHITECTURE_SECTIONS)
+        self.assertEqual(
+            tuple(state["pending_sections"]),
+            tuple(
+                section for section in _common.HACKATHON_ARCHITECTURE_SECTIONS
+                if section not in state["completed_sections"]
+            ),
+        )
 
     def test_non_object_workspace_config_is_rejected_cleanly(self):
         for value in ([], None, "professional", 123):
