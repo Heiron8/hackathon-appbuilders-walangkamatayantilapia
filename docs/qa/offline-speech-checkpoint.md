@@ -212,6 +212,34 @@ read-only re-review by `/root/asset_rereview`: **PASS**, October 10, 2026,
 02:25 UTC+08, with full canonical verification and all 64 final-build asset hashes
 checked. A regression rejects CR in SVGs. No outstanding review findings remain.
 
+**Current laptop follow-up:** GabDeGuz reported Finished, Go and Milk pictures
+missing on the 8770 QA page and requested Microsoft Zira. Direct loopback checks
+returned HTTP 200, correct SVG MIME, exact disk bytes and valid XML for those
+three pictures; the 32-symbol contact sheet renders them correctly. The browser
+display failure was not reproduced by these checks. After asking the tester to
+reload/retry those pictures and confirm Zira selection, GabDeGuz replied "it is
+okay now" on October 10. Record the named picture display/voice-selection checks
+as self-reported recovered, without inferring all-symbol recognition or Zira
+audible/offline PASS. The original display failure's cause remains unconfirmed.
+QA now reports image-load failures, offers fresh-image Retry/direct links,
+and prevents recognition confirmation for loading/failed images. Late/stale image
+callbacks cannot confirm a replacement picture.
+
+Microsoft Zira is now the preferred QA candidate when reported as a local English
+voice. Missing Zira is reported without silently choosing Mark. An explicit tester
+choice is retained; selecting Zira does not verify it or start speech. The previous
+Mark report stays historical; Zira URI/audible/offline/Stop/Replay/restart checks
+are PENDING. Existing fallback WAVs remain licensed eSpeak recordings, not Zira
+recordings. Full canonical verification PASS: 37 frontend tests, seven backend
+tests, production build, dependency compatibility, loopback smoke, workspace
+checks and secret scan. QA control fixture checks pass; they do not establish
+audibility or offline PASS. Independent read-only Codex review:
+**PASS**, `/root/asset_rereview`, October 10, 2026, 02:37 UTC+08, no outstanding
+findings. The reviewer independently checked the frontend/QA fixtures, parsing,
+diff and exact three-symbol HTTP/XML delivery, including extra remote/non-English/
+disappearing-voice and stale-picture callback cases. This approves QA preparation
+for the existing draft PR #15; Issue #5 stays open and no merge is authorized.
+
 A local review ZIP and patch are prepared at `reports/tanaw-04-review.zip` and
 `reports/tanaw-04-review.patch` (ignored generated artifacts). The ZIP contains exactly
 the seven scoped source/evidence files, no Git metadata or identity/credentials.

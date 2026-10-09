@@ -8,14 +8,17 @@ let vocabulary = null;
 let unsubscribe = null;
 let clipAudition = null;
 let verifiedVoiceURI = null;
+let voiceChosenByTester = false;
 let lastCardIds = ['want', 'eat', 'apple'];
 const auditedAudio = new Set();
 const recognizedSymbols = new Set();
+const failedPictures = new Set();
 const evidence = {
   browser: navigator.userAgent,
   connectedHint: navigator.onLine,
   checkedAt: null,
   candidateVoice: null,
+  preferredCandidateVoice: 'Microsoft Zira',
   candidateEvents: [],
   disconnectedAudibleStopReplayReload: 'NOT VERIFIED',
   clips: 'NOT VERIFIED',
@@ -23,6 +26,7 @@ const evidence = {
   helperEvents: [],
   humanAuditedAudioIds: [],
   humanRecognizedSymbolIds: [],
+  pictureLoadFailures: [],
 };
 
 function renderEvidence() { el('evidence').textContent = JSON.stringify(evidence, null, 2); }
@@ -61,11 +65,19 @@ function refreshVoices() {
     option.textContent = `${voice.name} (${voice.lang}) — local`;
     el('voice').append(option);
   }
-  if (voices.some(voice => voice.voiceURI === selected)) el('voice').value = selected;
-  el('voice-status').textContent = voices.length ? `${voices.length} local English candidate(s). Offline playback still needs a witness.` : 'BLOCKER: no local English voice reported. Wait for voice loading or install an English voice through the team setup process.';
-  el('test').disabled = voices.length === 0;
-  el('replay').disabled = voices.length === 0;
-  if (selected && selected !== el('voice').value) invalidateWitness();
+  const zira = voices.find(voice => /^Microsoft Zira\b/i.test(voice.name));
+  const retained = voices.find(voice => voice.voiceURI === selected);
+  const candidate = voiceChosenByTester || verifiedVoiceURI ? retained : zira;
+  el('voice').value = candidate?.voiceURI ?? '';
+  el('voice-status').textContent = candidate
+    ? `${candidate.name} selected as a candidate. Offline playback still needs a new witness for this voice.`
+    : voices.length
+      ? 'Microsoft Zira is not available as a local English voice. Refresh voices or explicitly choose another candidate; no substitute was selected.'
+      : 'BLOCKER: no local English voice reported. Wait for voice loading or install an English voice through the team setup process.';
+  el('test').disabled = !candidate;
+  el('replay').disabled = !candidate;
+  el('verify').disabled = !candidate || !el('witness').checked;
+  if (selected && selected !== el('voice').value) { stopAudition(); invalidateWitness(); }
 }
 function stopAudition() {
   if (clipAudition) {
@@ -118,7 +130,7 @@ function auditionCandidate() {
 
 el('environment').textContent = navigator.userAgent;
 el('refresh').onclick = refreshVoices;
-el('voice').onchange = () => { stopAudition(); invalidateWitness(); };
+el('voice').onchange = () => { voiceChosenByTester = true; stopAudition(); invalidateWitness(); refreshVoices(); };
 el('test').onclick = auditionCandidate;
 el('replay').onclick = auditionCandidate;
 el('stop').onclick = () => {
@@ -129,10 +141,10 @@ el('stop').onclick = () => {
 };
 el('witness').onchange = () => {
   if (!el('witness').checked) invalidateWitness();
-  else el('verify').disabled = voices.length === 0;
+  else el('verify').disabled = !voices.some(voice => voice.voiceURI === el('voice').value);
 };
 el('verify').onclick = () => {
-  if (!el('witness').checked) return;
+  if (!el('witness').checked || !voices.some(voice => voice.voiceURI === el('voice').value)) return;
   stopAudition();
   verifiedVoiceURI = el('voice').value;
   configureHelper();
@@ -173,14 +185,54 @@ el('invalid').onclick = async () => {
   recordHelper('13 cards', await speakCards(Array(13).fill('apple')));
 };
 
+function renderAuditEvidence() {
+  evidence.humanAuditedAudioIds = vocabulary.cards.filter(c => auditedAudio.has(c.id)).map(c => c.id);
+  evidence.humanRecognizedSymbolIds = vocabulary.cards.filter(c => recognizedSymbols.has(c.id)).map(c => c.id);
+  evidence.pictureLoadFailures = vocabulary.cards.filter(c => failedPictures.has(c.id)).map(c => c.id);
+  evidence.clips = `${auditedAudio.size}/32 human-checked candidate labels; offline sequence checks separate`;
+  el('asset-status').textContent = `${auditedAudio.size}/32 audio; ${recognizedSymbols.size}/32 pictures checked by tester. ${failedPictures.size}/32 pictures failed to load.`;
+  renderEvidence();
+}
 function renderAssetAudit() {
   if (!vocabulary) return;
   for (const card of vocabulary.cards) {
     const box = document.createElement('div');
     box.className = 'asset';
-    const img = document.createElement('img');
-    img.src = `/${card.symbol_path}`;
-    img.alt = card.label;
+    const picture = document.createElement('div');
+    const pictureStatus = document.createElement('p');
+    pictureStatus.setAttribute('role', 'status');
+    const retry = document.createElement('button');
+    retry.textContent = `Retry picture: ${card.label}`;
+    const open = document.createElement('a');
+    open.href = `/${card.symbol_path}`;
+    open.textContent = `Open ${card.label} picture directly`;
+    let pictureCheck;
+    const loadPicture = () => {
+      const img = document.createElement('img');
+      img.width = img.height = 96;
+      img.alt = card.label;
+      pictureStatus.textContent = `Loading ${card.label} picture...`;
+      if (pictureCheck) pictureCheck.disabled = true;
+      img.onload = () => {
+        if (picture.firstChild !== img) return;
+        failedPictures.delete(card.id);
+        pictureStatus.textContent = '';
+        pictureCheck.disabled = false;
+        renderAuditEvidence();
+      };
+      img.onerror = () => {
+        if (picture.firstChild !== img) return;
+        failedPictures.add(card.id);
+        recognizedSymbols.delete(card.id);
+        pictureCheck.checked = false;
+        pictureCheck.disabled = true;
+        pictureStatus.textContent = `${card.label} picture failed to load. Retry or open the picture directly.`;
+        renderAuditEvidence();
+      };
+      picture.replaceChildren(img);
+      img.src = `/${card.symbol_path}`;
+    };
+    retry.onclick = loadPicture;
     const button = document.createElement('button');
     button.textContent = `Play candidate: ${card.label}`;
     button.onclick = () => {
@@ -200,28 +252,26 @@ function renderAssetAudit() {
       audio.onerror = failed;
       audio.play().catch(failed);
     };
-    box.append(img, button);
+    box.append(picture, pictureStatus, retry, open, button);
     for (const [set, text] of [[auditedAudio, 'I heard the exact label clearly'],
       [recognizedSymbols, 'I recognize this picture meaning']]) {
       const label = document.createElement('label');
       const input = document.createElement('input');
       input.type = 'checkbox';
+      if (set === recognizedSymbols) { pictureCheck = input; input.disabled = true; }
       input.onchange = () => {
         if (input.checked) set.add(card.id); else set.delete(card.id);
-        evidence.humanAuditedAudioIds = vocabulary.cards.filter(c => auditedAudio.has(c.id)).map(c => c.id);
-        evidence.humanRecognizedSymbolIds = vocabulary.cards.filter(c => recognizedSymbols.has(c.id)).map(c => c.id);
-        evidence.clips = `${auditedAudio.size}/32 human-checked candidate labels; offline sequence checks separate`;
-        el('asset-status').textContent = `${auditedAudio.size}/32 audio; ${recognizedSymbols.size}/32 pictures checked by tester.`;
         stopAudition();
         configureHelper();
-        renderEvidence();
+        renderAuditEvidence();
       };
       label.append(input, document.createTextNode(` ${card.label}: ${text}`));
       box.append(label);
     }
     el('asset-audit').append(box);
+    loadPicture();
   }
-  el('asset-status').textContent = '0/32 audio; 0/32 pictures human-audited. Play candidates explicitly.';
+  renderAuditEvidence();
 }
 window.speechSynthesis?.addEventListener('voiceschanged', refreshVoices);
 window.addEventListener('pagehide', stopAudition);

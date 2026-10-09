@@ -14,7 +14,9 @@ continuation branch `task/issue-5-assets` in the same repository.
 2. Record the browser version (Chrome menu > Help > About Google Chrome), Windows
    version/build and laptop description. Native inventory observed Windows build
    26200 and David/Zira Desktop en-US; browser availability is still unverified.
-3. In the page, select an installed local English candidate. Copy its name, language
+3. In the page, select Microsoft Zira, now the requested default local English
+   candidate. If Zira is absent, report that rather than treating another voice as
+   Zira. Changing from the previously reported Mark requires a new test. Copy its name, language
    and exact voice URI from Evidence after playing it. If the list is empty, click
    Refresh local voices once. Report an empty list immediately as a voice blocker.
 4. Turn Wi-Fi off and unplug Ethernet; disable any other internet connection.
@@ -73,6 +75,10 @@ app must eventually use explicit user-click actions.
 
 In the 32-card recording and picture audit section, click Play candidate for each
 actual WAV. Check each audio/picture box only from what you actually heard/saw.
+If a picture is missing, click its Retry picture button or direct picture link;
+report any remaining failure. Failed/loading pictures cannot be marked recognized.
+The candidate WAVs keep their documented eSpeak voice; selecting Zira affects live
+speech synthesis, not the pre-recorded files.
 For each card, record: intelligible exact English label, non-silent/complete audio,
 recognizable corresponding picture, and PASS/FAIL with corrections. A generated
 file or nonzero waveform is not an intelligibility/recognition PASS.
