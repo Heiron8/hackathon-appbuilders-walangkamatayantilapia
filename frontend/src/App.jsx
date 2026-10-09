@@ -77,6 +77,11 @@ function SpeechStatus({ state }) {
   return <p className={`speech-status ${state.error ? 'error-status' : ''}`} role="status">{message}</p>;
 }
 
+export function ReplayButton({ playback, canSpeak, playedCurrentMessage, onReplay }) {
+  if (!playedCurrentMessage || !canSpeak || !['idle', 'stopped', 'error'].includes(playback)) return null;
+  return <button onClick={onReplay}>Replay audio</button>;
+}
+
 export default function App({ speechConfiguration = defaultSpeechConfiguration, speech = speechRuntime }) {
   const [message, dispatch] = useReducer(reduceMessage, initialMessage);
   const [mode, setMode] = useState('pictures');
@@ -84,6 +89,7 @@ export default function App({ speechConfiguration = defaultSpeechConfiguration, 
   const [clearOpen, setClearOpen] = useState(false);
   const [speechOptions, setSpeechOptions] = useState(false);
   const [speechState, setSpeechState] = useState(() => speech.getSpeechState());
+  const [lastPlaybackRevision, setLastPlaybackRevision] = useState(null);
   const editOpener = useRef(null);
   const clearButton = useRef(null);
   const board = useRef(null);
@@ -123,7 +129,10 @@ export default function App({ speechConfiguration = defaultSpeechConfiguration, 
     else clearButton.current?.focus({ preventScroll: true });
   }
   function playSelected() {
-    if (canSpeak) void speech.speakCards([...selectedIds]);
+    if (canSpeak) {
+      setLastPlaybackRevision(message.revision);
+      void speech.speakCards([...selectedIds]);
+    }
   }
 
   return <main className="tanaw-shell">
@@ -200,8 +209,8 @@ export default function App({ speechConfiguration = defaultSpeechConfiguration, 
             <p>{speechState.cardsReady ? 'Complete card audio is configured.' : 'Complete card audio is not configured.'}</p>
           </section> : null}
           <SpeechStatus state={speechState} />
-          {!speaking && ['stopped', 'error'].includes(speechState.playback) && canSpeak
-            ? <button onClick={playSelected}>Replay audio</button> : null}
+          <ReplayButton playback={speechState.playback} canSpeak={canSpeak}
+            playedCurrentMessage={lastPlaybackRevision === message.revision} onReplay={playSelected} />
           <p className="quiet-note">Nothing speaks automatically.</p>
         </>}
       </aside>

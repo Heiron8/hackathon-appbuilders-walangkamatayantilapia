@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile, stat, mkdtemp, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { createServer } from 'vite';
 import { createElement } from 'react';
@@ -24,7 +25,7 @@ test('every canonical picture uses a nonempty, unchanged Figma SVG with preserve
 });
 test('actual application renders all 32 fixed cards, essentials, empty composer and disabled inference/navigation', async () => {
   const cacheDir = await mkdtemp(join(tmpdir(), 'tanaw-render-test-'));
-  const server = await createServer({ root: new URL('..', import.meta.url).pathname, cacheDir,
+  const server = await createServer({ root: fileURLToPath(new URL('..', import.meta.url)), cacheDir,
     optimizeDeps: { noDiscovery: true, include: [] },
     server: { middlewareMode: true, hmr: false, ws: false, watch: null } });
   try {
