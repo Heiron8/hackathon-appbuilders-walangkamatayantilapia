@@ -1,0 +1,53 @@
+{
+  "record_type": "Normalized human chat self-report and manually edited JSON excerpt; not validated QA event evidence",
+  "recordedAt": "2026-10-10T03:39:57+08:00",
+  "tester": "Gab",
+  "user_statement": "it is all pass",
+  "scope": "Reply after instructions for Human offline fallback results on the current laptop",
+  "prior_device_context": {
+    "device": "LOQ",
+    "os": "Windows 11",
+    "browser": "Chrome 154 user agent from earlier asset evidence",
+    "asset_witness": "Robin; presence during this fallback session has not been separately confirmed"
+  },
+  "instructed_test_revision": "3fd47c076aad4c5ec4abeb2ef04bdc857eda8ca7",
+  "reported_test_revision": "7c9e886fc858e01e7a848beba1dd5dec49e8f312 in the supplied follow-up JSON; current page revision not separately established",
+  "fallback_results": [
+    { "id": "order", "status": "PASS", "evidence_level": "general human self-report" },
+    { "id": "repeat", "status": "PASS", "evidence_level": "general human self-report" },
+    { "id": "stop", "status": "PASS", "evidence_level": "general human self-report; delay not supplied" },
+    { "id": "replay", "status": "PASS", "evidence_level": "general human self-report" },
+    { "id": "reload", "status": "PASS", "evidence_level": "general human self-report" },
+    { "id": "missing-media", "status": "PASS", "evidence_level": "general human self-report; exact error not supplied" },
+    { "id": "restart", "status": "PASS", "evidence_level": "Later user-supplied per-row PASS, manually entered; specific browser/server restart details not supplied" }
+  ],
+  "follow_up": {
+    "recordedAt": "2026-10-10T03:42:15+08:00",
+    "source": "User pasted a JSON with seven PASS fallback rows, then confirmed editing the statuses manually because they tested successfully but could not select PASS on the page.",
+    "user_clarification": "i changed it to pass because i tested it and it is pass but i cant change it",
+    "humanSession": {
+      "tester": "Gab", "witness": "Robin", "device": "LOQ", "os": "Windows 11",
+      "testedCommit": "7c9e886fc858e01e7a848beba1dd5dec49e8f312",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+      "physicallyDisconnected": true
+    },
+    "offlineFallbackResults": [
+      { "id": "order", "label": "Want -> Eat -> Apple in order", "status": "PASS", "notes": "", "checkedAt": null, "context": null },
+      { "id": "repeat", "label": "Apple -> Want -> Apple", "status": "PASS", "notes": "", "checkedAt": null, "context": null },
+      { "id": "stop", "label": "Stop interrupts clips", "status": "PASS", "notes": "", "checkedAt": null, "context": null },
+      { "id": "replay", "label": "Replay begins the card sequence again", "status": "PASS", "notes": "", "checkedAt": null, "context": null },
+      { "id": "reload", "label": "Reload and clips-only playback while disconnected", "status": "PASS", "notes": "", "checkedAt": null, "context": null },
+      { "id": "restart", "label": "Browser/server restart and clips-only playback while disconnected", "status": "PASS", "notes": "", "checkedAt": null, "context": null },
+      { "id": "missing-media", "label": "Missing Apple WAV reports playback_failed; no sound/false success", "status": "PASS", "notes": "", "checkedAt": null, "context": null }
+    ]
+  },
+  "limitations": [
+    "The original asset Evidence JSON is unchanged: its seven fallback rows were PENDING at capture time.",
+    "All seven follow-up PASS rows have null checkedAt and context; these are manually entered human results, not a fresh validated download.",
+    "The follow-up helperEvents retain the earlier Zira/candidate-WAV timestamps; no new effective bundled_clips request sequence or missing-media error event is present.",
+    "Explicit Wi-Fi-off/Ethernet-unplugged confirmation and effective bundled_clips request mode are requested.",
+    "Restart is now human-reported PASS; separate confirmation of both browser and server restart details remains pending. No server restart has been performed by Codex since this checkpoint was pushed.",
+    "Clips-only full-text rejection is an additional check, not one of the seven fallback controls; it remains pending.",
+    "Other three laptops and integrated React AAC/Ollama-stopped acceptance remain pending."
+  ]
+}

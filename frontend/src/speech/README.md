@@ -79,8 +79,42 @@ Open `http://127.0.0.1:8765` in the actual laptop browser. Follow the per-laptop
 audition deliberately does not configure a production voice; only the human witness
 checkbox can attest disconnected audible behavior for that browser session.
 
-Tests use small injected fixture vocabularies and fake browser events to verify
-control flow. They do not validate an installed voice, real WAV files or offline
-operation. The first checkpoint contains no recordings or symbols and makes no
-licensed-asset readiness claim. UI integration waits for design approval and the
-shared vocabulary/manifests from TANAW-01.
+Current product verification runs 47 frontend tests: 31 speech-controller,
+six asset/provenance/human-record checks, seven speech-QA state regressions and
+three foundation tests. Structural WAV/SVG/hash checks use actual bundled files;
+browser control tests use fixtures. Neither establishes installed-voice audibility,
+human recognition or disconnected operation. The first checkpoint contained no
+recordings or symbols. Issue #1's
+canonical vocabulary/manifests are now merged. The continuation supplies 32 WAVs
+and 32 original SVGs. Gab's individual human record reports all 32 recordings and
+32 pictures PASS with Robin as witness. All seven standalone fallback rows were
+later manually reported PASS; valid exported fallback detail, other-device and
+integrated checks remain pending. Human design approval is now recorded; Robin's
+separate PR #17 integrates the helper with a LOQ-only Zira opt-in and empty clip
+configuration. See the [final integration handoff](../../../docs/qa/issue5-final-acceptance.md)
+for exact build/device/clip/asset gates. PR #15's symbol recognition and license
+do not certify PR #17's different Figma-export pictures.
+
+## Asset continuation handoff
+
+The files in `frontend/public/` match the unchanged canonical `audio_path` and
+`symbol_path`: `/audio/en/<id>.wav`, `/symbols/<id>.svg`. Vite bundles these files
+into the final static build. No inference, voice engine or network request is
+needed to play these already bundled recordings. Runtime consumers can use the
+canonical paths directly; `speech-assets.json` records source/license/checksums,
+not permission to silently enable an unaudited library.
+
+Before setting `availableClipIds`, a person must audition every actual label and
+confirm intelligibility and asset rights; supply only audited IDs. The controller
+advertises `cardsReady` only for the complete canonical library. Never derive
+`verifiedVoiceURI` from the recording-generation engine: full-text speech requires
+the laptop/browser's separately witnessed local English voice.
+
+The candidate WAVs use eSpeak NG 1.52.0's default en-us formant voice and are
+distributed under GPL-3.0-or-later with their source/recipe/license notices. SVGs
+are original vectors, also supplied under GPL-3.0-or-later. Keep
+`frontend/public/asset-licenses/` and the per-asset manifest when redistributing.
+Read [source and rights](../../public/asset-licenses/SOURCE.md) and the
+[current-laptop checklist](../../../docs/qa/current-laptop-speech-checklist.md).
+Independent asset review and real-device checks are still required before a
+demo-readiness claim. This handoff does not implement Robin's UI or approve design.

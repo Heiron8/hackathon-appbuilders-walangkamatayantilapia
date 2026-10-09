@@ -1,1 +1,3 @@
 .githooks/* text eol=lf
+frontend/public/symbols/*.svg text eol=lf
+frontend/public/speech-assets.json text eol=lf
