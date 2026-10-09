@@ -159,7 +159,7 @@ class BootstrapTests(unittest.TestCase):
             self.assertEqual(bootstrap.main(), 0)
         self.assertEqual(
             [name for name, _label in calls],
-            ["install_hooks.py", "verify_workspace.py", "project_sync.py"],
+            ["project_sync.py", "install_hooks.py", "verify_workspace.py"],
         )
         self.assertIn("READY FOR ARCHITECTURE", output.getvalue())
         self.assertNotIn("NOT READY", output.getvalue())
@@ -183,7 +183,7 @@ class BootstrapTests(unittest.TestCase):
             with self.assertRaisesRegex(bootstrap.BootstrapError, "update permission"):
                 bootstrap.check_project_update_access(github)
 
-    def test_verification_failure_stops_before_project_sync_and_reports_not_ready(self):
+    def test_verification_failure_after_sync_still_reports_not_ready(self):
         calls = []
 
         def script(name, _label):
@@ -203,7 +203,7 @@ class BootstrapTests(unittest.TestCase):
             contextlib.redirect_stdout(output),
         ):
             self.assertEqual(bootstrap.main(), 1)
-        self.assertEqual(calls, ["install_hooks.py", "verify_workspace.py"])
+        self.assertEqual(calls, ["project_sync.py", "install_hooks.py", "verify_workspace.py"])
         self.assertIn("NOT READY", output.getvalue())
         self.assertIn("Workspace verification failed", output.getvalue())
 

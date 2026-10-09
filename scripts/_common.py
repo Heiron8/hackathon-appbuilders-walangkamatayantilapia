@@ -1,7 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
-import json, subprocess, shutil, datetime
+import json, subprocess, shutil, datetime, os
 
 ROOT = Path(__file__).resolve().parents[1]
 LOCAL = ROOT / '.workspace-local'
@@ -95,8 +95,84 @@ def require_timestamp(value, label):
 def cmd_exists(name: str) -> bool:
     return shutil.which(name) is not None
 
-def run(cmd, check=False):
-    return subprocess.run(cmd, cwd=ROOT, text=True, capture_output=True, check=check)
+def run(cmd, check=False, *, timeout=None, env=None):
+    return subprocess.run(cmd, cwd=ROOT, text=True, capture_output=True, check=check,
+                          timeout=timeout, env=env)
+
+def run_network(cmd):
+    """Bound network waits and prevent credential/SSH prompts."""
+    env = dict(os.environ, GIT_TERMINAL_PROMPT='0', GCM_INTERACTIVE='Never',
+               GH_PROMPT_DISABLED='1', GIT_SSH_COMMAND='ssh -oBatchMode=yes -oConnectTimeout=10')
+    try:
+        return run(cmd, timeout=30, env=env)
+    except (subprocess.TimeoutExpired, OSError):
+        return subprocess.CompletedProcess(cmd, 124, '', 'Network operation unavailable or timed out.')
+
+@dataclass(frozen=True)
+class GitSync:
+    status: str
+    message: str
+
+def _main_snapshot():
+    """Reject unknown, dirty or interrupted state before any working-tree write."""
+    def inspect(*args):
+        result = run(['git', '--no-optional-locks', *args])
+        if result.returncode != 0:
+            raise ValueError('Git inspection failed; inspect the checkout manually.')
+        return result.stdout.strip()
+
+    branch = inspect('branch', '--show-current')
+    if branch != 'main':
+        raise ValueError(f'Branch {branch or "(detached)"} preserved; finish/review your task before returning to clean main.')
+    if inspect('status', '--porcelain=v1', '--untracked-files=all', '--ignore-submodules=none'):
+        raise ValueError('Local staged, unstaged or untracked work preserved; commit/review your work before syncing main.')
+    for marker in ('MERGE_HEAD', 'CHERRY_PICK_HEAD', 'REVERT_HEAD', 'rebase-merge', 'rebase-apply', 'sequencer'):
+        path = Path(inspect('rev-parse', '--git-path', marker))
+        if (ROOT / path).exists():
+            raise ValueError('Interrupted Git operation preserved; finish or abort it manually before syncing.')
+    head = inspect('rev-parse', '--verify', 'HEAD')
+    urls = inspect('remote', 'get-url', '--all', 'origin').splitlines()
+    if len(urls) != 1 or not urls[0]:
+        raise ValueError('origin is missing or ambiguous; repair the remote manually.')
+    return head, urls[0]
+
+def sync_main():
+    """Only fetch and fast-forward eligible main; never repair developer state."""
+    if not cmd_exists('git'):
+        return GitSync('NOT UPDATED', 'Git unavailable; install Git to synchronize. Using local state.')
+    try:
+        snapshot = _main_snapshot()
+        fetched = run_network(['git', '-c', 'credential.interactive=false', 'fetch',
+                               '--no-tags', '--no-recurse-submodules', '--no-write-fetch-head',
+                               'origin', 'refs/heads/main:refs/remotes/origin/main'])
+        if fetched.returncode != 0:
+            return GitSync('OFFLINE', 'Remote synchronization unavailable; using local state. Check connectivity/access and rerun Sync.')
+        target = run(['git', '--no-optional-locks', 'rev-parse', '--verify', 'refs/remotes/origin/main^{commit}'])
+        if target.returncode != 0:
+            raise ValueError('Fetched main could not be inspected; inspect the remote manually.')
+        target = target.stdout.strip()
+        if _main_snapshot() != snapshot:
+            raise ValueError('Checkout changed during fetch; work preserved. Rerun Sync when idle.')
+        if snapshot[0] == target:
+            return GitSync('ALREADY CURRENT', 'No changes required.')
+        ancestor = run(['git', '--no-optional-locks', 'merge-base', '--is-ancestor', snapshot[0], target])
+        if ancestor.returncode not in (0, 1):
+            raise ValueError('Git ancestry inspection failed; inspect history manually.')
+        if ancestor.returncode == 1:
+            ahead = run(['git', '--no-optional-locks', 'merge-base', '--is-ancestor', target, snapshot[0]])
+            if ahead.returncode not in (0, 1):
+                raise ValueError('Git ancestry inspection failed; inspect history manually.')
+            reason = 'Local main is ahead' if ahead.returncode == 0 else 'Local main has diverged'
+            raise ValueError(reason + '; history preserved. Ask the Lead Architect to review integration.')
+        if _main_snapshot() != snapshot:
+            raise ValueError('Checkout changed before update; work preserved. Rerun Sync when idle.')
+        merged = run(['git', '-c', 'submodule.recurse=false', 'merge', '--ff-only',
+                      '--no-autostash', '--no-overwrite-ignore', target])
+        if merged.returncode != 0:
+            raise ValueError('Fast-forward refused; inspect Git status manually. No automatic repair attempted.')
+        return GitSync('UPDATED', 'Safely fast-forwarded to latest main.')
+    except (OSError, ValueError) as exc:
+        return GitSync('NOT UPDATED', str(exc))
 
 def operating_mode(config=None):
     config = config if config is not None else read_json_object(

@@ -12,6 +12,13 @@ def result(stdout='', returncode=0, stderr=''):
     return SimpleNamespace(stdout=stdout, returncode=returncode, stderr=stderr)
 
 class PublicationTests(unittest.TestCase):
+    def setUp(self):
+        # These tests exercise the existing configured-Project path.
+        for name, value in [('project_number', 1), ('check_claim_context', lambda *_: None),
+                            ('run_network', lambda args: claim_task.run(args))]:
+            patcher = patch.object(claim_task, name, value)
+            patcher.start()
+            self.addCleanup(patcher.stop)
     def test_issue_body_preserves_plan_metadata(self):
         task = {'key':'TASK-1','goal':'Goal','module':'team','acceptance_criteria':['Criterion'],
                 'dependencies':['TASK-0'],'definition_of_ready':{'common':'Common gate','task':'Task gate'},
@@ -538,6 +545,11 @@ class PublicationTests(unittest.TestCase):
 
 class IssueMembershipFallbackTests(unittest.TestCase):
     def setUp(self):
+        for name, value in [('project_number', 1), ('check_claim_context', lambda *_: None),
+                            ('run_network', lambda args: claim_task.run(args))]:
+            patcher = patch.object(claim_task, name, value)
+            patcher.start()
+            self.addCleanup(patcher.stop)
         self.url = 'https://github.com/org/repo/issues/7'
         self.status_values = dict(zip(
             ('backlog', 'ready', 'in_progress', 'in_review', 'blocked', 'done'),

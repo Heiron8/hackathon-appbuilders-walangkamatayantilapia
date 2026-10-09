@@ -10,6 +10,7 @@
 - Current milestone:
 
 ## Your Work
+- Git synchronization: UPDATED / ALREADY CURRENT / NOT UPDATED (reason and action) / OFFLINE (local state)
 - Active task:
 - Branch/worktree:
 - Status:
