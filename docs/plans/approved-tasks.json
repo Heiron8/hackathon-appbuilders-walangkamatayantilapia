@@ -1,0 +1,160 @@
+[
+  {
+    "key": "TANAW-01",
+    "title": "[P0] TANAW-01: Shared vocabulary, contracts and local integration foundation",
+    "goal": "Developer 1 / Lead integration lane: establish the approved tanaw-v1 32-card shared vocabulary, pinned React/Vite and FastAPI foundations, loopback startup, and configured product verification. Sessions use the approved planning package; this kickoff does not execute implementation.",
+    "module": "shared/vocabulary.json; frontend/backend manifests; local startup; existing verification configuration",
+    "acceptance_criteria": [
+      "One canonical vocabulary implements the approved 32 IDs, labels, order and local symbol/audio paths; frontend bundles it and backend consumes the same version.",
+      "Approved API envelope, revisions, vocabulary checks, limits and speech interface are frozen before parallel integration; no cloud/auth/database/microphone scope is added.",
+      "Development proxy and final FastAPI static serving run on loopback; documented locked setup and startup work on the demo laptop.",
+      "Existing verification.commands and CI cover applicable product tests/build; existing harness and security checks remain intact.",
+      "Already-loaded direct AAC survives inference API/backend failure; disconnected page reload works with the local server running."
+    ],
+    "dependencies": [],
+    "definition_of_ready": {
+      "common": "Architecture and compact plan approved; actual owner and independent reviewer supplied; approved planning package available. Do not infer identities.",
+      "task": "Shared contract specification is available. Coordinate manifest/shared-file changes with the other lanes. Current Backlog reason: missing real owner/reviewer; planning docs remain local/uncommitted."
+    },
+    "owner_specialty": "Developer 1: Lead Architect / integration / shared contracts",
+    "reviewers": "Developer 3 reviews shared/backend setup; Developer 4 reviews startup/verification; actual reviewer identities pending",
+    "risk": "medium",
+    "exit_evidence": "Shared vocabulary/version checks, configured product checks/build, loopback startup and disconnected reload evidence, independent PASS review.",
+    "session": "tanaw-dev1-integration",
+    "status": "Backlog",
+    "assignee": null,
+    "issue_url": "https://github.com/Heiron8/hackathon-appbuilders-walangkamatayantilapia/issues/1"
+  },
+  {
+    "key": "TANAW-06",
+    "title": "[P0] TANAW-06: Editable Figma foundation and human design review",
+    "goal": "Developer 2 design lane: generate an editable Figma foundation from the approved docs/design/ux-plan.md brief, then obtain explicit human review before frontend implementation. This separates design preparation from the design-gated TANAW-02 task.",
+    "module": "Figma design; docs/design/ux-plan.md; existing design-system/wireframe handoff",
+    "acceptance_criteria": [
+      "Editable Communicate, Review Message and Conversation screen families include required empty/loading/error/approval/AI/speech-unavailable states.",
+      "Shared shell preserves board positions and complete vocabulary access; suggestions never hide/rearrange cards or select/speak a response.",
+      "Laptop/tablet/phone variants and reusable labeled card/action/message components follow approved contrast, target-size, focus and reduced-motion rules.",
+      "Record actual Figma link/node references, human reviewer/date and explicit approval or corrections; no frontend UI code is written before approval."
+    ],
+    "dependencies": [],
+    "definition_of_ready": {
+      "common": "Architecture and compact plan approved; actual owner and independent reviewer supplied; approved planning package available.",
+      "task": "Approved UX brief available, Figma access confirmed, human reviewer available. Design generation is preparation; it is not final design approval. Current Backlog reason: missing owner/reviewer/access confirmation."
+    },
+    "owner_specialty": "Developer 2: Frontend / accessibility / Figma implementation",
+    "reviewers": "Developer 4 read-only accessibility/state review plus Lead Architect/human final design approval; actual identities pending",
+    "risk": "medium",
+    "exit_evidence": "Editable Figma link, three screen families and states, responsive review, explicit human design approval/correction record.",
+    "session": "tanaw-dev2-design-frontend",
+    "status": "Backlog",
+    "assignee": null,
+    "issue_url": "https://github.com/Heiron8/hackathon-appbuilders-walangkamatayantilapia/issues/2"
+  },
+  {
+    "key": "TANAW-02",
+    "title": "[P0] TANAW-02: Accessible board, message construction and approval flow",
+    "goal": "Developer 2 frontend lane: implement the human-approved Figma communication shell, stable picture board, ordered message construction and explicit review/Speak states, integrating the independently owned speech helper.",
+    "module": "frontend communication board, message state, review/conversation views and accessibility",
+    "acceptance_criteria": [
+      "Use the approved tanaw-v1 IDs/order; selection appends in tap order, duplicates remain intentional, maximum 12 cards, Undo/remove/Clear work without drag-only interaction.",
+      "No/Stop/Help/Repeat/Something else and full vocabulary stay accessible; AI results never reorder/hide the board.",
+      "Card/question edits invalidate late responses and candidate approval; original wording remains visible; approving/editing never automatically speaks.",
+      "Explicit Speak uses the speech interface; direct selection/speech remains available during model failure/inference.",
+      "Approved responsive layouts, labeled symbols, keyboard/focus, contrast, target sizing and truthful loading/error/speech-failure states pass focused Design QA."
+    ],
+    "dependencies": [
+      "TANAW-06"
+    ],
+    "definition_of_ready": {
+      "common": "Architecture/plan approved, actual owner/reviewer supplied, approved planning package available.",
+      "task": "TANAW-06 human design approval recorded. Shared contracts are available; integrate TANAW-01 vocabulary/build and TANAW-04 speech incrementally rather than waiting for all AI work. Current Backlog reasons: design approval and actual owner/reviewer missing."
+    },
+    "owner_specialty": "Developer 2: Frontend / accessibility / Figma implementation",
+    "reviewers": "Developer 1 code review; Developer 4 independent rendered Design QA; actual identities pending",
+    "risk": "high",
+    "exit_evidence": "Frontend interaction tests/build, keyboard/responsive/failure-state checks, integrated direct speech and independent PASS/Design QA evidence.",
+    "session": "tanaw-dev2-design-frontend",
+    "status": "Backlog",
+    "assignee": null,
+    "issue_url": "https://github.com/Heiron8/hackathon-appbuilders-walangkamatayantilapia/issues/3"
+  },
+  {
+    "key": "TANAW-03",
+    "title": "[P0] TANAW-03: Local model feasibility and validated sentence expansion",
+    "goal": "Developer 3 backend/local-AI lane: benchmark a small local Ollama model, then implement health/expansion and conservative meaning-preserving validation. Real model inference must be distinguished from deterministic baseline AAC or mocks.",
+    "module": "backend communication validation, runtime adapter, health/expand endpoints and local AI evaluation",
+    "acceptance_criteria": [
+      "Start with a small local model (qwen3:1.7b candidate), pin tested runtime/model digest, measure cold/warm latency and RAM/VRAM without assuming acceleration/performance.",
+      "Actual inference works after internet disconnection and restart; no cloud model, remote fallback, tools or prompt/message logging.",
+      "Request JSON schema and validate exact source IDs plus approved Want/Not-Want grammar; unsupported sequences retain direct wording; no accepted invented needs/preferences/negation changes in fixtures.",
+      "Implement version/revision/error contracts, one active call, five-second deadline, and unavailable/busy/invalid-output paths; baseline AAC remains usable.",
+      "At least 12 expansion fixtures and 30 timed warm calls: supported expansion success >=90%, no accepted unsupported additions, warm p95 target <=3 seconds. Report failed gates; never silently weaken them."
+    ],
+    "dependencies": [],
+    "definition_of_ready": {
+      "common": "Architecture/plan approved; actual owner/reviewer supplied; approved planning package available.",
+      "task": "Approved grammar/API specification and demonstration-laptop access available. Runtime/model downloads occur only in an authorized implementation session. Model feasibility can start before TANAW-01 setup completes; coordinate backend manifests with Developer 1. Current Backlog reason: missing real owner/reviewer and device access confirmation."
+    },
+    "owner_specialty": "Developer 3: Backend / Local AI",
+    "reviewers": "Developer 1 independent contract/security review; Developer 4 witnesses meaning/offline checks; actual identities pending",
+    "risk": "high",
+    "exit_evidence": "Dated model/runtime/latency/memory report, real disconnected inference, grammar/contract/failure tests, independent PASS. Suggestions remain disabled.",
+    "session": "tanaw-dev3-local-ai",
+    "status": "Backlog",
+    "assignee": null,
+    "issue_url": "https://github.com/Heiron8/hackathon-appbuilders-walangkamatayantilapia/issues/4"
+  },
+  {
+    "key": "TANAW-04",
+    "title": "[P0] TANAW-04: Offline speech proof, card-audio fallback and demo QA",
+    "goal": "Developer 4 offline-speech/QA/demo lane: first verify offline speech on the demonstration laptop, then provide the speech helper and licensed card recordings, and collect integrated fresh-setup/demo evidence.",
+    "module": "frontend speech helper and local audio/assets; QA, setup and demo/submission evidence",
+    "acceptance_criteria": [
+      "First checkpoint records demo browser/installed local voice, actual full-sentence playback with internet disconnected, and stop/replay behavior; report missing voice as a blocker.",
+      "Provide speakText/speakCards/stopSpeech and capability/error state; use only local synthesis, with complete licensed/team-recorded clips for all 32 card IDs.",
+      "Clip fallback speaks selected labels in order and never silently substitutes different audio for approved/edited full text; all-speech-unavailable state is truthful.",
+      "Integrate with TANAW-02 after design approval; direct AAC works with Ollama stopped and an already loaded page continues when backend inference fails.",
+      "Final fresh setup/disconnected restart/reload, accessibility/fallback review, video/rehearsal and pre-existing harness/model/library/asset/tool disclosures identify the actual integrated build."
+    ],
+    "dependencies": [],
+    "definition_of_ready": {
+      "common": "Architecture/plan approved; actual owner/reviewer supplied; approved planning package available.",
+      "task": "Demo-laptop access and shared IDs/speech interface available. Standalone speech proof can start before frontend design; UI wiring waits for TANAW-06. Final QA/video waits for the integrated TANAW-01/02/03 build. Current Backlog reason: missing actual owner/reviewer/device access confirmation."
+    },
+    "owner_specialty": "Developer 4: Offline speech / QA / demo",
+    "reviewers": "Developer 2 independently reviews speech code; Developer 1 reviews QA/demo evidence; actual identities pending",
+    "risk": "high",
+    "exit_evidence": "Disconnected voice and 32-card clip evidence, playback/error checks, independent review, fresh setup, verified demo/video and submission disclosures.",
+    "session": "tanaw-dev4-speech-qa",
+    "status": "Backlog",
+    "assignee": null,
+    "issue_url": "https://github.com/Heiron8/hackathon-appbuilders-walangkamatayantilapia/issues/5"
+  },
+  {
+    "key": "TANAW-05",
+    "title": "[P1 conditional] TANAW-05: Validated fixed-vocabulary conversation suggestions",
+    "goal": "Developer 3 backend lane, with Developer 2 separately owned approved UI wiring: evaluate and enable typed-question card suggestions only after technical and Lead acceptance gates pass. Omit from the working demo if gates fail or threaten the P0/freeze buffer.",
+    "module": "backend suggest endpoint/evaluation; approved frontend companion panel",
+    "acceptance_criteria": [
+      "Typed question produces zero-to-six unique known tanaw-v1 IDs only, never free-form answers or automatic choices/speech; an empty result is valid.",
+      "At least 12 question fixtures include relevance, refusal/ambiguity, out-of-vocabulary content and prompt injection; independent relevance >=90%, all returned IDs valid, no imposed child response.",
+      "Latency/deadline, stale-question, unavailable/busy/invalid-output and disconnected-runtime tests pass; original primary board and essential responses stay accessible.",
+      "Record Lead acceptance of evaluation before enabling; human-approved UI remains separately gated. If any required gate fails, feature stays disabled."
+    ],
+    "dependencies": [
+      "TANAW-03"
+    ],
+    "definition_of_ready": {
+      "common": "Architecture/plan approved, actual owner/reviewer supplied, approved planning package available.",
+      "task": "TANAW-03 usable model evidence accepted; P0/freeze buffer protected. Lead review of suggestion evaluation is mandatory before enabling, TANAW-06 human design approval before frontend wiring. Current Backlog reasons: prerequisites/evaluation missing and real owners/reviewers not supplied."
+    },
+    "owner_specialty": "Developer 3: Backend / Local AI; Developer 2 owns frontend wiring without transferring backend ownership",
+    "reviewers": "Developer 1 reviews backend/gate; Developer 4 independently reviews relevance/safety/UI; actual identities pending",
+    "risk": "high",
+    "exit_evidence": "Independent fixture/latency/offline report, explicit Lead enablement acceptance, valid-ID/stable-board checks and independent PASS; otherwise disabled.",
+    "session": "tanaw-dev3-local-ai",
+    "status": "Backlog",
+    "assignee": null,
+    "issue_url": "https://github.com/Heiron8/hackathon-appbuilders-walangkamatayantilapia/issues/6"
+  }
+]
