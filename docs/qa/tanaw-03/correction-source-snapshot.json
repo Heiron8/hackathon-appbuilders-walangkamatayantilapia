@@ -1,0 +1,54 @@
+{
+  "checked_at": "2026-10-10T00:43:26.009696+08:00",
+  "base": "d26c95987f8e48bac83abaf88626c84b9059eaf4",
+  "branch": "task/issue-4",
+  "correction_changed_files": [
+    "backend/app/ai/evaluate.py",
+    "backend/app/ai/ollama.py",
+    "backend/app/api/communication.py",
+    "backend/app/api/errors.py",
+    "backend/app/validation/grammar.py",
+    "backend/app/validation/vocabulary.py",
+    "backend/tests/checkpoint_app.py",
+    "backend/tests/fixtures.py",
+    "backend/tests/smoke_checkpoint.py",
+    "backend/tests/test_api.py",
+    "backend/tests/test_validation.py",
+    "backend/tests/test_vocabulary.py",
+    "docs/qa/tanaw-03/checkpoint-review.md",
+    "docs/qa/tanaw-03/correction-http.json",
+    "docs/qa/tanaw-03/manual-offline-verification.md",
+    "docs/qa/tanaw-03/correction-source-snapshot.json"
+  ],
+  "source_sha256": {
+    "backend/app/ai/evaluate.py": "ec2b2418a9cc2c76ddf3935175185f67c097a355f6a7e5014c36b72a9eceae7a",
+    "backend/app/ai/ollama.py": "1a9be6741381952f8f2804080b231b1a64f2d82760e79b09f68fbfe7e56fcc02",
+    "backend/app/api/communication.py": "4eb91cf615688819c14b9fa98f5570baa336df73c09ec675ec14467210f64fd2",
+    "backend/app/api/errors.py": "176aaa2fd498df86c042d720245e7d2010a67e11ccb52030da14e13893bd897d",
+    "backend/app/validation/contracts.py": "b1947aea8a48674186d9a230a84cf66927bfac4613b5026962db255faebcbac2",
+    "backend/app/validation/grammar.py": "03db62ecd949a1fa440e5c23c142ba4825070f3259f0b8a7d3dbd7414d74be78",
+    "backend/app/validation/vocabulary.py": "0144e318cd9b75c1c0dd89cd32f55e4de5c5b3685e3fc673a642eae917f3db6a",
+    "backend/tests/checkpoint_app.py": "a32d4e2efe1347fa6c5982483a98d816b3d7fb6b69c14c3e52a7cbb8c7283397",
+    "backend/tests/fixtures.py": "e43e57aeaa5998e0738d6e01f0e6e9feec2ecd92028769b353ee678e15ebd76f",
+    "backend/tests/smoke_checkpoint.py": "9180fae2c1c741e739a33245ec45786c42a6d2090e3621bd5dbfca7a5a1fd8a7",
+    "backend/tests/test_api.py": "a9f7a19a4029b5092587b5f775099cc93a25994253f7588ddda8c4332cd1626b",
+    "backend/tests/test_evaluation.py": "3da7a8126d70a60df6cb2c9b52f07ffc9467b2383fed76d47c47cff7e2796081",
+    "backend/tests/test_validation.py": "b617443023df78eb3a941825c60f9bf82d4019cd9430ba0e5b86889fa5a87911",
+    "backend/tests/test_vocabulary.py": "d2e0a10836ab9553178168506bdf1495b46dc77d824a9c27baef420eced5cff4"
+  },
+  "backend_tests": {
+    "run": 35,
+    "passed": 35,
+    "failed": 0,
+    "skipped": 0
+  },
+  "workspace_tests": {
+    "run": 139,
+    "passed": 138,
+    "failed": 0,
+    "skipped": 1
+  },
+  "scope_secret_whitespace": "PASS",
+  "offline": "NOT VERIFIED; manual procedure prepared only",
+  "review": "Prior CHANGES REQUESTED supplied by user; independent re-review PENDING"
+}

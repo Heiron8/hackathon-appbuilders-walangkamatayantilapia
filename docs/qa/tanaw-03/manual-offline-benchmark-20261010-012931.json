@@ -1,0 +1,400 @@
+{
+  "checked_at": "2026-10-10T01:29:32.320715+08:00",
+  "model": "qwen3:1.7b",
+  "network_scope": "network not checked by this benchmark; disconnected restart NOT VERIFIED",
+  "implementation_scope": "real local runtime/adapter; production app assembly not integrated",
+  "packages": {
+    "fastapi": "0.143.0",
+    "pydantic": "2.14.0",
+    "httpx": "0.28.1",
+    "uvicorn": "0.54.0"
+  },
+  "warm_calls": [
+    {
+      "fixture": 0,
+      "source_card_ids": [
+        "want",
+        "eat",
+        "apple"
+      ],
+      "outcome": "candidate",
+      "duration_ms": 151.27
+    },
+    {
+      "fixture": 1,
+      "source_card_ids": [
+        "not",
+        "want",
+        "eat",
+        "apple"
+      ],
+      "outcome": "candidate",
+      "duration_ms": 171.25
+    },
+    {
+      "fixture": 2,
+      "source_card_ids": [
+        "i",
+        "want",
+        "drink",
+        "water"
+      ],
+      "outcome": "candidate",
+      "duration_ms": 178.79
+    },
+    {
+      "fixture": 3,
+      "source_card_ids": [
+        "i",
+        "not",
+        "want",
+        "drink",
+        "milk"
+      ],
+      "outcome": "candidate",
+      "duration_ms": 196.45
+    },
+    {
+      "fixture": 4,
+      "source_card_ids": [
+        "want",
+        "banana"
+      ],
+      "outcome": "candidate",
+      "duration_ms": 190.59
+    },
+    {
+      "fixture": 5,
+      "source_card_ids": [
+        "not",
+        "want",
+        "toy"
+      ],
+      "outcome": "candidate",
+      "duration_ms": 208.67
+    },
+    {
+      "fixture": 6,
+      "source_card_ids": [
+        "i",
+        "want",
+        "ball"
+      ],
+      "outcome": "candidate",
+      "duration_ms": 180.85
+    },
+    {
+      "fixture": 7,
+      "source_card_ids": [
+        "i",
+        "not",
+        "want",
+        "rice"
+      ],
+      "outcome": "candidate",
+      "duration_ms": 207.22
+    },
+    {
+      "fixture": 8,
+      "source_card_ids": [
+        "want",
+        "drink",
+        "juice"
+      ],
+      "outcome": "candidate",
+      "duration_ms": 217.43
+    },
+    {
+      "fixture": 9,
+      "source_card_ids": [
+        "not",
+        "want",
+        "eat",
+        "bread"
+      ],
+      "outcome": "candidate",
+      "duration_ms": 237.57
+    },
+    {
+      "fixture": 10,
+      "source_card_ids": [
+        "i",
+        "want",
+        "eat",
+        "banana"
+      ],
+      "outcome": "candidate",
+      "duration_ms": 228.35
+    },
+    {
+      "fixture": 11,
+      "source_card_ids": [
+        "i",
+        "not",
+        "want",
+        "water"
+      ],
+      "outcome": "candidate",
+      "duration_ms": 222.57
+    },
+    {
+      "fixture": 0,
+      "source_card_ids": [
+        "want",
+        "eat",
+        "apple"
+      ],
+      "outcome": "candidate",
+      "duration_ms": 225.99
+    },
+    {
+      "fixture": 1,
+      "source_card_ids": [
+        "not",
+        "want",
+        "eat",
+        "apple"
+      ],
+      "outcome": "candidate",
+      "duration_ms": 239.47
+    },
+    {
+      "fixture": 2,
+      "source_card_ids": [
+        "i",
+        "want",
+        "drink",
+        "water"
+      ],
+      "outcome": "candidate",
+      "duration_ms": 229.68
+    },
+    {
+      "fixture": 3,
+      "source_card_ids": [
+        "i",
+        "not",
+        "want",
+        "drink",
+        "milk"
+      ],
+      "outcome": "candidate",
+      "duration_ms": 260.48
+    },
+    {
+      "fixture": 4,
+      "source_card_ids": [
+        "want",
+        "banana"
+      ],
+      "outcome": "candidate",
+      "duration_ms": 196.72
+    },
+    {
+      "fixture": 5,
+      "source_card_ids": [
+        "not",
+        "want",
+        "toy"
+      ],
+      "outcome": "candidate",
+      "duration_ms": 215.59
+    },
+    {
+      "fixture": 6,
+      "source_card_ids": [
+        "i",
+        "want",
+        "ball"
+      ],
+      "outcome": "candidate",
+      "duration_ms": 197.04
+    },
+    {
+      "fixture": 7,
+      "source_card_ids": [
+        "i",
+        "not",
+        "want",
+        "rice"
+      ],
+      "outcome": "candidate",
+      "duration_ms": 210.72
+    },
+    {
+      "fixture": 8,
+      "source_card_ids": [
+        "want",
+        "drink",
+        "juice"
+      ],
+      "outcome": "candidate",
+      "duration_ms": 217.54
+    },
+    {
+      "fixture": 9,
+      "source_card_ids": [
+        "not",
+        "want",
+        "eat",
+        "bread"
+      ],
+      "outcome": "candidate",
+      "duration_ms": 237.0
+    },
+    {
+      "fixture": 10,
+      "source_card_ids": [
+        "i",
+        "want",
+        "eat",
+        "banana"
+      ],
+      "outcome": "candidate",
+      "duration_ms": 219.01
+    },
+    {
+      "fixture": 11,
+      "source_card_ids": [
+        "i",
+        "not",
+        "want",
+        "water"
+      ],
+      "outcome": "candidate",
+      "duration_ms": 231.27
+    },
+    {
+      "fixture": 0,
+      "source_card_ids": [
+        "want",
+        "eat",
+        "apple"
+      ],
+      "outcome": "candidate",
+      "duration_ms": 223.1
+    },
+    {
+      "fixture": 1,
+      "source_card_ids": [
+        "not",
+        "want",
+        "eat",
+        "apple"
+      ],
+      "outcome": "candidate",
+      "duration_ms": 237.79
+    },
+    {
+      "fixture": 2,
+      "source_card_ids": [
+        "i",
+        "want",
+        "drink",
+        "water"
+      ],
+      "outcome": "candidate",
+      "duration_ms": 226.96
+    },
+    {
+      "fixture": 3,
+      "source_card_ids": [
+        "i",
+        "not",
+        "want",
+        "drink",
+        "milk"
+      ],
+      "outcome": "candidate",
+      "duration_ms": 259.65
+    },
+    {
+      "fixture": 4,
+      "source_card_ids": [
+        "want",
+        "banana"
+      ],
+      "outcome": "candidate",
+      "duration_ms": 198.03
+    },
+    {
+      "fixture": 5,
+      "source_card_ids": [
+        "not",
+        "want",
+        "toy"
+      ],
+      "outcome": "candidate",
+      "duration_ms": 212.85
+    }
+  ],
+  "runtime": {
+    "version": "0.40.2"
+  },
+  "installed_models": {
+    "models": [
+      {
+        "name": "qwen3:1.7b",
+        "model": "qwen3:1.7b",
+        "modified_at": "2026-10-09T23:38:56.1529717+08:00",
+        "size": 1359293444,
+        "digest": "8f68893c685c3ddff2aa3fffce2aa60a30bb2da65ca488b61fff134a4d1730e7",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen3",
+          "families": [
+            "qwen3"
+          ],
+          "parameter_size": "2.0B",
+          "quantization_level": "Q4_K_M",
+          "context_length": 40960,
+          "embedding_length": 2048,
+          "runner": "ggml"
+        },
+        "capabilities": [
+          "completion",
+          "tools",
+          "thinking"
+        ]
+      }
+    ]
+  },
+  "setup_load_ms": 327.02,
+  "setup_load_duration_ns": 8861400,
+  "setup_kind": "complete fixture inference, including load and first generation",
+  "setup_candidate_valid": true,
+  "loaded_model_memory": {
+    "models": [
+      {
+        "name": "qwen3:1.7b",
+        "model": "qwen3:1.7b",
+        "size": 1465615645,
+        "digest": "8f68893c685c3ddff2aa3fffce2aa60a30bb2da65ca488b61fff134a4d1730e7",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen3",
+          "families": [
+            "qwen3"
+          ],
+          "parameter_size": "2.0B",
+          "quantization_level": "Q4_K_M"
+        },
+        "expires_at": "2026-10-10T01:39:39.1670917+08:00",
+        "size_vram": 1465615645,
+        "context_length": 2048,
+        "runner": "llamacpp"
+      }
+    ]
+  },
+  "summary": {
+    "calls": 30,
+    "supported_success_rate": 1.0,
+    "supported_fixture_success_rate": 1.0,
+    "p50_ms": 217.43,
+    "p95_ms": 259.65,
+    "warm_quality_and_latency_pass": true,
+    "overall_feasibility": "NOT ACCEPTED: disconnected proof and independent review pending"
+  }
+}

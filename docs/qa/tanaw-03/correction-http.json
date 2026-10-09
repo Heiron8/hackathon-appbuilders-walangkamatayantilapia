@@ -1,0 +1,51 @@
+{
+  "checked_at": "2026-10-10T00:42:09.220557+08:00",
+  "scope": "online; verification app with synthetic vocabulary and real local Ollama; production assembly not integrated",
+  "checks": [
+    {
+      "check": "real_model_expansion",
+      "ids": [
+        "want",
+        "eat",
+        "apple"
+      ],
+      "http": 200,
+      "meaning_valid": true
+    },
+    {
+      "check": "real_model_expansion",
+      "ids": [
+        "not",
+        "want",
+        "eat",
+        "apple"
+      ],
+      "http": 200,
+      "meaning_valid": true
+    },
+    {
+      "check": "error_envelope",
+      "method": "GET",
+      "path": "/api/absent",
+      "http": 404,
+      "allow": null
+    },
+    {
+      "check": "error_envelope",
+      "method": "GET",
+      "path": "/api/expand",
+      "http": 405,
+      "allow": "POST"
+    },
+    {
+      "check": "error_envelope",
+      "method": "POST",
+      "path": "/api/health",
+      "http": 405,
+      "allow": "GET"
+    }
+  ],
+  "verdict": "PASS",
+  "offline": "NOT VERIFIED",
+  "independent_re_review": "PENDING"
+}

@@ -1,0 +1,43 @@
+{
+  "checked_at": "2026-10-09T23:43:58.776041+08:00",
+  "scope": "real loopback HTTP; synthetic test vocabulary; online",
+  "checks": [
+    {
+      "check": "health",
+      "http": 200,
+      "ai_state": "ready"
+    },
+    {
+      "check": "expand",
+      "source_card_ids": [
+        "want",
+        "eat",
+        "apple"
+      ],
+      "http": 200
+    },
+    {
+      "check": "expand",
+      "source_card_ids": [
+        "not",
+        "want",
+        "eat",
+        "apple"
+      ],
+      "http": 200
+    },
+    {
+      "check": "unsupported_without_model",
+      "http": 200
+    },
+    {
+      "check": "unknown_id",
+      "http": 422
+    },
+    {
+      "check": "version_mismatch",
+      "http": 409
+    }
+  ],
+  "verdict": "PASS"
+}
