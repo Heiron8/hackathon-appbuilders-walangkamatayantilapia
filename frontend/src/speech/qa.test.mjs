@@ -35,7 +35,8 @@ async function fixture(initialVoices = [zira], assetSource = manifest) {
     navigator: { userAgent: 'fixture browser', onLine: false },
     window: { speechSynthesis: { getVoices: () => voices, cancel() {}, speak: utterance => spoken.push(utterance), addEventListener() {} }, addEventListener() {} },
     SpeechSynthesisUtterance: class { constructor(text) { this.text = text; } },
-    fetch: async path => ({ ok: true, json: async () => path === '/vocabulary.json' ? vocabulary : assetSource }),
+    fetch: async path => ({ ok: !path.includes('__qa_missing'), status: path.includes('__qa_missing') ? 404 : 200,
+      json: async () => path === '/vocabulary.json' ? vocabulary : assetSource }),
     initializeSpeech: setup => initialized.push(setup), stopSpeech() {},
     getSpeechState: () => {
       const setup = initialized.at(-1);
@@ -108,11 +109,33 @@ test('QA enables clips only after all audio PASS; missing-media request reaches 
   await f.elements['missing-media'].onclick();
   assert.deepEqual(f.mediaPaths, ['/audio/en/__qa_missing_apple.wav']);
   assert.equal(f.evidence().helperEvents.at(-1).result.error.code, 'playback_failed');
+  assert.equal(f.evidence().helperEvents.at(-1).httpStatus, 404);
+  assert.equal(f.evidence().helperEvents.at(-1).playbackMode, 'bundled_clips');
   const select = f.elements['offline-results'].children[0].children[1];
   select.value = 'PASS'; select.onchange(); assert.equal(select.value, 'PENDING');
   f.elements['physically-offline'].checked = true; select.value = 'PASS'; select.onchange();
   assert.equal(f.evidence().offlineFallbackResults[0].status, 'PASS');
   assert.equal(f.spoken.length, 0);
+});
+test('QA exports the eighth full-text rejection outcome only after explicit human marking with offline context', async () => {
+  const f = await fixture(); f.metadata();
+  f.elements.tester.onchange();
+  const outcomes = f.evidence().offlineFallbackResults;
+  assert.equal(outcomes.length, 8);
+  assert.ok(outcomes.every(row => row.status === 'PENDING' && row.checkedAt === null));
+  const index = outcomes.findIndex(row => row.id === 'full-text-unavailable');
+  const select = f.elements['offline-results'].children[index].children[1];
+  select.value = 'PASS'; select.onchange(); assert.equal(select.value, 'PENDING');
+  for (const item of vocabulary.cards) { const c = f.card(item.id); c.audio.value = 'PASS'; c.audio.onchange(); }
+  f.elements.fallback.onclick();
+  assert.equal(f.evidence().offlineFallbackResults[index].status, 'PENDING');
+  f.elements['physically-offline'].checked = true;
+  select.value = 'PASS'; select.onchange();
+  f.elements['download-evidence'].onclick();
+  const saved = JSON.parse(await f.downloads.at(-1).text());
+  const row = saved.offlineFallbackResults[index];
+  assert.equal(row.status, 'PASS'); assert.ok(Number.isFinite(Date.parse(row.checkedAt)));
+  assert.equal(row.context.tester, 'fixture tester'); assert.equal(row.context.physicallyDisconnected, true);
 });
 test('QA explains rejected fallback results beside the affected control and retains human evidence gates', async () => {
   const f = await fixture();

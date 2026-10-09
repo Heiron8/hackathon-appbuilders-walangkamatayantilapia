@@ -227,9 +227,12 @@ el('missing-media').onclick = async () => {
   });
   missingMediaController = controller;
   const context = helperContext(controller.getState());
+  let httpStatus = null;
+  try { httpStatus = (await fetch(missingPath, { cache: 'no-store' })).status; }
+  catch { /* Preserve a network failure separately from the playback result. */ }
   const result = await controller.speakCards(['apple']);
   if (missingMediaController === controller) { controller.dispose(); missingMediaController = null; }
-  recordHelper(`missing-media QA:${missingPath}`, result, context);
+  recordHelper(`missing-media QA:${missingPath}`, result, { ...context, httpStatus });
 };
 el('resume-audits').onclick = () => {
   stopAudition();
@@ -279,7 +282,8 @@ function renderOfflineResults() {
     ['stop', 'Stop interrupts clips'], ['replay', 'Replay begins the card sequence again'],
     ['reload', 'Reload and clips-only playback while disconnected'],
     ['restart', 'Browser/server restart and clips-only playback while disconnected'],
-    ['missing-media', 'Missing Apple WAV reports playback_failed; no sound/false success']]) {
+    ['missing-media', 'Missing Apple WAV reports playback_failed; no sound/false success'],
+    ['full-text-unavailable', 'Clips-only full-text request reports full_text_unavailable; no automatic clips']]) {
     const result = { id, label, status: 'PENDING', notes: '', checkedAt: null, context: null };
     evidence.offlineFallbackResults.push(result);
     const row = document.createElement('label');
