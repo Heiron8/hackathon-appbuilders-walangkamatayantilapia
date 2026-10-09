@@ -1,0 +1,11 @@
+{
+  "vocabulary_version": "tanaw-v1",
+  "locale": "en",
+  "max_selected_cards": 12,
+  "max_request_bytes": 16384,
+  "max_question_characters": 240,
+  "max_suggested_cards": 6,
+  "inference_timeout_seconds": 5,
+  "frontend_timeout_seconds": 6,
+  "suggestions_enabled": false
+}
