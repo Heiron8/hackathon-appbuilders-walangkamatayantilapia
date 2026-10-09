@@ -4,7 +4,7 @@ import json
 import re
 import sys
 
-from _common import ORCH, ROOT, architecture_release, cmd_exists, read_json, read_json_object, run
+from _common import ORCH, ROOT, architecture_release, cmd_exists, read_json, read_json_object, run, run_network
 from onboard_member import IdentityError, resolve_member
 
 
@@ -93,17 +93,40 @@ def check_github_access(config: dict) -> tuple[str, list[dict] | None]:
     github = config.get("github", {})
     project_number = github.get("project_number")
     if project_number is None:
-        return login, None
+        return login, ready_issues(config, login)
     if not github.get("owner") or not github.get("repo"):
         raise BootstrapError("GitHub Project configuration requires owner, repo, and project_number.")
-    check_project_update_access(github)
     try:
+        check_project_update_access(github)
         from github_project import items
 
         project_items = items()
-    except SystemExit as exc:
-        raise BootstrapError(f"GitHub Project items could not be read: {exc}")
+    except (BootstrapError, SystemExit) as exc:
+        print(f"GitHub Project unavailable; using Issues-first workflow: {exc}")
+        return login, ready_issues(config, login)
     return login, project_items
+
+
+def ready_issues(config, login):
+    repository = intended_repository(config)
+    if not repository:
+        return []
+    result = run_network(['gh', 'issue', 'list', '--repo', repository, '--state', 'open',
+                          '--assignee', login, '--label', 'status:ready', '--limit', '100',
+                          '--json', 'url,assignees,labels'])
+    if result.returncode != 0:
+        print('GitHub Issue readiness unavailable; no Ready claim inferred.')
+        return []
+    try:
+        tasks = json.loads(result.stdout)
+        ready = config.get('github', {}).get('status_values', {}).get('ready', 'Ready')
+        return [{'status': ready, 'content': {'url': task['url']}} for task in tasks
+                if [a['login'].lower() for a in task['assignees']] == [login.lower()]
+                and [label['name'] for label in task['labels'] if label['name'].startswith('status:')]
+                == ['status:ready']]
+    except (ValueError, KeyError, TypeError):
+        print('GitHub Issue readiness response invalid; no Ready claim inferred.')
+        return []
 
 
 def run_existing_script(script_name: str, label: str) -> None:
@@ -140,13 +163,13 @@ def main() -> int:
     print(f"Root: {ROOT}")
     try:
         check_prerequisites()
+        run_existing_script("project_sync.py", "Project Sync")
         config = read_json_object(ROOT / "workspace.config.json", {}, "workspace.config.json")
         login, project_items = check_github_access(config)
         member = resolve_member(login)
         print(f"[OK] Identity: {member['name']} ({member['id']}, @{member['github']})")
         run_existing_script("install_hooks.py", "Git hook installation")
         run_existing_script("verify_workspace.py", "Workspace verification")
-        run_existing_script("project_sync.py", "Project Sync")
         state, action = classify_readiness(config, project_items)
     except (BootstrapError, IdentityError, OSError, ValueError) as exc:
         print(f"\nNOT READY\n{exc}")

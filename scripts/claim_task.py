@@ -2,8 +2,62 @@
 import argparse
 import json
 
-from _common import LOCAL, ORCH, read_json, cmd_exists, run
-from github_project import find_item, items, status as set_status, values
+from _common import LOCAL, ORCH, ROOT, architecture_release, read_json, cmd_exists, run, run_network
+from github_project import find_item, items, status as set_status, values, project as project_number
+from onboard_member import validate_team
+
+ISSUE_STATUSES = {'backlog', 'ready', 'in-progress', 'in-review', 'blocked', 'done'}
+
+
+def check_claim_context(member, team):
+    validate_team(team)
+    user = run_network(['gh', 'api', 'user', '--jq', '.login'])
+    if user.returncode != 0 or user.stdout.strip().lower() != member['github'].lower():
+        raise SystemExit('Authenticated GitHub account must match the local registered member.')
+    config = read_json(ROOT/'workspace.config.json', {})
+    release = architecture_release(read_json(ORCH/'architecture-state.json', {}), config)
+    state = read_json(ORCH/'project-state.json', {})
+    if not release.released or state.get('project', {}).get('phase') != 'implementation':
+        raise SystemExit('Claim requires approved architecture and released implementation.')
+
+
+def issue_status(task):
+    try:
+        statuses = [label['name'][7:] for label in task['labels'] if label['name'].startswith('status:')]
+        if task['state'] != 'OPEN' or len(statuses) != 1 or statuses[0] not in ISSUE_STATUSES:
+            raise ValueError('unsafe status')
+        return statuses[0]
+    except (KeyError, TypeError, ValueError):
+        raise SystemExit('Issue must be open with exactly one supported status: label; ask the Lead Architect to mark it Ready.')
+
+
+def claim_issue(task, member):
+    """Lead preassignment avoids racing unassigned Issues (GitHub has no claim CAS)."""
+    login, url = member['github'].lower(), task['url']
+    github = read_json(ROOT/'workspace.config.json', {}).get('github', {})
+    owner, repo = github.get('owner'), github.get('repo')
+    if not owner or not repo or url != f"https://github.com/{owner}/{repo}/issues/{task['number']}":
+        raise SystemExit('Issues-first claim requires an Issue in the configured repository; claim stopped.')
+    if owners(task) != [login]:
+        raise SystemExit('Issues-first claim requires exclusive Lead-assigned ownership; ask the Lead Architect to serialize assignment.')
+    if issue_status(task) not in ('ready', 'in-progress'):
+        raise SystemExit('Issue is not Ready or this owner\'s In Progress retry; status preserved.')
+    workspace = prepare_branch(f"task/issue-{task['number']}")
+    current = issue_state(url)
+    if owners(current) != [login]:
+        raise SystemExit('Competing or missing owner detected; issue status preserved.')
+    status = issue_status(current)
+    if status == 'ready':
+        edited = run_network(['gh', 'issue', 'edit', url, '--remove-label', 'status:ready',
+                              '--add-label', 'status:in-progress'])
+        if edited.returncode != 0:
+            raise SystemExit('Issue status update failed; reread GitHub and retry. No claim success reported.')
+    elif status != 'in-progress':
+        raise SystemExit('Issue status changed before mutation; status preserved.')
+    final = issue_state(url)
+    if owners(final) != [login] or issue_status(final) != 'in-progress':
+        raise SystemExit('Issue ownership/status changed; claim not reported as successful. Ask the Lead Architect to reconcile.')
+    print(f"TASK CLAIM RESULT\n- Owner: {member['name']}\n- GitHub: {member['github']}\n- Issue: {url}\n- Branch/worktree: {workspace}\n- Status: In Progress\n- Source: GitHub Issues (Lead-serialized ownership)")
 
 
 def prepare_branch(branch):
@@ -34,7 +88,7 @@ def prepare_branch(branch):
 
 
 def issue_state(issue):
-    viewed = run(['gh', 'issue', 'view', str(issue), '--json', 'number,url,assignees'])
+    viewed = run_network(['gh', 'issue', 'view', str(issue), '--json', 'number,url,assignees,state,labels'])
     if viewed.returncode != 0:
         raise SystemExit(viewed.stderr or 'Issue lookup failed; claim stopped.')
     try:
@@ -73,12 +127,19 @@ def claim(issue):
     member = next((m for m in team.get('members', []) if m.get('id') == local.get('member_id')), None)
     if not member or not member.get('github'):
         raise SystemExit('Current local member needs a GitHub username in the team registry.')
-    if not cmd_exists('gh') or run(['gh', 'auth', 'status']).returncode != 0:
+    if not cmd_exists('gh') or run_network(['gh', 'auth', 'status']).returncode != 0:
         raise SystemExit('Authenticated gh CLI required.')
+    check_claim_context(member, team)
 
     task = issue_state(issue)
     number, url = task['number'], task['url']
-    status = (find_item(url, items()) or {}).get('status')
+    if project_number is None:
+        return claim_issue(task, member)
+    try:
+        status = (find_item(url, items()) or {}).get('status')
+    except SystemExit:
+        print('GitHub Project unavailable; checking explicit Issue status and Lead-assigned ownership.')
+        return claim_issue(task, member)
     ready, in_progress = values.get('ready', 'Ready'), values.get('in_progress', 'In Progress')
     initial_owners = owners(task)
     same_owner = initial_owners == [member['github'].lower()]

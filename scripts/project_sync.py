@@ -8,8 +8,11 @@ from _common import (
     read_json,
     read_json_object,
     run,
+    run_network,
+    sync_main,
 )
 
+git_sync = sync_main()
 team = read_json(ORCH/'team.json', {'members': []})
 state = read_json(ORCH/'project-state.json', {})
 arch = read_json(ORCH/'architecture-state.json', {})
@@ -23,6 +26,7 @@ local = read_json(LOCAL/'member.json', {}) or {}
 member = next((m for m in team.get('members', []) if m.get('id') == local.get('member_id')), None)
 
 print('PROJECT SYNC')
+print(f'\nGit synchronization\n- {git_sync.status} - {git_sync.message}')
 print('\nMember')
 print(f"- Name: {member.get('name') if member else 'UNCONFIGURED'}")
 print(f"- Role: {member.get('role') if member else 'run onboard_member.py'}")
@@ -40,18 +44,18 @@ if cmd_exists('git'):
     b = run(['git','branch','--show-current'])
     s = run(['git','status','--short'])
     print('\nGit')
-    print(f"- Branch: {b.stdout.strip() or '(detached/none)'}")
-    print(f"- Working tree: {'clean' if not s.stdout.strip() else 'changes present'}")
+    print(f"- Branch: {'unknown (inspection failed)' if b.returncode != 0 else b.stdout.strip() or '(detached/none)'}")
+    print(f"- Working tree: {'unknown (inspection failed)' if s.returncode != 0 else 'clean' if not s.stdout.strip() else 'changes present'}")
 
 github = config.get('github', {})
 repo = f"{github.get('owner')}/{github.get('repo')}" if github.get('owner') and github.get('repo') else None
 if not repo:
     print('\nGitHub\n- Repository and Project are not configured for this new workspace.')
-elif not cmd_exists('gh') or run(['gh','auth','status']).returncode != 0:
+elif not cmd_exists('gh') or run_network(['gh','auth','status']).returncode != 0:
     print('\nGitHub\n- gh is unavailable or not authenticated.')
 else:
-    issues = run(['gh','issue','list','--repo',repo,'--limit','10','--json','number,title,assignees,labels,state'])
-    prs = run(['gh','pr','list','--repo',repo,'--limit','10','--json','number,title,state,isDraft,headRefName'])
+    issues = run_network(['gh','issue','list','--repo',repo,'--limit','10','--json','number,title,assignees,labels,state'])
+    prs = run_network(['gh','pr','list','--repo',repo,'--limit','10','--json','number,title,state,isDraft,headRefName'])
     print('\nGitHub')
     if issues.returncode == 0 and prs.returncode == 0:
         print(f'- Repository: {repo}')
