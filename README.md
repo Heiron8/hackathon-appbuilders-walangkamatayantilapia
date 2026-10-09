@@ -1,5 +1,7 @@
 # Professional AI Workspace Template
 
+Tanaw product setup and integration handoff: [Local development](docs/development.md).
+
 A reusable, GitHub-centered workspace for planning, delivering, reviewing, and recovering software projects. The repository holds durable project truth; chat history and agent runtimes do not.
 
 ## Start a new project

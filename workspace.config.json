@@ -20,7 +20,10 @@
     }
   },
   "verification": {
-    "commands": []
+    "commands": [
+      "python scripts/verify_workspace.py",
+      "python scripts/verify_product.py"
+    ]
   },
   "adapters": {
     "preferred": "generic"

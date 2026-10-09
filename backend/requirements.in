@@ -1,0 +1,6 @@
+# Direct dependencies; resolved versions are pinned in requirements.lock.txt.
+fastapi==0.143.0
+pydantic==2.14.0
+uvicorn==0.54.0
+# Async HTTP client for the backend lane and TestClient for foundation checks.
+httpx==0.28.1
